@@ -61,6 +61,16 @@ message UpdateRawIrDataRequest {
     irdata.RawIrData irdata = 2;
 }
 
+message ApplianceUpDateNotification {
+    string appliance_id = 1;
+    enum UpdateType {
+        UPDATE_TYPE_UNSPECIFIED = 0;
+        UPDATE_TYPE_ADD = 1;
+        UPDATE_TYPE_DELETE = 2;
+    }
+    UpdateType update_type = 2;
+}
+
 service AimService {
     rpc AddSwitch(AddSwitchRequest) returns (Appliance) {}
     rpc AddButton(AddButtonRequest) returns (Appliance) {}
@@ -74,4 +84,7 @@ service AimService {
     rpc GetCommands(GetCommandsRequest) returns(GetCommandsResponse) {}
     rpc GetRawIrData(GetRawIrDataRequest) returns(irdata.RawIrData) {}
     rpc UpdateRawIrData(UpdateRawIrDataRequest) returns(Command) {}
+
+    rpc NotifyApplianceUpDate(google.protobuf.Empty) 
+        returns (ApplianceUpDateNotification) {}
 }
