@@ -29,6 +29,7 @@ type AimServiceClient interface {
 	AddThermostat(ctx context.Context, in *AddThermostatRequest, opts ...grpc.CallOption) (*Appliance, error)
 	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
 	RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*Appliance, error)
+	ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*Appliance, error)
 	DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error)
 	GetRawIrData(ctx context.Context, in *GetRawIrDataRequest, opts ...grpc.CallOption) (*v1.RawIrData, error)
@@ -89,6 +90,15 @@ func (c *aimServiceClient) RenameAppliance(ctx context.Context, in *RenameApplia
 	return out, nil
 }
 
+func (c *aimServiceClient) ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*Appliance, error) {
+	out := new(Appliance)
+	err := c.cc.Invoke(ctx, "/aim.AimService/ChangeDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *aimServiceClient) DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteAppliance", in, out, opts...)
@@ -143,6 +153,7 @@ type AimServiceServer interface {
 	AddThermostat(context.Context, *AddThermostatRequest) (*Appliance, error)
 	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
 	RenameAppliance(context.Context, *RenameApplianceRequest) (*Appliance, error)
+	ChangeDevice(context.Context, *ChangeDeviceRequest) (*Appliance, error)
 	DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error)
 	GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error)
 	GetRawIrData(context.Context, *GetRawIrDataRequest) (*v1.RawIrData, error)
@@ -169,6 +180,9 @@ func (UnimplementedAimServiceServer) GetAppliances(context.Context, *empty.Empty
 }
 func (UnimplementedAimServiceServer) RenameAppliance(context.Context, *RenameApplianceRequest) (*Appliance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameAppliance not implemented")
+}
+func (UnimplementedAimServiceServer) ChangeDevice(context.Context, *ChangeDeviceRequest) (*Appliance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeDevice not implemented")
 }
 func (UnimplementedAimServiceServer) DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAppliance not implemented")
@@ -284,6 +298,24 @@ func _AimService_RenameAppliance_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AimServiceServer).RenameAppliance(ctx, req.(*RenameApplianceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_ChangeDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeDeviceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).ChangeDevice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/ChangeDevice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).ChangeDevice(ctx, req.(*ChangeDeviceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -404,6 +436,10 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RenameAppliance",
 			Handler:    _AimService_RenameAppliance_Handler,
+		},
+		{
+			MethodName: "ChangeDevice",
+			Handler:    _AimService_ChangeDevice_Handler,
 		},
 		{
 			MethodName: "DeleteAppliance",
