@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package irdata;
+
+option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/common/irdata/v1";
+
+message RawIrData {
+    uint32 carrier_freq_khz = 1;
+    repeated uint32 on_off_pluse_ns = 2;
+}
