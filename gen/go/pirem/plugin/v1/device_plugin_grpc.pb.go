@@ -8,8 +8,8 @@ package v1
 
 import (
 	context "context"
-	v11 "github.com/NaKa2355/gen/go/pirem/api/v1"
 	v1 "github.com/NaKa2355/irdeck-proto/gen/go/common/irdata/v1"
+	v11 "github.com/NaKa2355/irdeck-proto/gen/go/pirem/api/v1"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
