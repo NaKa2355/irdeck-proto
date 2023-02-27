@@ -7,8 +7,8 @@
 package v1
 
 import (
-	v11 "github.com/NaKa2355/gen/go/pirem/api/v1"
 	v1 "github.com/NaKa2355/irdeck-proto/gen/go/common/irdata/v1"
+	v11 "github.com/NaKa2355/irdeck-proto/gen/go/pirem/api/v1"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
