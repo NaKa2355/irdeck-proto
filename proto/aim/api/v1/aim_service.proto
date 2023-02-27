@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package aim;
+
+option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
+
+import "aim/api/v1/appliance.proto";
+import "aim/api/v1/command.proto";
+import "common/irdata/v1/raw_irdata.proto";
+
+import "google/protobuf/empty.proto";
+
+message AddSwitchRequest{
+    string name = 1;
+}
+
+message AddButtonRequest{
+    string name = 1;
+}
+
+message AddThermostatRequest{
+    string name = 1;
+    float temp_scale = 2;
+    float maximum_heating_temp = 3;
+    float minimum_heating_temp = 4;
+    float maximum_cooling_temp = 5;
+    float minimum_cooling_temp = 6;
+}
+
+message GetAppliancesRequest {}
+
+message GetAppliancesResponse {
+    repeated Appliance appliances = 1;
+}
+
+message RenameApplianceRequest {
+    string id = 1;
+
+    string name = 2;
+}
+
+message DeleteApplianceRequest {
+    string appliance_id = 1;
+}
+
+message GetCommandsRequest {
+    string appliance_id = 1;
+}
+
+message GetCommandsResponse {
+    repeated Command commands = 1;
+}
+
+message GetRawIrDataRequest {
+    string command_id = 1;
+}
+
+message UpdateRawIrDataRequest {
+    string id = 1;
+
+    irdata.RawIrData irdata = 2;
+}
+
+service AimService {
+    rpc AddSwitch(AddSwitchRequest) returns (Appliance) {}
+    rpc AddButton(AddButtonRequest) returns (Appliance) {}
+    rpc AddThermostat(AddThermostatRequest) returns (Appliance) {}
+    
+    rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
+    rpc RenameAppliance(RenameApplianceRequest) returns(Appliance) {}
+    rpc DeleteAppliance(DeleteApplianceRequest) 
+        returns(google.protobuf.Empty) {}
+
+    rpc GetCommands(GetCommandsRequest) returns(GetCommandsResponse) {}
+    rpc GetRawIrData(GetRawIrDataRequest) returns(irdata.RawIrData) {}
+    rpc UpdateRawIrData(UpdateRawIrDataRequest) returns(Command) {}
+}

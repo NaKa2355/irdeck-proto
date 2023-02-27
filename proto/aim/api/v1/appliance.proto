@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package aim;
+
+option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
+
+enum ApplianceType {
+    APPLIANCE_TYPE_UNSPECIFIED = 0;
+    APPLIANCE_TYPE_CUSTOM = 1;
+    APPLIANCE_TYPE_SWITCH = 2;
+    APPLIANCE_TYPE_BUTTON = 3;
+    APPLIANCE_TYPE_THERMOSTAT = 4;
+    APPLIANCE_TYPE_TELEVISION = 5;
+}
+
+message Appliance {
+    string id = 1;
+
+    string name = 2;
+
+    ApplianceType type = 3;
+}

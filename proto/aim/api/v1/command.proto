@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package aim;
+
+option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
+
+message Command {
+    string id = 1;
+
+    string name = 2;
+}
