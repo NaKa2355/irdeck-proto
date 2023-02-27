@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package pirem;
 
-option go_package = "github.com/NaKa2355/gen/go/pirem/api/v1";
+option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/pirem/api/v1";
 
 message DeviceInfo {
     string id = 1;
