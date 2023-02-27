@@ -33,6 +33,7 @@ type AimServiceClient interface {
 	GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error)
 	GetRawIrData(ctx context.Context, in *GetRawIrDataRequest, opts ...grpc.CallOption) (*v1.RawIrData, error)
 	UpdateRawIrData(ctx context.Context, in *UpdateRawIrDataRequest, opts ...grpc.CallOption) (*Command, error)
+	NotifyApplianceUpDate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpDateNotification, error)
 }
 
 type aimServiceClient struct {
@@ -124,6 +125,15 @@ func (c *aimServiceClient) UpdateRawIrData(ctx context.Context, in *UpdateRawIrD
 	return out, nil
 }
 
+func (c *aimServiceClient) NotifyApplianceUpDate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpDateNotification, error) {
+	out := new(ApplianceUpDateNotification)
+	err := c.cc.Invoke(ctx, "/aim.AimService/NotifyApplianceUpDate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AimServiceServer is the server API for AimService service.
 // All implementations must embed UnimplementedAimServiceServer
 // for forward compatibility
@@ -137,6 +147,7 @@ type AimServiceServer interface {
 	GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error)
 	GetRawIrData(context.Context, *GetRawIrDataRequest) (*v1.RawIrData, error)
 	UpdateRawIrData(context.Context, *UpdateRawIrDataRequest) (*Command, error)
+	NotifyApplianceUpDate(context.Context, *empty.Empty) (*ApplianceUpDateNotification, error)
 	mustEmbedUnimplementedAimServiceServer()
 }
 
@@ -170,6 +181,9 @@ func (UnimplementedAimServiceServer) GetRawIrData(context.Context, *GetRawIrData
 }
 func (UnimplementedAimServiceServer) UpdateRawIrData(context.Context, *UpdateRawIrDataRequest) (*Command, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRawIrData not implemented")
+}
+func (UnimplementedAimServiceServer) NotifyApplianceUpDate(context.Context, *empty.Empty) (*ApplianceUpDateNotification, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyApplianceUpDate not implemented")
 }
 func (UnimplementedAimServiceServer) mustEmbedUnimplementedAimServiceServer() {}
 
@@ -346,6 +360,24 @@ func _AimService_UpdateRawIrData_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AimService_NotifyApplianceUpDate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).NotifyApplianceUpDate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/NotifyApplianceUpDate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).NotifyApplianceUpDate(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AimService_ServiceDesc is the grpc.ServiceDesc for AimService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -388,6 +420,10 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateRawIrData",
 			Handler:    _AimService_UpdateRawIrData_Handler,
+		},
+		{
+			MethodName: "NotifyApplianceUpDate",
+			Handler:    _AimService_NotifyApplianceUpDate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
