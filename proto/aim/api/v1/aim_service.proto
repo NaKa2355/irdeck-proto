@@ -39,6 +39,12 @@ message RenameApplianceRequest {
     string name = 2;
 }
 
+message ChangeDeviceRequest {
+    string id = 1;
+
+    string device_id = 2;
+}
+
 message DeleteApplianceRequest {
     string appliance_id = 1;
 }
@@ -78,6 +84,7 @@ service AimService {
     
     rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
     rpc RenameAppliance(RenameApplianceRequest) returns(Appliance) {}
+    rpc ChangeDevice(ChangeDeviceRequest) returns (Appliance) {}
     rpc DeleteAppliance(DeleteApplianceRequest) 
         returns(google.protobuf.Empty) {}
 
