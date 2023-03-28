@@ -34,7 +34,7 @@ message AddThermostatRequest{
 }
 
 message AddAppResponse {
-    string id = 1;
+    string appliance_id = 1;
 }
 
 message AddCommandRequest {
@@ -47,16 +47,16 @@ message GetAppliancesResponse {
 }
 
 message GetApplianceRequest {
-    string id = 1;
+    string appliance_id = 1;
 }
 
 message RenameApplianceRequest {
-    string id = 1;
+    string appliance_id = 1;
     string name = 2;
 }
 
 message ChangeDeviceRequest {
-    string id = 1;
+    string appliance_id = 1;
     string device_id = 2;
 }
 
