@@ -75,19 +75,19 @@ func (x *RawIrData) GetOnOffPluseNs() []uint32 {
 	return nil
 }
 
-type IRData struct {
+type IrData struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// Types that are assignable to Data:
 	//
-	//	*IRData_Raw
-	Data isIRData_Data `protobuf_oneof:"data"`
+	//	*IrData_Raw
+	Data isIrData_Data `protobuf_oneof:"data"`
 }
 
-func (x *IRData) Reset() {
-	*x = IRData{}
+func (x *IrData) Reset() {
+	*x = IrData{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_common_irdata_v1_raw_irdata_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -95,13 +95,13 @@ func (x *IRData) Reset() {
 	}
 }
 
-func (x *IRData) String() string {
+func (x *IrData) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*IRData) ProtoMessage() {}
+func (*IrData) ProtoMessage() {}
 
-func (x *IRData) ProtoReflect() protoreflect.Message {
+func (x *IrData) ProtoReflect() protoreflect.Message {
 	mi := &file_common_irdata_v1_raw_irdata_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -113,34 +113,34 @@ func (x *IRData) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use IRData.ProtoReflect.Descriptor instead.
-func (*IRData) Descriptor() ([]byte, []int) {
+// Deprecated: Use IrData.ProtoReflect.Descriptor instead.
+func (*IrData) Descriptor() ([]byte, []int) {
 	return file_common_irdata_v1_raw_irdata_proto_rawDescGZIP(), []int{1}
 }
 
-func (m *IRData) GetData() isIRData_Data {
+func (m *IrData) GetData() isIrData_Data {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-func (x *IRData) GetRaw() *RawIrData {
-	if x, ok := x.GetData().(*IRData_Raw); ok {
+func (x *IrData) GetRaw() *RawIrData {
+	if x, ok := x.GetData().(*IrData_Raw); ok {
 		return x.Raw
 	}
 	return nil
 }
 
-type isIRData_Data interface {
-	isIRData_Data()
+type isIrData_Data interface {
+	isIrData_Data()
 }
 
-type IRData_Raw struct {
+type IrData_Raw struct {
 	Raw *RawIrData `protobuf:"bytes,1,opt,name=raw,proto3,oneof"`
 }
 
-func (*IRData_Raw) isIRData_Data() {}
+func (*IrData_Raw) isIrData_Data() {}
 
 var File_common_irdata_v1_raw_irdata_proto protoreflect.FileDescriptor
 
@@ -153,7 +153,7 @@ var file_common_irdata_v1_raw_irdata_proto_rawDesc = []byte{
 	0x28, 0x0d, 0x52, 0x0e, 0x63, 0x61, 0x72, 0x72, 0x69, 0x65, 0x72, 0x46, 0x72, 0x65, 0x71, 0x4b,
 	0x68, 0x7a, 0x12, 0x25, 0x0a, 0x0f, 0x6f, 0x6e, 0x5f, 0x6f, 0x66, 0x66, 0x5f, 0x70, 0x6c, 0x75,
 	0x73, 0x65, 0x5f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0d, 0x52, 0x0c, 0x6f, 0x6e, 0x4f,
-	0x66, 0x66, 0x50, 0x6c, 0x75, 0x73, 0x65, 0x4e, 0x73, 0x22, 0x37, 0x0a, 0x06, 0x49, 0x52, 0x44,
+	0x66, 0x66, 0x50, 0x6c, 0x75, 0x73, 0x65, 0x4e, 0x73, 0x22, 0x37, 0x0a, 0x06, 0x49, 0x72, 0x44,
 	0x61, 0x74, 0x61, 0x12, 0x25, 0x0a, 0x03, 0x72, 0x61, 0x77, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x11, 0x2e, 0x69, 0x72, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x52, 0x61, 0x77, 0x49, 0x72, 0x44,
 	0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x03, 0x72, 0x61, 0x77, 0x42, 0x06, 0x0a, 0x04, 0x64, 0x61,
@@ -179,10 +179,10 @@ func file_common_irdata_v1_raw_irdata_proto_rawDescGZIP() []byte {
 var file_common_irdata_v1_raw_irdata_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_common_irdata_v1_raw_irdata_proto_goTypes = []interface{}{
 	(*RawIrData)(nil), // 0: irdata.RawIrData
-	(*IRData)(nil),    // 1: irdata.IRData
+	(*IrData)(nil),    // 1: irdata.IrData
 }
 var file_common_irdata_v1_raw_irdata_proto_depIdxs = []int32{
-	0, // 0: irdata.IRData.raw:type_name -> irdata.RawIrData
+	0, // 0: irdata.IrData.raw:type_name -> irdata.RawIrData
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -209,7 +209,7 @@ func file_common_irdata_v1_raw_irdata_proto_init() {
 			}
 		}
 		file_common_irdata_v1_raw_irdata_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*IRData); i {
+			switch v := v.(*IrData); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -222,7 +222,7 @@ func file_common_irdata_v1_raw_irdata_proto_init() {
 		}
 	}
 	file_common_irdata_v1_raw_irdata_proto_msgTypes[1].OneofWrappers = []interface{}{
-		(*IRData_Raw)(nil),
+		(*IrData_Raw)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

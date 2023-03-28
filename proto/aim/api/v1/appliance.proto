@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package aim;
 
+import "aim/api/v1/command.proto";
+
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
 message Appliance {
@@ -14,11 +16,44 @@ message Appliance {
     enum ApplianceType {
         APPLIANCE_TYPE_UNSPECIFIED = 0;
         APPLIANCE_TYPE_CUSTOM = 1;
-        APPLIANCE_TYPE_SWITCH = 2;
+        APPLIANCE_TYPE_TOGGLE = 2;
         APPLIANCE_TYPE_BUTTON = 3;
         APPLIANCE_TYPE_THERMOSTAT = 4;
         APPLIANCE_TYPE_TELEVISION = 5;
     }
 
     ApplianceType type = 4;
+}
+
+message Custom {
+    string id = 1;
+    string device_id = 2;
+    string name = 3;
+    repeated Command commands = 4;
+}
+
+message Button {
+    string id = 1;
+    string device_id = 2;
+    string name = 3;
+    repeated Command commands = 4;
+}
+
+message Toggle {
+    string id = 1;
+    string device_id = 2;
+    string name = 3;
+    repeated Command commands = 4;
+}
+
+message Thermostat {
+    string id = 1;
+    string device_id = 2;
+    string name = 3;
+    float temp_scale = 4;
+    uint32 maximum_heating_temp = 5;
+    uint32 minimum_heating_temp = 6;
+    uint32 maximum_cooling_temp = 7;
+    uint32 minimum_cooling_temp = 8;
+    repeated Command commands = 9;
 }

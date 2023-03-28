@@ -8,7 +8,6 @@ package v1
 
 import (
 	context "context"
-	v1 "github.com/NaKa2355/irdeck-proto/gen/go/common/irdata/v1"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -24,17 +23,23 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AimServiceClient interface {
-	AddSwitch(ctx context.Context, in *AddSwitchRequest, opts ...grpc.CallOption) (*Appliance, error)
-	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*Appliance, error)
-	AddThermostat(ctx context.Context, in *AddThermostatRequest, opts ...grpc.CallOption) (*Appliance, error)
+	AddCustom(ctx context.Context, in *AddCustomRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
+	AddToggle(ctx context.Context, in *AddToggleRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
+	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
+	AddThermostat(ctx context.Context, in *AddThermostatRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
+	AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	GetCustom(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Custom, error)
+	GetToggle(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Toggle, error)
+	GetButton(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Button, error)
+	GetThermostat(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Thermostat, error)
 	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
+	GetCommand(ctx context.Context, in *GetCommandRequest, opts ...grpc.CallOption) (*GetCommandResponse, error)
 	RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*Appliance, error)
 	ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*Appliance, error)
+	SetIrData(ctx context.Context, in *SetIRDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error)
-	GetRawIrData(ctx context.Context, in *GetRawIrDataRequest, opts ...grpc.CallOption) (*v1.RawIrData, error)
-	UpdateRawIrData(ctx context.Context, in *UpdateRawIrDataRequest, opts ...grpc.CallOption) (*Command, error)
-	NotifyApplianceUpDate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpDateNotification, error)
+	DeleteCommand(ctx context.Context, in *DeleteCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpdateNotification, error)
 }
 
 type aimServiceClient struct {
@@ -45,17 +50,26 @@ func NewAimServiceClient(cc grpc.ClientConnInterface) AimServiceClient {
 	return &aimServiceClient{cc}
 }
 
-func (c *aimServiceClient) AddSwitch(ctx context.Context, in *AddSwitchRequest, opts ...grpc.CallOption) (*Appliance, error) {
-	out := new(Appliance)
-	err := c.cc.Invoke(ctx, "/aim.AimService/AddSwitch", in, out, opts...)
+func (c *aimServiceClient) AddCustom(ctx context.Context, in *AddCustomRequest, opts ...grpc.CallOption) (*AddAppResponse, error) {
+	out := new(AddAppResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/AddCustom", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*Appliance, error) {
-	out := new(Appliance)
+func (c *aimServiceClient) AddToggle(ctx context.Context, in *AddToggleRequest, opts ...grpc.CallOption) (*AddAppResponse, error) {
+	out := new(AddAppResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/AddToggle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*AddAppResponse, error) {
+	out := new(AddAppResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/AddButton", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -63,9 +77,54 @@ func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, 
 	return out, nil
 }
 
-func (c *aimServiceClient) AddThermostat(ctx context.Context, in *AddThermostatRequest, opts ...grpc.CallOption) (*Appliance, error) {
-	out := new(Appliance)
+func (c *aimServiceClient) AddThermostat(ctx context.Context, in *AddThermostatRequest, opts ...grpc.CallOption) (*AddAppResponse, error) {
+	out := new(AddAppResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/AddThermostat", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/aim.AimService/AddCommand", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) GetCustom(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Custom, error) {
+	out := new(Custom)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetCustom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) GetToggle(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Toggle, error) {
+	out := new(Toggle)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetToggle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) GetButton(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Button, error) {
+	out := new(Button)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetButton", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) GetThermostat(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Thermostat, error) {
+	out := new(Thermostat)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetThermostat", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,6 +134,15 @@ func (c *aimServiceClient) AddThermostat(ctx context.Context, in *AddThermostatR
 func (c *aimServiceClient) GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error) {
 	out := new(GetAppliancesResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/GetAppliances", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) GetCommand(ctx context.Context, in *GetCommandRequest, opts ...grpc.CallOption) (*GetCommandResponse, error) {
+	out := new(GetCommandResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetCommand", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,6 +167,15 @@ func (c *aimServiceClient) ChangeDevice(ctx context.Context, in *ChangeDeviceReq
 	return out, nil
 }
 
+func (c *aimServiceClient) SetIrData(ctx context.Context, in *SetIRDataRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/aim.AimService/SetIrData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *aimServiceClient) DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteAppliance", in, out, opts...)
@@ -108,36 +185,18 @@ func (c *aimServiceClient) DeleteAppliance(ctx context.Context, in *DeleteApplia
 	return out, nil
 }
 
-func (c *aimServiceClient) GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error) {
-	out := new(GetCommandsResponse)
-	err := c.cc.Invoke(ctx, "/aim.AimService/GetCommands", in, out, opts...)
+func (c *aimServiceClient) DeleteCommand(ctx context.Context, in *DeleteCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteCommand", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) GetRawIrData(ctx context.Context, in *GetRawIrDataRequest, opts ...grpc.CallOption) (*v1.RawIrData, error) {
-	out := new(v1.RawIrData)
-	err := c.cc.Invoke(ctx, "/aim.AimService/GetRawIrData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *aimServiceClient) UpdateRawIrData(ctx context.Context, in *UpdateRawIrDataRequest, opts ...grpc.CallOption) (*Command, error) {
-	out := new(Command)
-	err := c.cc.Invoke(ctx, "/aim.AimService/UpdateRawIrData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *aimServiceClient) NotifyApplianceUpDate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpDateNotification, error) {
-	out := new(ApplianceUpDateNotification)
-	err := c.cc.Invoke(ctx, "/aim.AimService/NotifyApplianceUpDate", in, out, opts...)
+func (c *aimServiceClient) NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpdateNotification, error) {
+	out := new(ApplianceUpdateNotification)
+	err := c.cc.Invoke(ctx, "/aim.AimService/NotifyApplianceUpdate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,17 +207,23 @@ func (c *aimServiceClient) NotifyApplianceUpDate(ctx context.Context, in *empty.
 // All implementations must embed UnimplementedAimServiceServer
 // for forward compatibility
 type AimServiceServer interface {
-	AddSwitch(context.Context, *AddSwitchRequest) (*Appliance, error)
-	AddButton(context.Context, *AddButtonRequest) (*Appliance, error)
-	AddThermostat(context.Context, *AddThermostatRequest) (*Appliance, error)
+	AddCustom(context.Context, *AddCustomRequest) (*AddAppResponse, error)
+	AddToggle(context.Context, *AddToggleRequest) (*AddAppResponse, error)
+	AddButton(context.Context, *AddButtonRequest) (*AddAppResponse, error)
+	AddThermostat(context.Context, *AddThermostatRequest) (*AddAppResponse, error)
+	AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error)
+	GetCustom(context.Context, *GetApplianceRequest) (*Custom, error)
+	GetToggle(context.Context, *GetApplianceRequest) (*Toggle, error)
+	GetButton(context.Context, *GetApplianceRequest) (*Button, error)
+	GetThermostat(context.Context, *GetApplianceRequest) (*Thermostat, error)
 	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
+	GetCommand(context.Context, *GetCommandRequest) (*GetCommandResponse, error)
 	RenameAppliance(context.Context, *RenameApplianceRequest) (*Appliance, error)
 	ChangeDevice(context.Context, *ChangeDeviceRequest) (*Appliance, error)
+	SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error)
 	DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error)
-	GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error)
-	GetRawIrData(context.Context, *GetRawIrDataRequest) (*v1.RawIrData, error)
-	UpdateRawIrData(context.Context, *UpdateRawIrDataRequest) (*Command, error)
-	NotifyApplianceUpDate(context.Context, *empty.Empty) (*ApplianceUpDateNotification, error)
+	DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error)
+	NotifyApplianceUpdate(context.Context, *empty.Empty) (*ApplianceUpdateNotification, error)
 	mustEmbedUnimplementedAimServiceServer()
 }
 
@@ -166,17 +231,38 @@ type AimServiceServer interface {
 type UnimplementedAimServiceServer struct {
 }
 
-func (UnimplementedAimServiceServer) AddSwitch(context.Context, *AddSwitchRequest) (*Appliance, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddSwitch not implemented")
+func (UnimplementedAimServiceServer) AddCustom(context.Context, *AddCustomRequest) (*AddAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCustom not implemented")
 }
-func (UnimplementedAimServiceServer) AddButton(context.Context, *AddButtonRequest) (*Appliance, error) {
+func (UnimplementedAimServiceServer) AddToggle(context.Context, *AddToggleRequest) (*AddAppResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddToggle not implemented")
+}
+func (UnimplementedAimServiceServer) AddButton(context.Context, *AddButtonRequest) (*AddAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddButton not implemented")
 }
-func (UnimplementedAimServiceServer) AddThermostat(context.Context, *AddThermostatRequest) (*Appliance, error) {
+func (UnimplementedAimServiceServer) AddThermostat(context.Context, *AddThermostatRequest) (*AddAppResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddThermostat not implemented")
+}
+func (UnimplementedAimServiceServer) AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCommand not implemented")
+}
+func (UnimplementedAimServiceServer) GetCustom(context.Context, *GetApplianceRequest) (*Custom, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCustom not implemented")
+}
+func (UnimplementedAimServiceServer) GetToggle(context.Context, *GetApplianceRequest) (*Toggle, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetToggle not implemented")
+}
+func (UnimplementedAimServiceServer) GetButton(context.Context, *GetApplianceRequest) (*Button, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetButton not implemented")
+}
+func (UnimplementedAimServiceServer) GetThermostat(context.Context, *GetApplianceRequest) (*Thermostat, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetThermostat not implemented")
 }
 func (UnimplementedAimServiceServer) GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppliances not implemented")
+}
+func (UnimplementedAimServiceServer) GetCommand(context.Context, *GetCommandRequest) (*GetCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCommand not implemented")
 }
 func (UnimplementedAimServiceServer) RenameAppliance(context.Context, *RenameApplianceRequest) (*Appliance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameAppliance not implemented")
@@ -184,20 +270,17 @@ func (UnimplementedAimServiceServer) RenameAppliance(context.Context, *RenameApp
 func (UnimplementedAimServiceServer) ChangeDevice(context.Context, *ChangeDeviceRequest) (*Appliance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeDevice not implemented")
 }
+func (UnimplementedAimServiceServer) SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetIrData not implemented")
+}
 func (UnimplementedAimServiceServer) DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAppliance not implemented")
 }
-func (UnimplementedAimServiceServer) GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCommands not implemented")
+func (UnimplementedAimServiceServer) DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCommand not implemented")
 }
-func (UnimplementedAimServiceServer) GetRawIrData(context.Context, *GetRawIrDataRequest) (*v1.RawIrData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRawIrData not implemented")
-}
-func (UnimplementedAimServiceServer) UpdateRawIrData(context.Context, *UpdateRawIrDataRequest) (*Command, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateRawIrData not implemented")
-}
-func (UnimplementedAimServiceServer) NotifyApplianceUpDate(context.Context, *empty.Empty) (*ApplianceUpDateNotification, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NotifyApplianceUpDate not implemented")
+func (UnimplementedAimServiceServer) NotifyApplianceUpdate(context.Context, *empty.Empty) (*ApplianceUpdateNotification, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyApplianceUpdate not implemented")
 }
 func (UnimplementedAimServiceServer) mustEmbedUnimplementedAimServiceServer() {}
 
@@ -212,20 +295,38 @@ func RegisterAimServiceServer(s grpc.ServiceRegistrar, srv AimServiceServer) {
 	s.RegisterService(&AimService_ServiceDesc, srv)
 }
 
-func _AimService_AddSwitch_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddSwitchRequest)
+func _AimService_AddCustom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCustomRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).AddSwitch(ctx, in)
+		return srv.(AimServiceServer).AddCustom(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/AddSwitch",
+		FullMethod: "/aim.AimService/AddCustom",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).AddSwitch(ctx, req.(*AddSwitchRequest))
+		return srv.(AimServiceServer).AddCustom(ctx, req.(*AddCustomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_AddToggle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddToggleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).AddToggle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/AddToggle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).AddToggle(ctx, req.(*AddToggleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -266,6 +367,96 @@ func _AimService_AddThermostat_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AimService_AddCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).AddCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/AddCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).AddCommand(ctx, req.(*AddCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_GetCustom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplianceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).GetCustom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/GetCustom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).GetCustom(ctx, req.(*GetApplianceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_GetToggle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplianceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).GetToggle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/GetToggle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).GetToggle(ctx, req.(*GetApplianceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_GetButton_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplianceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).GetButton(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/GetButton",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).GetButton(ctx, req.(*GetApplianceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_GetThermostat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplianceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).GetThermostat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/GetThermostat",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).GetThermostat(ctx, req.(*GetApplianceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AimService_GetAppliances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
@@ -280,6 +471,24 @@ func _AimService_GetAppliances_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AimServiceServer).GetAppliances(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_GetCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).GetCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/GetCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).GetCommand(ctx, req.(*GetCommandRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,6 +529,24 @@ func _AimService_ChangeDevice_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AimService_SetIrData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetIRDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).SetIrData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/SetIrData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).SetIrData(ctx, req.(*SetIRDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AimService_DeleteAppliance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteApplianceRequest)
 	if err := dec(in); err != nil {
@@ -338,74 +565,38 @@ func _AimService_DeleteAppliance_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_GetCommands_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCommandsRequest)
+func _AimService_DeleteCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCommandRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).GetCommands(ctx, in)
+		return srv.(AimServiceServer).DeleteCommand(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/GetCommands",
+		FullMethod: "/aim.AimService/DeleteCommand",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).GetCommands(ctx, req.(*GetCommandsRequest))
+		return srv.(AimServiceServer).DeleteCommand(ctx, req.(*DeleteCommandRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_GetRawIrData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRawIrDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AimServiceServer).GetRawIrData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aim.AimService/GetRawIrData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).GetRawIrData(ctx, req.(*GetRawIrDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AimService_UpdateRawIrData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRawIrDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AimServiceServer).UpdateRawIrData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aim.AimService/UpdateRawIrData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).UpdateRawIrData(ctx, req.(*UpdateRawIrDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AimService_NotifyApplianceUpDate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AimService_NotifyApplianceUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).NotifyApplianceUpDate(ctx, in)
+		return srv.(AimServiceServer).NotifyApplianceUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/NotifyApplianceUpDate",
+		FullMethod: "/aim.AimService/NotifyApplianceUpdate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).NotifyApplianceUpDate(ctx, req.(*empty.Empty))
+		return srv.(AimServiceServer).NotifyApplianceUpdate(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -418,8 +609,12 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AimServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddSwitch",
-			Handler:    _AimService_AddSwitch_Handler,
+			MethodName: "AddCustom",
+			Handler:    _AimService_AddCustom_Handler,
+		},
+		{
+			MethodName: "AddToggle",
+			Handler:    _AimService_AddToggle_Handler,
 		},
 		{
 			MethodName: "AddButton",
@@ -430,8 +625,32 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AimService_AddThermostat_Handler,
 		},
 		{
+			MethodName: "AddCommand",
+			Handler:    _AimService_AddCommand_Handler,
+		},
+		{
+			MethodName: "GetCustom",
+			Handler:    _AimService_GetCustom_Handler,
+		},
+		{
+			MethodName: "GetToggle",
+			Handler:    _AimService_GetToggle_Handler,
+		},
+		{
+			MethodName: "GetButton",
+			Handler:    _AimService_GetButton_Handler,
+		},
+		{
+			MethodName: "GetThermostat",
+			Handler:    _AimService_GetThermostat_Handler,
+		},
+		{
 			MethodName: "GetAppliances",
 			Handler:    _AimService_GetAppliances_Handler,
+		},
+		{
+			MethodName: "GetCommand",
+			Handler:    _AimService_GetCommand_Handler,
 		},
 		{
 			MethodName: "RenameAppliance",
@@ -442,24 +661,20 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AimService_ChangeDevice_Handler,
 		},
 		{
+			MethodName: "SetIrData",
+			Handler:    _AimService_SetIrData_Handler,
+		},
+		{
 			MethodName: "DeleteAppliance",
 			Handler:    _AimService_DeleteAppliance_Handler,
 		},
 		{
-			MethodName: "GetCommands",
-			Handler:    _AimService_GetCommands_Handler,
+			MethodName: "DeleteCommand",
+			Handler:    _AimService_DeleteCommand_Handler,
 		},
 		{
-			MethodName: "GetRawIrData",
-			Handler:    _AimService_GetRawIrData_Handler,
-		},
-		{
-			MethodName: "UpdateRawIrData",
-			Handler:    _AimService_UpdateRawIrData_Handler,
-		},
-		{
-			MethodName: "NotifyApplianceUpDate",
-			Handler:    _AimService_NotifyApplianceUpDate_Handler,
+			MethodName: "NotifyApplianceUpdate",
+			Handler:    _AimService_NotifyApplianceUpdate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

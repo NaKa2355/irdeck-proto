@@ -5,12 +5,14 @@ package aim;
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
 import "aim/api/v1/appliance.proto";
-import "aim/api/v1/command.proto";
 import "common/irdata/v1/raw_irdata.proto";
-
 import "google/protobuf/empty.proto";
 
-message AddSwitchRequest{
+message AddCustomRequest {
+    string name = 1;
+}
+
+message AddToggleRequest{
     string name = 1;
 }
 
@@ -27,21 +29,30 @@ message AddThermostatRequest{
     uint32 minimum_cooling_temp = 6;
 }
 
-message GetAppliancesRequest {}
+message AddAppResponse {
+    string id = 1;
+}
+
+message AddCommandRequest {
+    string appliance_id = 1;
+    string name = 2;
+}
 
 message GetAppliancesResponse {
     repeated Appliance appliances = 1;
 }
 
+message GetApplianceRequest {
+    string id = 1;
+}
+
 message RenameApplianceRequest {
     string id = 1;
-
     string name = 2;
 }
 
 message ChangeDeviceRequest {
     string id = 1;
-
     string device_id = 2;
 }
 
@@ -49,25 +60,28 @@ message DeleteApplianceRequest {
     string appliance_id = 1;
 }
 
-message GetCommandsRequest {
+message DeleteCommandRequest {
     string appliance_id = 1;
+    string command_id = 2;
 }
 
-message GetCommandsResponse {
-    repeated Command commands = 1;
+message GetCommandRequest {
+    string appliance_id = 1;
+    string command_id = 2;
 }
 
-message GetRawIrDataRequest {
+message GetCommandResponse {
     string command_id = 1;
+    string name = 2;
+    irdata.IrData irdata = 3;
 }
 
-message UpdateRawIrDataRequest {
+message SetIRDataRequest {
     string id = 1;
-
-    irdata.RawIrData irdata = 2;
+    irdata.IrData irdata = 2;
 }
 
-message ApplianceUpDateNotification {
+message ApplianceUpdateNotification {
     string appliance_id = 1;
     enum UpdateType {
         UPDATE_TYPE_UNSPECIFIED = 0;
@@ -78,20 +92,26 @@ message ApplianceUpDateNotification {
 }
 
 service AimService {
-    rpc AddSwitch(AddSwitchRequest) returns (Appliance) {}
-    rpc AddButton(AddButtonRequest) returns (Appliance) {}
-    rpc AddThermostat(AddThermostatRequest) returns (Appliance) {}
-    
+    rpc AddCustom(AddCustomRequest) returns (AddAppResponse) {}
+    rpc AddToggle(AddToggleRequest) returns (AddAppResponse) {}
+    rpc AddButton(AddButtonRequest) returns (AddAppResponse) {}
+    rpc AddThermostat(AddThermostatRequest) returns (AddAppResponse) {}
+    rpc AddCommand(AddCommandRequest) returns (google.protobuf.Empty) {}
+
+    rpc GetCustom(GetApplianceRequest) returns (Custom) {}
+    rpc GetToggle(GetApplianceRequest) returns (Toggle) {}
+    rpc GetButton(GetApplianceRequest) returns (Button) {}
+    rpc GetThermostat(GetApplianceRequest) returns (Thermostat) {}
     rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
+    rpc GetCommand(GetCommandRequest) returns (GetCommandResponse) {}
+
     rpc RenameAppliance(RenameApplianceRequest) returns(Appliance) {}
     rpc ChangeDevice(ChangeDeviceRequest) returns (Appliance) {}
-    rpc DeleteAppliance(DeleteApplianceRequest) 
-        returns(google.protobuf.Empty) {}
+    rpc SetIrData(SetIRDataRequest) returns(google.protobuf.Empty) {}
 
-    rpc GetCommands(GetCommandsRequest) returns(GetCommandsResponse) {}
-    rpc GetRawIrData(GetRawIrDataRequest) returns(irdata.RawIrData) {}
-    rpc UpdateRawIrData(UpdateRawIrDataRequest) returns(Command) {}
+    rpc DeleteAppliance(DeleteApplianceRequest) returns (google.protobuf.Empty) {}
+    rpc DeleteCommand(DeleteCommandRequest) returns (google.protobuf.Empty) {}
 
-    rpc NotifyApplianceUpDate(google.protobuf.Empty) 
-        returns (ApplianceUpDateNotification) {}
+    rpc NotifyApplianceUpdate(google.protobuf.Empty) 
+        returns (ApplianceUpdateNotification) {}
 }
