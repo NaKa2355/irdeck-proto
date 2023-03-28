@@ -117,5 +117,5 @@ service AimService {
     rpc DeleteCommand(DeleteCommandRequest) returns (google.protobuf.Empty) {}
 
     rpc NotifyApplianceUpdate(google.protobuf.Empty) 
-        returns (ApplianceUpdateNotification) {}
+        returns (stream ApplianceUpdateNotification) {}
 }

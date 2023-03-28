@@ -39,7 +39,7 @@ type AimServiceClient interface {
 	SetIrData(ctx context.Context, in *SetIRDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteCommand(ctx context.Context, in *DeleteCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpdateNotification, error)
+	NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyApplianceUpdateClient, error)
 }
 
 type aimServiceClient struct {
@@ -194,13 +194,36 @@ func (c *aimServiceClient) DeleteCommand(ctx context.Context, in *DeleteCommandR
 	return out, nil
 }
 
-func (c *aimServiceClient) NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ApplianceUpdateNotification, error) {
-	out := new(ApplianceUpdateNotification)
-	err := c.cc.Invoke(ctx, "/aim.AimService/NotifyApplianceUpdate", in, out, opts...)
+func (c *aimServiceClient) NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyApplianceUpdateClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AimService_ServiceDesc.Streams[0], "/aim.AimService/NotifyApplianceUpdate", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &aimServiceNotifyApplianceUpdateClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AimService_NotifyApplianceUpdateClient interface {
+	Recv() (*ApplianceUpdateNotification, error)
+	grpc.ClientStream
+}
+
+type aimServiceNotifyApplianceUpdateClient struct {
+	grpc.ClientStream
+}
+
+func (x *aimServiceNotifyApplianceUpdateClient) Recv() (*ApplianceUpdateNotification, error) {
+	m := new(ApplianceUpdateNotification)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // AimServiceServer is the server API for AimService service.
@@ -223,7 +246,7 @@ type AimServiceServer interface {
 	SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error)
 	DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error)
 	DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error)
-	NotifyApplianceUpdate(context.Context, *empty.Empty) (*ApplianceUpdateNotification, error)
+	NotifyApplianceUpdate(*empty.Empty, AimService_NotifyApplianceUpdateServer) error
 	mustEmbedUnimplementedAimServiceServer()
 }
 
@@ -279,8 +302,8 @@ func (UnimplementedAimServiceServer) DeleteAppliance(context.Context, *DeleteApp
 func (UnimplementedAimServiceServer) DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCommand not implemented")
 }
-func (UnimplementedAimServiceServer) NotifyApplianceUpdate(context.Context, *empty.Empty) (*ApplianceUpdateNotification, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NotifyApplianceUpdate not implemented")
+func (UnimplementedAimServiceServer) NotifyApplianceUpdate(*empty.Empty, AimService_NotifyApplianceUpdateServer) error {
+	return status.Errorf(codes.Unimplemented, "method NotifyApplianceUpdate not implemented")
 }
 func (UnimplementedAimServiceServer) mustEmbedUnimplementedAimServiceServer() {}
 
@@ -583,22 +606,25 @@ func _AimService_DeleteCommand_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_NotifyApplianceUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
+func _AimService_NotifyApplianceUpdate_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(empty.Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(AimServiceServer).NotifyApplianceUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/aim.AimService/NotifyApplianceUpdate",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).NotifyApplianceUpdate(ctx, req.(*empty.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(AimServiceServer).NotifyApplianceUpdate(m, &aimServiceNotifyApplianceUpdateServer{stream})
+}
+
+type AimService_NotifyApplianceUpdateServer interface {
+	Send(*ApplianceUpdateNotification) error
+	grpc.ServerStream
+}
+
+type aimServiceNotifyApplianceUpdateServer struct {
+	grpc.ServerStream
+}
+
+func (x *aimServiceNotifyApplianceUpdateServer) Send(m *ApplianceUpdateNotification) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 // AimService_ServiceDesc is the grpc.ServiceDesc for AimService service.
@@ -672,11 +698,13 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteCommand",
 			Handler:    _AimService_DeleteCommand_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "NotifyApplianceUpdate",
-			Handler:    _AimService_NotifyApplianceUpdate_Handler,
+			StreamName:    "NotifyApplianceUpdate",
+			Handler:       _AimService_NotifyApplianceUpdate_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "aim/api/v1/aim_service.proto",
 }
