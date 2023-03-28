@@ -34,8 +34,9 @@ type AimServiceClient interface {
 	GetThermostat(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*Thermostat, error)
 	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
 	GetCommand(ctx context.Context, in *GetCommandRequest, opts ...grpc.CallOption) (*GetCommandResponse, error)
-	RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*Appliance, error)
-	ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*Appliance, error)
+	RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	RenameCommand(ctx context.Context, in *RenameCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	SetIrData(ctx context.Context, in *SetIRDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteCommand(ctx context.Context, in *DeleteCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -149,8 +150,8 @@ func (c *aimServiceClient) GetCommand(ctx context.Context, in *GetCommandRequest
 	return out, nil
 }
 
-func (c *aimServiceClient) RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*Appliance, error) {
-	out := new(Appliance)
+func (c *aimServiceClient) RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/aim.AimService/RenameAppliance", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -158,9 +159,18 @@ func (c *aimServiceClient) RenameAppliance(ctx context.Context, in *RenameApplia
 	return out, nil
 }
 
-func (c *aimServiceClient) ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*Appliance, error) {
-	out := new(Appliance)
+func (c *aimServiceClient) ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
 	err := c.cc.Invoke(ctx, "/aim.AimService/ChangeDevice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) RenameCommand(ctx context.Context, in *RenameCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/aim.AimService/RenameCommand", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -241,8 +251,9 @@ type AimServiceServer interface {
 	GetThermostat(context.Context, *GetApplianceRequest) (*Thermostat, error)
 	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
 	GetCommand(context.Context, *GetCommandRequest) (*GetCommandResponse, error)
-	RenameAppliance(context.Context, *RenameApplianceRequest) (*Appliance, error)
-	ChangeDevice(context.Context, *ChangeDeviceRequest) (*Appliance, error)
+	RenameAppliance(context.Context, *RenameApplianceRequest) (*empty.Empty, error)
+	ChangeDevice(context.Context, *ChangeDeviceRequest) (*empty.Empty, error)
+	RenameCommand(context.Context, *RenameCommandRequest) (*empty.Empty, error)
 	SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error)
 	DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error)
 	DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error)
@@ -287,11 +298,14 @@ func (UnimplementedAimServiceServer) GetAppliances(context.Context, *empty.Empty
 func (UnimplementedAimServiceServer) GetCommand(context.Context, *GetCommandRequest) (*GetCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommand not implemented")
 }
-func (UnimplementedAimServiceServer) RenameAppliance(context.Context, *RenameApplianceRequest) (*Appliance, error) {
+func (UnimplementedAimServiceServer) RenameAppliance(context.Context, *RenameApplianceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RenameAppliance not implemented")
 }
-func (UnimplementedAimServiceServer) ChangeDevice(context.Context, *ChangeDeviceRequest) (*Appliance, error) {
+func (UnimplementedAimServiceServer) ChangeDevice(context.Context, *ChangeDeviceRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeDevice not implemented")
+}
+func (UnimplementedAimServiceServer) RenameCommand(context.Context, *RenameCommandRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RenameCommand not implemented")
 }
 func (UnimplementedAimServiceServer) SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetIrData not implemented")
@@ -552,6 +566,24 @@ func _AimService_ChangeDevice_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AimService_RenameCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RenameCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).RenameCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/RenameCommand",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).RenameCommand(ctx, req.(*RenameCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AimService_SetIrData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetIRDataRequest)
 	if err := dec(in); err != nil {
@@ -685,6 +717,10 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeDevice",
 			Handler:    _AimService_ChangeDevice_Handler,
+		},
+		{
+			MethodName: "RenameCommand",
+			Handler:    _AimService_RenameCommand_Handler,
 		},
 		{
 			MethodName: "SetIrData",

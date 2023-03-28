@@ -60,6 +60,12 @@ message ChangeDeviceRequest {
     string device_id = 2;
 }
 
+message RenameCommandRequest {
+    string appliance_id = 1;
+    string command_id = 2;
+    string name = 3;
+}
+
 message DeleteApplianceRequest {
     string appliance_id = 1;
 }
@@ -109,8 +115,9 @@ service AimService {
     rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
     rpc GetCommand(GetCommandRequest) returns (GetCommandResponse) {}
 
-    rpc RenameAppliance(RenameApplianceRequest) returns(Appliance) {}
-    rpc ChangeDevice(ChangeDeviceRequest) returns (Appliance) {}
+    rpc RenameAppliance(RenameApplianceRequest) returns (google.protobuf.Empty) {}
+    rpc ChangeDevice(ChangeDeviceRequest) returns (google.protobuf.Empty) {}
+    rpc RenameCommand(RenameCommandRequest) returns (google.protobuf.Empty) {}
     rpc SetIrData(SetIRDataRequest) returns(google.protobuf.Empty) {}
 
     rpc DeleteAppliance(DeleteApplianceRequest) returns (google.protobuf.Empty) {}
