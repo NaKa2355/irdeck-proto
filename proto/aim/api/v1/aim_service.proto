@@ -87,8 +87,9 @@ message GetCommandResponse {
 }
 
 message SetIRDataRequest {
-    string id = 1;
-    irdata.IrData irdata = 2;
+    string appliance_id = 1;
+    string command_id = 2;
+    irdata.IrData irdata = 3;
 }
 
 message ApplianceUpdateNotification {
