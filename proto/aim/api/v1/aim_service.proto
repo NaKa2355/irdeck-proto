@@ -7,6 +7,7 @@ option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 import "aim/api/v1/appliance.proto";
 import "common/irdata/v1/raw_irdata.proto";
 import "google/protobuf/empty.proto";
+import "aim/api/v1/command.proto";
 
 message AddCustomRequest {
     string name = 1;
@@ -33,6 +34,15 @@ message AddThermostatRequest{
     uint32 minimum_cooling_temp = 7;
 }
 
+message AddApplianceRequest {
+    oneof request {
+        AddCustomRequest custom = 1;
+        AddToggleRequest toggle = 2;
+        AddButtonRequest button = 3;
+        AddThermostatRequest thermostat = 4;
+    }
+}
+
 message AddAppResponse {
     string appliance_id = 1;
 }
@@ -42,13 +52,18 @@ message AddCommandRequest {
     string name = 2;
 }
 
-message GetAppliancesResponse {
+message GetAppliancesResponse { 
     repeated Appliance appliances = 1;
 }
 
-message GetApplianceRequest {
+message GetCommandsRequest {
     string appliance_id = 1;
 }
+
+message GetCommandsResponse {
+    repeated Command commands = 1;
+}
+
 
 message RenameApplianceRequest {
     string appliance_id = 1;
@@ -75,15 +90,10 @@ message DeleteCommandRequest {
     string command_id = 2;
 }
 
-message GetCommandRequest {
+
+message GetIrDataRequest {
     string appliance_id = 1;
     string command_id = 2;
-}
-
-message GetCommandResponse {
-    string command_id = 1;
-    string name = 2;
-    irdata.IrData irdata = 3;
 }
 
 message SetIRDataRequest {
@@ -103,18 +113,12 @@ message ApplianceUpdateNotification {
 }
 
 service AimService {
-    rpc AddCustom(AddCustomRequest) returns (AddAppResponse) {}
-    rpc AddToggle(AddToggleRequest) returns (AddAppResponse) {}
-    rpc AddButton(AddButtonRequest) returns (AddAppResponse) {}
-    rpc AddThermostat(AddThermostatRequest) returns (AddAppResponse) {}
+    rpc AddAppliance(AddApplianceRequest) returns (AddAppResponse) {}
     rpc AddCommand(AddCommandRequest) returns (google.protobuf.Empty) {}
 
-    rpc GetCustom(GetApplianceRequest) returns (Custom) {}
-    rpc GetToggle(GetApplianceRequest) returns (Toggle) {}
-    rpc GetButton(GetApplianceRequest) returns (Button) {}
-    rpc GetThermostat(GetApplianceRequest) returns (Thermostat) {}
     rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
-    rpc GetCommand(GetCommandRequest) returns (GetCommandResponse) {}
+    rpc GetCommands(GetCommandsRequest) returns (GetCommandsResponse) {}
+    rpc GetIrData(GetIrDataRequest) returns (irdata.IrData) {}
 
     rpc RenameAppliance(RenameApplianceRequest) returns (google.protobuf.Empty) {}
     rpc ChangeDevice(ChangeDeviceRequest) returns (google.protobuf.Empty) {}

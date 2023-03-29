@@ -7,22 +7,12 @@ import "aim/api/v1/command.proto";
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
 message Appliance {
-    string id = 1;
-    
-    string device_id = 2;
-
-    string name = 3;
-
-    enum ApplianceType {
-        APPLIANCE_TYPE_UNSPECIFIED = 0;
-        APPLIANCE_TYPE_CUSTOM = 1;
-        APPLIANCE_TYPE_TOGGLE = 2;
-        APPLIANCE_TYPE_BUTTON = 3;
-        APPLIANCE_TYPE_THERMOSTAT = 4;
-        APPLIANCE_TYPE_TELEVISION = 5;
+    oneof appliance {
+        Custom custom = 1;
+        Button button = 2;
+        Toggle toggle = 3;
+        Thermostat thermostat = 4;
     }
-
-    ApplianceType type = 4;
 }
 
 message Custom {
