@@ -4,10 +4,11 @@ package aim;
 
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
-import "aim/api/v1/appliance.proto";
+
 import "common/irdata/v1/raw_irdata.proto";
-import "google/protobuf/empty.proto";
 import "aim/api/v1/command.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
 
 message AddCustomRequest {
     string name = 1;
@@ -53,7 +54,7 @@ message AddCommandRequest {
 }
 
 message GetAppliancesResponse { 
-    repeated Appliance appliances = 1;
+    repeated google.protobuf.Any  appliances = 1; //custom, toggle, button or thermostat
 }
 
 message GetCommandsRequest {
