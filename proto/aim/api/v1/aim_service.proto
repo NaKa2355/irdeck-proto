@@ -4,11 +4,10 @@ package aim;
 
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
-
-import "common/irdata/v1/raw_irdata.proto";
 import "aim/api/v1/command.proto";
 import "google/protobuf/empty.proto";
 import "aim/api/v1/appliance.proto";
+import "google/protobuf/any.proto";
 
 message AddCustomRequest {
     string name = 1;
@@ -101,7 +100,7 @@ message GetIrDataRequest {
 message SetIRDataRequest {
     string appliance_id = 1;
     string command_id = 2;
-    irdata.IrData irdata = 3;
+    google.protobuf.Any irdata = 3;
 }
 
 message ApplianceUpdateNotification {
@@ -120,7 +119,7 @@ service AimService {
 
     rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
     rpc GetCommands(GetCommandsRequest) returns (GetCommandsResponse) {}
-    rpc GetIrData(GetIrDataRequest) returns (irdata.IrData) {}
+    rpc GetIrData(GetIrDataRequest) returns (google.protobuf.Any) {}
 
     rpc RenameAppliance(RenameApplianceRequest) returns (google.protobuf.Empty) {}
     rpc ChangeDevice(ChangeDeviceRequest) returns (google.protobuf.Empty) {}

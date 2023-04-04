@@ -8,7 +8,7 @@ package v1
 
 import (
 	context "context"
-	v1 "github.com/NaKa2355/irdeck-proto/gen/go/common/irdata/v1"
+	any1 "github.com/golang/protobuf/ptypes/any"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -28,7 +28,7 @@ type AimServiceClient interface {
 	AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
 	GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error)
-	GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*v1.IrData, error)
+	GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*any1.Any, error)
 	RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	ChangeDevice(ctx context.Context, in *ChangeDeviceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	RenameCommand(ctx context.Context, in *RenameCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -82,8 +82,8 @@ func (c *aimServiceClient) GetCommands(ctx context.Context, in *GetCommandsReque
 	return out, nil
 }
 
-func (c *aimServiceClient) GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*v1.IrData, error) {
-	out := new(v1.IrData)
+func (c *aimServiceClient) GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*any1.Any, error) {
+	out := new(any1.Any)
 	err := c.cc.Invoke(ctx, "/aim.AimService/GetIrData", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -185,7 +185,7 @@ type AimServiceServer interface {
 	AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error)
 	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
 	GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error)
-	GetIrData(context.Context, *GetIrDataRequest) (*v1.IrData, error)
+	GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error)
 	RenameAppliance(context.Context, *RenameApplianceRequest) (*empty.Empty, error)
 	ChangeDevice(context.Context, *ChangeDeviceRequest) (*empty.Empty, error)
 	RenameCommand(context.Context, *RenameCommandRequest) (*empty.Empty, error)
@@ -212,7 +212,7 @@ func (UnimplementedAimServiceServer) GetAppliances(context.Context, *empty.Empty
 func (UnimplementedAimServiceServer) GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommands not implemented")
 }
-func (UnimplementedAimServiceServer) GetIrData(context.Context, *GetIrDataRequest) (*v1.IrData, error) {
+func (UnimplementedAimServiceServer) GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIrData not implemented")
 }
 func (UnimplementedAimServiceServer) RenameAppliance(context.Context, *RenameApplianceRequest) (*empty.Empty, error) {
