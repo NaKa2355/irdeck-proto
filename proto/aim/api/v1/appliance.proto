@@ -37,5 +37,4 @@ message Thermostat {
     string id = 1;
     string device_id = 2;
     string name = 3;
-    float temp_scale = 4;
 }
