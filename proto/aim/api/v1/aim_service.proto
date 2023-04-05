@@ -27,6 +27,11 @@ message AddButtonRequest{
 message AddThermostatRequest{
     string name = 1;
     string device_id = 2;
+    float temp_scale = 3;
+    uint32 maximum_heating_temp = 4;
+    uint32 minimum_heating_temp = 5;
+    uint32 maximum_cooling_temp = 6;
+    uint32 minimum_cooling_temp = 7;
 }
 
 message AddApplianceRequest {

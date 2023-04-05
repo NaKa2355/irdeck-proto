@@ -19,21 +19,18 @@ message Custom {
     string id = 1;
     string device_id = 2;
     string name = 3;
-    repeated Command commands = 4;
 }
 
 message Button {
     string id = 1;
     string device_id = 2;
     string name = 3;
-    repeated Command commands = 4;
 }
 
 message Toggle {
     string id = 1;
     string device_id = 2;
     string name = 3;
-    repeated Command commands = 4;
 }
 
 message Thermostat {
@@ -41,9 +38,4 @@ message Thermostat {
     string device_id = 2;
     string name = 3;
     float temp_scale = 4;
-    uint32 maximum_heating_temp = 5;
-    uint32 minimum_heating_temp = 6;
-    uint32 maximum_cooling_temp = 7;
-    uint32 minimum_cooling_temp = 8;
-    repeated Command commands = 9;
 }
