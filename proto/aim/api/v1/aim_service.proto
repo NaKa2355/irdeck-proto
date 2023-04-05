@@ -27,11 +27,6 @@ message AddButtonRequest{
 message AddThermostatRequest{
     string name = 1;
     string device_id = 2;
-    float temp_scale = 3;
-    uint32 maximum_heating_temp = 4;
-    uint32 minimum_heating_temp = 5;
-    uint32 maximum_cooling_temp = 6;
-    uint32 minimum_cooling_temp = 7;
 }
 
 message AddApplianceRequest {
@@ -54,7 +49,6 @@ message AddCommandRequest {
 
 message GetAppliancesResponse { 
     repeated Appliance appliances = 1;
-    //repeated google.protobuf.Any  appliances = 1; //custom, toggle, button or thermostat
 }
 
 message GetCommandsRequest {
@@ -64,7 +58,6 @@ message GetCommandsRequest {
 message GetCommandsResponse {
     repeated Command commands = 1;
 }
-
 
 message RenameApplianceRequest {
     string appliance_id = 1;
