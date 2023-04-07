@@ -9,4 +9,12 @@ message Appliance {
     string id = 1;
     string name = 2;
     string device_id = 3;
+    enum AppType {
+        SEASON_UNKNOWN = 0;
+        CUSTOM = 1;
+        BUTTON = 2;
+        TOGGLE = 3;
+        THERMOSTAT = 4;
+    }
+    AppType appliance_type = 4;
 }
