@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package aim;
 
-import "aim/api/v1/command.proto";
 
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 

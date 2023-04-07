@@ -27,6 +27,7 @@ type AimServiceClient interface {
 	AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
 	AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
+	GetAppliance(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*GetApplianceResponse, error)
 	GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error)
 	GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*any1.Any, error)
 	RenameAppliance(ctx context.Context, in *RenameApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -67,6 +68,15 @@ func (c *aimServiceClient) AddCommand(ctx context.Context, in *AddCommandRequest
 func (c *aimServiceClient) GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error) {
 	out := new(GetAppliancesResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/GetAppliances", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aimServiceClient) GetAppliance(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*GetApplianceResponse, error) {
+	out := new(GetApplianceResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetAppliance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,6 +194,7 @@ type AimServiceServer interface {
 	AddAppliance(context.Context, *AddApplianceRequest) (*AddAppResponse, error)
 	AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error)
 	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
+	GetAppliance(context.Context, *GetApplianceRequest) (*GetApplianceResponse, error)
 	GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error)
 	GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error)
 	RenameAppliance(context.Context, *RenameApplianceRequest) (*empty.Empty, error)
@@ -208,6 +219,9 @@ func (UnimplementedAimServiceServer) AddCommand(context.Context, *AddCommandRequ
 }
 func (UnimplementedAimServiceServer) GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppliances not implemented")
+}
+func (UnimplementedAimServiceServer) GetAppliance(context.Context, *GetApplianceRequest) (*GetApplianceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppliance not implemented")
 }
 func (UnimplementedAimServiceServer) GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommands not implemented")
@@ -299,6 +313,24 @@ func _AimService_GetAppliances_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AimServiceServer).GetAppliances(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AimService_GetAppliance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetApplianceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AimServiceServer).GetAppliance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/aim.AimService/GetAppliance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AimServiceServer).GetAppliance(ctx, req.(*GetApplianceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -486,6 +518,10 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAppliances",
 			Handler:    _AimService_GetAppliances_Handler,
+		},
+		{
+			MethodName: "GetAppliance",
+			Handler:    _AimService_GetAppliance_Handler,
 		},
 		{
 			MethodName: "GetCommands",
