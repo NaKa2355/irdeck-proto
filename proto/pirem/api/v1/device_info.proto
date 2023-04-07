@@ -25,13 +25,4 @@ message DeviceInfo {
     string driver_version = 5;
 
     string firmware_version = 6;
-
-    //デバイスのタイプ(有線or無線)
-    enum DeviceType {
-        DEVICE_TYPE_UNSPECIFIED = 0;
-        DEVICE_TYPE_WIRED = 1;
-        DEVICE_TYPE_WIRELESS = 2;
-    }
-
-    DeviceType type = 7;
 }
