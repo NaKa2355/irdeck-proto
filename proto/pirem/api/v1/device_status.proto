@@ -5,12 +5,21 @@ package pirem;
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/pirem/api/v1";
 
 message DeviceStatus {
-    //デバイスと意思疎通が取れるかどうか
-    bool is_active = 1;
+    oneof status {
+        WiredDeviceStatus wired = 1;
+        WirelessDeviceStatus wireless = 2;
+    }
+}
 
+message WiredDeviceStatus {
+    bool is_active = 1;
+}
+
+message WirelessDeviceStatus {
+    bool is_active = 1;
     //バッテリー残量
-    optional uint32 battery = 2;
+    uint32 battery = 2;
 
     //電波強度
-    optional float rssi = 3;
+    float rssi = 3;
 }

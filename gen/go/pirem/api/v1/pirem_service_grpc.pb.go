@@ -25,8 +25,8 @@ type PiRemServiceClient interface {
 	SendRawIr(ctx context.Context, in *SendRawIrRequest, opts ...grpc.CallOption) (*SendRawIrResponse, error)
 	ReceiveRawIr(ctx context.Context, in *ReceiveRawIrRequest, opts ...grpc.CallOption) (*ReceiveRawIrResponse, error)
 	GetAllDeviceInfo(ctx context.Context, in *GetAllDeviceInfoRequest, opts ...grpc.CallOption) (*GetAllDeviceInfoResponse, error)
-	GetDeviceInfo(ctx context.Context, in *GetDeviceInfoRequest, opts ...grpc.CallOption) (*GetDeviceInfoResponse, error)
-	GetDeviceStatus(ctx context.Context, in *GetDeviceStatusRequest, opts ...grpc.CallOption) (*GetDeviceStatusResponse, error)
+	GetDeviceInfo(ctx context.Context, in *GetDeviceInfoRequest, opts ...grpc.CallOption) (*DeviceInfo, error)
+	GetDeviceStatus(ctx context.Context, in *GetDeviceStatusRequest, opts ...grpc.CallOption) (*DeviceStatus, error)
 	IsBusy(ctx context.Context, in *IsBusyRequest, opts ...grpc.CallOption) (*IsBusyResponse, error)
 }
 
@@ -65,8 +65,8 @@ func (c *piRemServiceClient) GetAllDeviceInfo(ctx context.Context, in *GetAllDev
 	return out, nil
 }
 
-func (c *piRemServiceClient) GetDeviceInfo(ctx context.Context, in *GetDeviceInfoRequest, opts ...grpc.CallOption) (*GetDeviceInfoResponse, error) {
-	out := new(GetDeviceInfoResponse)
+func (c *piRemServiceClient) GetDeviceInfo(ctx context.Context, in *GetDeviceInfoRequest, opts ...grpc.CallOption) (*DeviceInfo, error) {
+	out := new(DeviceInfo)
 	err := c.cc.Invoke(ctx, "/pirem.PiRemService/GetDeviceInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +74,8 @@ func (c *piRemServiceClient) GetDeviceInfo(ctx context.Context, in *GetDeviceInf
 	return out, nil
 }
 
-func (c *piRemServiceClient) GetDeviceStatus(ctx context.Context, in *GetDeviceStatusRequest, opts ...grpc.CallOption) (*GetDeviceStatusResponse, error) {
-	out := new(GetDeviceStatusResponse)
+func (c *piRemServiceClient) GetDeviceStatus(ctx context.Context, in *GetDeviceStatusRequest, opts ...grpc.CallOption) (*DeviceStatus, error) {
+	out := new(DeviceStatus)
 	err := c.cc.Invoke(ctx, "/pirem.PiRemService/GetDeviceStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -99,8 +99,8 @@ type PiRemServiceServer interface {
 	SendRawIr(context.Context, *SendRawIrRequest) (*SendRawIrResponse, error)
 	ReceiveRawIr(context.Context, *ReceiveRawIrRequest) (*ReceiveRawIrResponse, error)
 	GetAllDeviceInfo(context.Context, *GetAllDeviceInfoRequest) (*GetAllDeviceInfoResponse, error)
-	GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*GetDeviceInfoResponse, error)
-	GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*GetDeviceStatusResponse, error)
+	GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*DeviceInfo, error)
+	GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*DeviceStatus, error)
 	IsBusy(context.Context, *IsBusyRequest) (*IsBusyResponse, error)
 	mustEmbedUnimplementedPiRemServiceServer()
 }
@@ -118,10 +118,10 @@ func (UnimplementedPiRemServiceServer) ReceiveRawIr(context.Context, *ReceiveRaw
 func (UnimplementedPiRemServiceServer) GetAllDeviceInfo(context.Context, *GetAllDeviceInfoRequest) (*GetAllDeviceInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllDeviceInfo not implemented")
 }
-func (UnimplementedPiRemServiceServer) GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*GetDeviceInfoResponse, error) {
+func (UnimplementedPiRemServiceServer) GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*DeviceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceInfo not implemented")
 }
-func (UnimplementedPiRemServiceServer) GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*GetDeviceStatusResponse, error) {
+func (UnimplementedPiRemServiceServer) GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*DeviceStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceStatus not implemented")
 }
 func (UnimplementedPiRemServiceServer) IsBusy(context.Context, *IsBusyRequest) (*IsBusyResponse, error) {

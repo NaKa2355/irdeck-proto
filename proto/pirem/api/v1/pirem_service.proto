@@ -13,7 +13,7 @@ import "common/irdata/v1/raw_irdata.proto";
 //---------- Send IR ----------
 message SendRawIrRequest {
     string device_id = 1;
-    irdata.RawIrData ir_data = 2;
+    irdata.IrData ir_data = 2;
 }
 
 message SendRawIrResponse {
@@ -25,7 +25,7 @@ message ReceiveRawIrRequest {
 }
 
 message ReceiveRawIrResponse {
-    irdata.RawIrData ir_data = 1;
+    irdata.IrData ir_data = 1;
 }
 
 //---------- Get all device information -----------
@@ -41,17 +41,9 @@ message GetDeviceInfoRequest {
     string device_id = 1;
 }
 
-message GetDeviceInfoResponse {
-    DeviceInfo device_info = 1;
-}
-
 //----------- Get a device status ----------
 message GetDeviceStatusRequest {
     string device_id = 1;
-}
-
-message GetDeviceStatusResponse {
-   DeviceStatus device_status = 1;
 }
 
 //---------- Is busy -----------
@@ -67,7 +59,7 @@ service PiRemService {
     rpc SendRawIr(SendRawIrRequest) returns (SendRawIrResponse) {}
     rpc ReceiveRawIr(ReceiveRawIrRequest) returns (ReceiveRawIrResponse) {}
     rpc GetAllDeviceInfo(GetAllDeviceInfoRequest) returns (GetAllDeviceInfoResponse) {}
-    rpc GetDeviceInfo(GetDeviceInfoRequest) returns (GetDeviceInfoResponse) {}
-    rpc GetDeviceStatus(GetDeviceStatusRequest) returns (GetDeviceStatusResponse) {}
+    rpc GetDeviceInfo(GetDeviceInfoRequest) returns (DeviceInfo) {}
+    rpc GetDeviceStatus(GetDeviceStatusRequest) returns (DeviceStatus) {}
     rpc IsBusy(IsBusyRequest) returns (IsBusyResponse) {}
 }
