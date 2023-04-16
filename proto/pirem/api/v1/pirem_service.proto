@@ -6,7 +6,6 @@ option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/pirem/api/v1";
 
 
 import "pirem/api/v1/device_info.proto";
-import "pirem/api/v1/device_status.proto";
 import "common/irdata/v1/raw_irdata.proto";
 
 
@@ -60,6 +59,4 @@ service PiRemService {
     rpc ReceiveRawIr(ReceiveRawIrRequest) returns (ReceiveRawIrResponse) {}
     rpc GetAllDeviceInfo(GetAllDeviceInfoRequest) returns (GetAllDeviceInfoResponse) {}
     rpc GetDeviceInfo(GetDeviceInfoRequest) returns (DeviceInfo) {}
-    rpc GetDeviceStatus(GetDeviceStatusRequest) returns (DeviceStatus) {}
-    rpc IsBusy(IsBusyRequest) returns (IsBusyResponse) {}
 }

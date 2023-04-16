@@ -26,8 +26,6 @@ type PiRemServiceClient interface {
 	ReceiveRawIr(ctx context.Context, in *ReceiveRawIrRequest, opts ...grpc.CallOption) (*ReceiveRawIrResponse, error)
 	GetAllDeviceInfo(ctx context.Context, in *GetAllDeviceInfoRequest, opts ...grpc.CallOption) (*GetAllDeviceInfoResponse, error)
 	GetDeviceInfo(ctx context.Context, in *GetDeviceInfoRequest, opts ...grpc.CallOption) (*DeviceInfo, error)
-	GetDeviceStatus(ctx context.Context, in *GetDeviceStatusRequest, opts ...grpc.CallOption) (*DeviceStatus, error)
-	IsBusy(ctx context.Context, in *IsBusyRequest, opts ...grpc.CallOption) (*IsBusyResponse, error)
 }
 
 type piRemServiceClient struct {
@@ -74,24 +72,6 @@ func (c *piRemServiceClient) GetDeviceInfo(ctx context.Context, in *GetDeviceInf
 	return out, nil
 }
 
-func (c *piRemServiceClient) GetDeviceStatus(ctx context.Context, in *GetDeviceStatusRequest, opts ...grpc.CallOption) (*DeviceStatus, error) {
-	out := new(DeviceStatus)
-	err := c.cc.Invoke(ctx, "/pirem.PiRemService/GetDeviceStatus", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *piRemServiceClient) IsBusy(ctx context.Context, in *IsBusyRequest, opts ...grpc.CallOption) (*IsBusyResponse, error) {
-	out := new(IsBusyResponse)
-	err := c.cc.Invoke(ctx, "/pirem.PiRemService/IsBusy", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PiRemServiceServer is the server API for PiRemService service.
 // All implementations must embed UnimplementedPiRemServiceServer
 // for forward compatibility
@@ -100,8 +80,6 @@ type PiRemServiceServer interface {
 	ReceiveRawIr(context.Context, *ReceiveRawIrRequest) (*ReceiveRawIrResponse, error)
 	GetAllDeviceInfo(context.Context, *GetAllDeviceInfoRequest) (*GetAllDeviceInfoResponse, error)
 	GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*DeviceInfo, error)
-	GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*DeviceStatus, error)
-	IsBusy(context.Context, *IsBusyRequest) (*IsBusyResponse, error)
 	mustEmbedUnimplementedPiRemServiceServer()
 }
 
@@ -120,12 +98,6 @@ func (UnimplementedPiRemServiceServer) GetAllDeviceInfo(context.Context, *GetAll
 }
 func (UnimplementedPiRemServiceServer) GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*DeviceInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceInfo not implemented")
-}
-func (UnimplementedPiRemServiceServer) GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*DeviceStatus, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDeviceStatus not implemented")
-}
-func (UnimplementedPiRemServiceServer) IsBusy(context.Context, *IsBusyRequest) (*IsBusyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IsBusy not implemented")
 }
 func (UnimplementedPiRemServiceServer) mustEmbedUnimplementedPiRemServiceServer() {}
 
@@ -212,42 +184,6 @@ func _PiRemService_GetDeviceInfo_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PiRemService_GetDeviceStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDeviceStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PiRemServiceServer).GetDeviceStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pirem.PiRemService/GetDeviceStatus",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PiRemServiceServer).GetDeviceStatus(ctx, req.(*GetDeviceStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PiRemService_IsBusy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IsBusyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PiRemServiceServer).IsBusy(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pirem.PiRemService/IsBusy",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PiRemServiceServer).IsBusy(ctx, req.(*IsBusyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PiRemService_ServiceDesc is the grpc.ServiceDesc for PiRemService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -270,14 +206,6 @@ var PiRemService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDeviceInfo",
 			Handler:    _PiRemService_GetDeviceInfo_Handler,
-		},
-		{
-			MethodName: "GetDeviceStatus",
-			Handler:    _PiRemService_GetDeviceStatus_Handler,
-		},
-		{
-			MethodName: "IsBusy",
-			Handler:    _PiRemService_IsBusy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

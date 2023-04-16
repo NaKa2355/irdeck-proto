@@ -10,19 +10,12 @@ message DeviceInfo {
     string name = 2;
 
     int32 buffer_size = 3;
-  
-    enum ServiceType {
-        SERVICE_TYPE_UNSPECIFIED = 0;
-        SERVICE_TYPE_SEND = 1;
-        SERVICE_TYPE_RECEIVE = 2;
-        SERVICE_TYPE_SEND_RECEIVE = 3;
-        SERVICE_TYPE_NONE = 4;
-    }
 
-    ServiceType service = 4;
+    bool can_send = 4;
+    
+    bool can_receive = 5;
 
+    string driver_version = 7;
 
-    string driver_version = 5;
-
-    string firmware_version = 6;
+    string firmware_version = 8;
 }
