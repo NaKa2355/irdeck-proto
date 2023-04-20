@@ -22,8 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PiRemServiceClient interface {
-	SendRawIr(ctx context.Context, in *SendRawIrRequest, opts ...grpc.CallOption) (*SendRawIrResponse, error)
-	ReceiveRawIr(ctx context.Context, in *ReceiveRawIrRequest, opts ...grpc.CallOption) (*ReceiveRawIrResponse, error)
+	SendIr(ctx context.Context, in *SendIrRequest, opts ...grpc.CallOption) (*SendIrResponse, error)
+	ReceiveIr(ctx context.Context, in *ReceiveIrRequest, opts ...grpc.CallOption) (*ReceiveIrResponse, error)
 	GetAllDeviceInfo(ctx context.Context, in *GetAllDeviceInfoRequest, opts ...grpc.CallOption) (*GetAllDeviceInfoResponse, error)
 	GetDeviceInfo(ctx context.Context, in *GetDeviceInfoRequest, opts ...grpc.CallOption) (*DeviceInfo, error)
 }
@@ -36,18 +36,18 @@ func NewPiRemServiceClient(cc grpc.ClientConnInterface) PiRemServiceClient {
 	return &piRemServiceClient{cc}
 }
 
-func (c *piRemServiceClient) SendRawIr(ctx context.Context, in *SendRawIrRequest, opts ...grpc.CallOption) (*SendRawIrResponse, error) {
-	out := new(SendRawIrResponse)
-	err := c.cc.Invoke(ctx, "/pirem.PiRemService/SendRawIr", in, out, opts...)
+func (c *piRemServiceClient) SendIr(ctx context.Context, in *SendIrRequest, opts ...grpc.CallOption) (*SendIrResponse, error) {
+	out := new(SendIrResponse)
+	err := c.cc.Invoke(ctx, "/pirem.PiRemService/SendIr", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *piRemServiceClient) ReceiveRawIr(ctx context.Context, in *ReceiveRawIrRequest, opts ...grpc.CallOption) (*ReceiveRawIrResponse, error) {
-	out := new(ReceiveRawIrResponse)
-	err := c.cc.Invoke(ctx, "/pirem.PiRemService/ReceiveRawIr", in, out, opts...)
+func (c *piRemServiceClient) ReceiveIr(ctx context.Context, in *ReceiveIrRequest, opts ...grpc.CallOption) (*ReceiveIrResponse, error) {
+	out := new(ReceiveIrResponse)
+	err := c.cc.Invoke(ctx, "/pirem.PiRemService/ReceiveIr", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,8 +76,8 @@ func (c *piRemServiceClient) GetDeviceInfo(ctx context.Context, in *GetDeviceInf
 // All implementations must embed UnimplementedPiRemServiceServer
 // for forward compatibility
 type PiRemServiceServer interface {
-	SendRawIr(context.Context, *SendRawIrRequest) (*SendRawIrResponse, error)
-	ReceiveRawIr(context.Context, *ReceiveRawIrRequest) (*ReceiveRawIrResponse, error)
+	SendIr(context.Context, *SendIrRequest) (*SendIrResponse, error)
+	ReceiveIr(context.Context, *ReceiveIrRequest) (*ReceiveIrResponse, error)
 	GetAllDeviceInfo(context.Context, *GetAllDeviceInfoRequest) (*GetAllDeviceInfoResponse, error)
 	GetDeviceInfo(context.Context, *GetDeviceInfoRequest) (*DeviceInfo, error)
 	mustEmbedUnimplementedPiRemServiceServer()
@@ -87,11 +87,11 @@ type PiRemServiceServer interface {
 type UnimplementedPiRemServiceServer struct {
 }
 
-func (UnimplementedPiRemServiceServer) SendRawIr(context.Context, *SendRawIrRequest) (*SendRawIrResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendRawIr not implemented")
+func (UnimplementedPiRemServiceServer) SendIr(context.Context, *SendIrRequest) (*SendIrResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendIr not implemented")
 }
-func (UnimplementedPiRemServiceServer) ReceiveRawIr(context.Context, *ReceiveRawIrRequest) (*ReceiveRawIrResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReceiveRawIr not implemented")
+func (UnimplementedPiRemServiceServer) ReceiveIr(context.Context, *ReceiveIrRequest) (*ReceiveIrResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReceiveIr not implemented")
 }
 func (UnimplementedPiRemServiceServer) GetAllDeviceInfo(context.Context, *GetAllDeviceInfoRequest) (*GetAllDeviceInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllDeviceInfo not implemented")
@@ -112,38 +112,38 @@ func RegisterPiRemServiceServer(s grpc.ServiceRegistrar, srv PiRemServiceServer)
 	s.RegisterService(&PiRemService_ServiceDesc, srv)
 }
 
-func _PiRemService_SendRawIr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendRawIrRequest)
+func _PiRemService_SendIr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendIrRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PiRemServiceServer).SendRawIr(ctx, in)
+		return srv.(PiRemServiceServer).SendIr(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pirem.PiRemService/SendRawIr",
+		FullMethod: "/pirem.PiRemService/SendIr",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PiRemServiceServer).SendRawIr(ctx, req.(*SendRawIrRequest))
+		return srv.(PiRemServiceServer).SendIr(ctx, req.(*SendIrRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PiRemService_ReceiveRawIr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReceiveRawIrRequest)
+func _PiRemService_ReceiveIr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReceiveIrRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PiRemServiceServer).ReceiveRawIr(ctx, in)
+		return srv.(PiRemServiceServer).ReceiveIr(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pirem.PiRemService/ReceiveRawIr",
+		FullMethod: "/pirem.PiRemService/ReceiveIr",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PiRemServiceServer).ReceiveRawIr(ctx, req.(*ReceiveRawIrRequest))
+		return srv.(PiRemServiceServer).ReceiveIr(ctx, req.(*ReceiveIrRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -192,12 +192,12 @@ var PiRemService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PiRemServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SendRawIr",
-			Handler:    _PiRemService_SendRawIr_Handler,
+			MethodName: "SendIr",
+			Handler:    _PiRemService_SendIr_Handler,
 		},
 		{
-			MethodName: "ReceiveRawIr",
-			Handler:    _PiRemService_ReceiveRawIr_Handler,
+			MethodName: "ReceiveIr",
+			Handler:    _PiRemService_ReceiveIr_Handler,
 		},
 		{
 			MethodName: "GetAllDeviceInfo",

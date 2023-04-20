@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package irdata;
 
-option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/common/irdata/v1";
+option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/pirem/api/v1";
 
 message RawIrData {
     uint32 carrier_freq_khz = 1;
