@@ -9,6 +9,12 @@ export class Command extends jspb.Message {
   getName(): string;
   setName(value: string): Command;
 
+  getCanRename(): boolean;
+  setCanRename(value: boolean): Command;
+
+  getCanDelete(): boolean;
+  setCanDelete(value: boolean): Command;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Command.AsObject;
   static toObject(includeInstance: boolean, msg: Command): Command.AsObject;
@@ -21,6 +27,8 @@ export namespace Command {
   export type AsObject = {
     id: string,
     name: string,
+    canRename: boolean,
+    canDelete: boolean,
   }
 }
 

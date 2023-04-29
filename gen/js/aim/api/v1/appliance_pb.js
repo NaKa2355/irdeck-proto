@@ -70,7 +70,8 @@ proto.aim.Appliance.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     deviceId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    applianceType: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    applianceType: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    canAddCommand: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -122,6 +123,10 @@ proto.aim.Appliance.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {!proto.aim.Appliance.AppType} */ (reader.readEnum());
       msg.setApplianceType(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanAddCommand(value);
       break;
     default:
       reader.skipField();
@@ -177,6 +182,13 @@ proto.aim.Appliance.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       4,
+      f
+    );
+  }
+  f = message.getCanAddCommand();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -263,6 +275,24 @@ proto.aim.Appliance.prototype.getApplianceType = function() {
  */
 proto.aim.Appliance.prototype.setApplianceType = function(value) {
   return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
+/**
+ * optional bool can_add_command = 5;
+ * @return {boolean}
+ */
+proto.aim.Appliance.prototype.getCanAddCommand = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.aim.Appliance} returns this
+ */
+proto.aim.Appliance.prototype.setCanAddCommand = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

@@ -15,6 +15,9 @@ export class Appliance extends jspb.Message {
   getApplianceType(): Appliance.AppType;
   setApplianceType(value: Appliance.AppType): Appliance;
 
+  getCanAddCommand(): boolean;
+  setCanAddCommand(value: boolean): Appliance;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Appliance.AsObject;
   static toObject(includeInstance: boolean, msg: Appliance): Appliance.AsObject;
@@ -29,6 +32,7 @@ export namespace Appliance {
     name: string,
     deviceId: string,
     applianceType: Appliance.AppType,
+    canAddCommand: boolean,
   }
 
   export enum AppType { 

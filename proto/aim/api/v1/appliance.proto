@@ -17,4 +17,5 @@ message Appliance {
         THERMOSTAT = 4;
     }
     AppType appliance_type = 4;
+    bool can_add_command = 5;
 }

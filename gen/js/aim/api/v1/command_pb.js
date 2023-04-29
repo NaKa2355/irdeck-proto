@@ -67,7 +67,9 @@ proto.aim.Command.prototype.toObject = function(opt_includeInstance) {
 proto.aim.Command.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, "")
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    canRename: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    canDelete: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -112,6 +114,14 @@ proto.aim.Command.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanRename(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanDelete(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -155,6 +165,20 @@ proto.aim.Command.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getCanRename();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getCanDelete();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -191,6 +215,42 @@ proto.aim.Command.prototype.getName = function() {
  */
 proto.aim.Command.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool can_rename = 3;
+ * @return {boolean}
+ */
+proto.aim.Command.prototype.getCanRename = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.aim.Command} returns this
+ */
+proto.aim.Command.prototype.setCanRename = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional bool can_delete = 4;
+ * @return {boolean}
+ */
+proto.aim.Command.prototype.getCanDelete = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.aim.Command} returns this
+ */
+proto.aim.Command.prototype.setCanDelete = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
