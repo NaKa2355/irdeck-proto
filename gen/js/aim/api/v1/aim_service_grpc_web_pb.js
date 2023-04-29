@@ -41,7 +41,7 @@ proto.aim = require('./aim_service_pb.js');
 proto.aim.AimServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options.format = 'binary';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -67,7 +67,7 @@ proto.aim.AimServiceClient =
 proto.aim.AimServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options.format = 'binary';
+  options.format = 'text';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client

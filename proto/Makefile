@@ -21,8 +21,8 @@ JS_OUT := ./../gen/js
 
 gen-js: 
 	protoc -I=. $(PROTO) \
-	--js_out=import_style=commonjs,binary:$(JS_OUT) \
-	 --grpc-web_out=import_style=commonjs+dts,mode=grpcweb:$(JS_OUT)
+	--js_out=import_style=commonjs:$(JS_OUT) \
+	 --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:$(JS_OUT)
 
 clean-js:
 	rm -rf $(JS_OUT)/**
