@@ -10,13 +10,27 @@ gen-go:
 	--go_opt=paths=source_relative --go_out=$(GO_OUT) \
 	--go-grpc_opt=paths=source_relative --go-grpc_out=$(GO_OUT) \
 	$(PROTO)
-#---------------------------------------------------
 
-#--------------------general------------------------
 clean-go:
 	rm -rf $(GO_OUT)/**
 
-clean: clean-go
+#---------------------------------------------------
 
-all: gen-go
+#--------------js generator-------------------------
+JS_OUT := ./../gen/js
+
+gen-js: 
+	protoc -I=. $(PROTO) \
+	--js_out=import_style=typescript:$(JS_OUT) \
+	 --grpc-web_out=import_style=typescript,mode=grpcweb:$(JS_OUT)
+
+clean-js:
+	rm -rf $(JS_OUT)/**
+
+#--------------------general------------------------
+clean: clean-go clean-js
+
+gen: gen-go, gen-js
+
+all:
 #---------------------------------------------------
