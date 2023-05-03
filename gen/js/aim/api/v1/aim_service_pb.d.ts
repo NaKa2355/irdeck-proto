@@ -162,21 +162,23 @@ export namespace AddApplianceRequest {
   }
 }
 
-export class AddAppResponse extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): AddAppResponse;
+export class AddApplianceResponse extends jspb.Message {
+  getAppliance(): aim_api_v1_appliance_pb.Appliance | undefined;
+  setAppliance(value?: aim_api_v1_appliance_pb.Appliance): AddApplianceResponse;
+  hasAppliance(): boolean;
+  clearAppliance(): AddApplianceResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddAppResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddAppResponse): AddAppResponse.AsObject;
-  static serializeBinaryToWriter(message: AddAppResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddAppResponse;
-  static deserializeBinaryFromReader(message: AddAppResponse, reader: jspb.BinaryReader): AddAppResponse;
+  toObject(includeInstance?: boolean): AddApplianceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddApplianceResponse): AddApplianceResponse.AsObject;
+  static serializeBinaryToWriter(message: AddApplianceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddApplianceResponse;
+  static deserializeBinaryFromReader(message: AddApplianceResponse, reader: jspb.BinaryReader): AddApplianceResponse;
 }
 
-export namespace AddAppResponse {
+export namespace AddApplianceResponse {
   export type AsObject = {
-    applianceId: string,
+    appliance?: aim_api_v1_appliance_pb.Appliance.AsObject,
   }
 }
 

@@ -86,13 +86,13 @@ proto.aim.AimServicePromiseClient =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.aim.AddApplianceRequest,
- *   !proto.aim.AddAppResponse>}
+ *   !proto.aim.AddApplianceResponse>}
  */
 const methodDescriptor_AimService_AddAppliance = new grpc.web.MethodDescriptor(
   '/aim.AimService/AddAppliance',
   grpc.web.MethodType.UNARY,
   proto.aim.AddApplianceRequest,
-  proto.aim.AddAppResponse,
+  proto.aim.AddApplianceResponse,
   /**
    * @param {!proto.aim.AddApplianceRequest} request
    * @return {!Uint8Array}
@@ -100,7 +100,7 @@ const methodDescriptor_AimService_AddAppliance = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.AddAppResponse.deserializeBinary
+  proto.aim.AddApplianceResponse.deserializeBinary
 );
 
 
@@ -109,9 +109,9 @@ const methodDescriptor_AimService_AddAppliance = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.aim.AddAppResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.AddApplianceResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.aim.AddAppResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.AddApplianceResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.aim.AimServiceClient.prototype.addAppliance =
@@ -130,7 +130,7 @@ proto.aim.AimServiceClient.prototype.addAppliance =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.aim.AddAppResponse>}
+ * @return {!Promise<!proto.aim.AddApplianceResponse>}
  *     Promise that resolves to the response
  */
 proto.aim.AimServicePromiseClient.prototype.addAppliance =

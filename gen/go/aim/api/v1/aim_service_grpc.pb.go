@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AimServiceClient interface {
-	AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddAppResponse, error)
+	AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddApplianceResponse, error)
 	AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
 	GetAppliance(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*GetApplianceResponse, error)
@@ -47,8 +47,8 @@ func NewAimServiceClient(cc grpc.ClientConnInterface) AimServiceClient {
 	return &aimServiceClient{cc}
 }
 
-func (c *aimServiceClient) AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddAppResponse, error) {
-	out := new(AddAppResponse)
+func (c *aimServiceClient) AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddApplianceResponse, error) {
+	out := new(AddApplianceResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/AddAppliance", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -191,7 +191,7 @@ func (x *aimServiceNotifyApplianceUpdateClient) Recv() (*ApplianceUpdateNotifica
 // All implementations must embed UnimplementedAimServiceServer
 // for forward compatibility
 type AimServiceServer interface {
-	AddAppliance(context.Context, *AddApplianceRequest) (*AddAppResponse, error)
+	AddAppliance(context.Context, *AddApplianceRequest) (*AddApplianceResponse, error)
 	AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error)
 	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
 	GetAppliance(context.Context, *GetApplianceRequest) (*GetApplianceResponse, error)
@@ -211,7 +211,7 @@ type AimServiceServer interface {
 type UnimplementedAimServiceServer struct {
 }
 
-func (UnimplementedAimServiceServer) AddAppliance(context.Context, *AddApplianceRequest) (*AddAppResponse, error) {
+func (UnimplementedAimServiceServer) AddAppliance(context.Context, *AddApplianceRequest) (*AddApplianceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddAppliance not implemented")
 }
 func (UnimplementedAimServiceServer) AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error) {

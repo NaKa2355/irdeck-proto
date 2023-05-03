@@ -14,8 +14,8 @@ export class AimServiceClient {
     request: aim_api_v1_aim_service_pb.AddApplianceRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: aim_api_v1_aim_service_pb.AddAppResponse) => void
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.AddAppResponse>;
+               response: aim_api_v1_aim_service_pb.AddApplianceResponse) => void
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.AddApplianceResponse>;
 
   addCommand(
     request: aim_api_v1_aim_service_pb.AddCommandRequest,
@@ -109,7 +109,7 @@ export class AimServicePromiseClient {
   addAppliance(
     request: aim_api_v1_aim_service_pb.AddApplianceRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<aim_api_v1_aim_service_pb.AddAppResponse>;
+  ): Promise<aim_api_v1_aim_service_pb.AddApplianceResponse>;
 
   addCommand(
     request: aim_api_v1_aim_service_pb.AddCommandRequest,

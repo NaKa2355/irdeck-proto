@@ -43,8 +43,8 @@ message AddApplianceRequest {
     }
 }
 
-message AddAppResponse {
-    string appliance_id = 1;
+message AddApplianceResponse {
+    Appliance appliance = 1;
 }
 
 message AddCommandRequest {
@@ -120,7 +120,7 @@ message ApplianceUpdateNotification {
 }
 
 service AimService {
-    rpc AddAppliance(AddApplianceRequest) returns (AddAppResponse) {}
+    rpc AddAppliance(AddApplianceRequest) returns (AddApplianceResponse) {}
     rpc AddCommand(AddCommandRequest) returns (google.protobuf.Empty) {}
 
     rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
