@@ -140,11 +140,8 @@ service AimService {
     rpc GetCommands(GetCommandsRequest) returns (GetCommandsResponse) {}
     rpc GetIrData(GetIrDataRequest) returns (google.protobuf.Any) {}
 
-    rpc RenameAppliance(RenameApplianceRequest) returns (google.protobuf.Empty) {}
-    rpc ChangeDevice(ChangeDeviceRequest) returns (google.protobuf.Empty) {}
     rpc EditAppliance(EditApplianceRequest) returns (google.protobuf.Empty) {}
     rpc EditCommand(EditCommandRequest) returns (google.protobuf.Empty) {}
-    rpc RenameCommand(RenameCommandRequest) returns (google.protobuf.Empty) {}
     rpc SetIrData(SetIRDataRequest) returns(google.protobuf.Empty) {}
 
     rpc DeleteAppliance(DeleteApplianceRequest) returns (google.protobuf.Empty) {}

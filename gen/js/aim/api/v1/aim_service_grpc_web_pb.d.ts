@@ -52,20 +52,6 @@ export class AimServiceClient {
                response: google_protobuf_any_pb.Any) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_any_pb.Any>;
 
-  renameAppliance(
-    request: aim_api_v1_aim_service_pb.RenameApplianceRequest,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
-
-  changeDevice(
-    request: aim_api_v1_aim_service_pb.ChangeDeviceRequest,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
-
   editAppliance(
     request: aim_api_v1_aim_service_pb.EditApplianceRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -75,13 +61,6 @@ export class AimServiceClient {
 
   editCommand(
     request: aim_api_v1_aim_service_pb.EditCommandRequest,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.RpcError,
-               response: google_protobuf_empty_pb.Empty) => void
-  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
-
-  renameCommand(
-    request: aim_api_v1_aim_service_pb.RenameCommandRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
@@ -150,16 +129,6 @@ export class AimServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_any_pb.Any>;
 
-  renameAppliance(
-    request: aim_api_v1_aim_service_pb.RenameApplianceRequest,
-    metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_empty_pb.Empty>;
-
-  changeDevice(
-    request: aim_api_v1_aim_service_pb.ChangeDeviceRequest,
-    metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_empty_pb.Empty>;
-
   editAppliance(
     request: aim_api_v1_aim_service_pb.EditApplianceRequest,
     metadata?: grpcWeb.Metadata
@@ -167,11 +136,6 @@ export class AimServicePromiseClient {
 
   editCommand(
     request: aim_api_v1_aim_service_pb.EditCommandRequest,
-    metadata?: grpcWeb.Metadata
-  ): Promise<google_protobuf_empty_pb.Empty>;
-
-  renameCommand(
-    request: aim_api_v1_aim_service_pb.RenameCommandRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
