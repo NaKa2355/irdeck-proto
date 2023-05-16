@@ -69,7 +69,8 @@ proto.aim.Command.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     canRename: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    canDelete: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    canDelete: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    hasIrdata: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -121,6 +122,10 @@ proto.aim.Command.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setCanDelete(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHasIrdata(value);
       break;
     default:
       reader.skipField();
@@ -176,6 +181,13 @@ proto.aim.Command.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getHasIrdata();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -251,6 +263,24 @@ proto.aim.Command.prototype.getCanDelete = function() {
  */
 proto.aim.Command.prototype.setCanDelete = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional bool has_irdata = 5;
+ * @return {boolean}
+ */
+proto.aim.Command.prototype.getHasIrdata = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.aim.Command} returns this
+ */
+proto.aim.Command.prototype.setHasIrdata = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

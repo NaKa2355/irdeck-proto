@@ -72,6 +72,12 @@ message GetCommandsResponse {
     repeated Command commands = 1;
 }
 
+message EditApplianceRequest {
+    string appliance_id = 1;
+    string name = 2;
+    string device_id = 3;
+}
+
 message RenameApplianceRequest {
     string appliance_id = 1;
     string name = 2;
@@ -83,6 +89,12 @@ message ChangeDeviceRequest {
 }
 
 message RenameCommandRequest {
+    string appliance_id = 1;
+    string command_id = 2;
+    string name = 3;
+}
+
+message EditCommandRequest {
     string appliance_id = 1;
     string command_id = 2;
     string name = 3;
@@ -130,6 +142,8 @@ service AimService {
 
     rpc RenameAppliance(RenameApplianceRequest) returns (google.protobuf.Empty) {}
     rpc ChangeDevice(ChangeDeviceRequest) returns (google.protobuf.Empty) {}
+    rpc EditAppliance(EditApplianceRequest) returns (google.protobuf.Empty) {}
+    rpc EditCommand(EditCommandRequest) returns (google.protobuf.Empty) {}
     rpc RenameCommand(RenameCommandRequest) returns (google.protobuf.Empty) {}
     rpc SetIrData(SetIRDataRequest) returns(google.protobuf.Empty) {}
 

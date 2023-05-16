@@ -573,6 +573,128 @@ proto.aim.AimServicePromiseClient.prototype.changeDevice =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.aim.EditApplianceRequest,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_AimService_EditAppliance = new grpc.web.MethodDescriptor(
+  '/aim.AimService/EditAppliance',
+  grpc.web.MethodType.UNARY,
+  proto.aim.EditApplianceRequest,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.aim.EditApplianceRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.aim.EditApplianceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.aim.AimServiceClient.prototype.editAppliance =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/aim.AimService/EditAppliance',
+      request,
+      metadata || {},
+      methodDescriptor_AimService_EditAppliance,
+      callback);
+};
+
+
+/**
+ * @param {!proto.aim.EditApplianceRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.aim.AimServicePromiseClient.prototype.editAppliance =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/aim.AimService/EditAppliance',
+      request,
+      metadata || {},
+      methodDescriptor_AimService_EditAppliance);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.aim.EditCommandRequest,
+ *   !proto.google.protobuf.Empty>}
+ */
+const methodDescriptor_AimService_EditCommand = new grpc.web.MethodDescriptor(
+  '/aim.AimService/EditCommand',
+  grpc.web.MethodType.UNARY,
+  proto.aim.EditCommandRequest,
+  google_protobuf_empty_pb.Empty,
+  /**
+   * @param {!proto.aim.EditCommandRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  google_protobuf_empty_pb.Empty.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.aim.EditCommandRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.aim.AimServiceClient.prototype.editCommand =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/aim.AimService/EditCommand',
+      request,
+      metadata || {},
+      methodDescriptor_AimService_EditCommand,
+      callback);
+};
+
+
+/**
+ * @param {!proto.aim.EditCommandRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.google.protobuf.Empty>}
+ *     Promise that resolves to the response
+ */
+proto.aim.AimServicePromiseClient.prototype.editCommand =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/aim.AimService/EditCommand',
+      request,
+      metadata || {},
+      methodDescriptor_AimService_EditCommand);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.aim.RenameCommandRequest,
  *   !proto.google.protobuf.Empty>}
  */

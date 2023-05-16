@@ -15,6 +15,9 @@ export class Command extends jspb.Message {
   getCanDelete(): boolean;
   setCanDelete(value: boolean): Command;
 
+  getHasIrdata(): boolean;
+  setHasIrdata(value: boolean): Command;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Command.AsObject;
   static toObject(includeInstance: boolean, msg: Command): Command.AsObject;
@@ -29,6 +32,7 @@ export namespace Command {
     name: string,
     canRename: boolean,
     canDelete: boolean,
+    hasIrdata: boolean,
   }
 }
 

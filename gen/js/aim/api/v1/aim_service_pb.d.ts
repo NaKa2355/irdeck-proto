@@ -300,6 +300,32 @@ export namespace GetCommandsResponse {
   }
 }
 
+export class EditApplianceRequest extends jspb.Message {
+  getApplianceId(): string;
+  setApplianceId(value: string): EditApplianceRequest;
+
+  getName(): string;
+  setName(value: string): EditApplianceRequest;
+
+  getDeviceId(): string;
+  setDeviceId(value: string): EditApplianceRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EditApplianceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EditApplianceRequest): EditApplianceRequest.AsObject;
+  static serializeBinaryToWriter(message: EditApplianceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EditApplianceRequest;
+  static deserializeBinaryFromReader(message: EditApplianceRequest, reader: jspb.BinaryReader): EditApplianceRequest;
+}
+
+export namespace EditApplianceRequest {
+  export type AsObject = {
+    applianceId: string,
+    name: string,
+    deviceId: string,
+  }
+}
+
 export class RenameApplianceRequest extends jspb.Message {
   getApplianceId(): string;
   setApplianceId(value: string): RenameApplianceRequest;
@@ -363,6 +389,32 @@ export class RenameCommandRequest extends jspb.Message {
 }
 
 export namespace RenameCommandRequest {
+  export type AsObject = {
+    applianceId: string,
+    commandId: string,
+    name: string,
+  }
+}
+
+export class EditCommandRequest extends jspb.Message {
+  getApplianceId(): string;
+  setApplianceId(value: string): EditCommandRequest;
+
+  getCommandId(): string;
+  setCommandId(value: string): EditCommandRequest;
+
+  getName(): string;
+  setName(value: string): EditCommandRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EditCommandRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EditCommandRequest): EditCommandRequest.AsObject;
+  static serializeBinaryToWriter(message: EditCommandRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EditCommandRequest;
+  static deserializeBinaryFromReader(message: EditCommandRequest, reader: jspb.BinaryReader): EditCommandRequest;
+}
+
+export namespace EditCommandRequest {
   export type AsObject = {
     applianceId: string,
     commandId: string,

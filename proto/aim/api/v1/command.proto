@@ -9,4 +9,5 @@ message Command {
     string name = 2;
     bool can_rename = 3;
     bool can_delete = 4;
+    bool has_irdata = 5;
 }
