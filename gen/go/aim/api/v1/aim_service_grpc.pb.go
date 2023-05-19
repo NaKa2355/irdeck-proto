@@ -24,17 +24,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AimServiceClient interface {
-	AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddApplianceResponse, error)
-	AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error)
-	GetAppliance(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*GetApplianceResponse, error)
-	GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error)
+	AddRemote(ctx context.Context, in *AddRemoteRequest, opts ...grpc.CallOption) (*AddRemoteResponse, error)
+	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	GetRemotes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRemotesResponse, error)
+	GetRemote(ctx context.Context, in *GetRemoteRequest, opts ...grpc.CallOption) (*GetRemoteResponse, error)
+	GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonssResponse, error)
 	GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*any1.Any, error)
-	EditAppliance(ctx context.Context, in *EditApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	EditCommand(ctx context.Context, in *EditCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	EditRemote(ctx context.Context, in *EditRemoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	EditButton(ctx context.Context, in *EditButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	SetIrData(ctx context.Context, in *SetIRDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	DeleteCommand(ctx context.Context, in *DeleteCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	DeleteRemote(ctx context.Context, in *DeleteRemoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	DeleteButton(ctx context.Context, in *DeleteButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyApplianceUpdateClient, error)
 }
 
@@ -46,45 +46,45 @@ func NewAimServiceClient(cc grpc.ClientConnInterface) AimServiceClient {
 	return &aimServiceClient{cc}
 }
 
-func (c *aimServiceClient) AddAppliance(ctx context.Context, in *AddApplianceRequest, opts ...grpc.CallOption) (*AddApplianceResponse, error) {
-	out := new(AddApplianceResponse)
-	err := c.cc.Invoke(ctx, "/aim.AimService/AddAppliance", in, out, opts...)
+func (c *aimServiceClient) AddRemote(ctx context.Context, in *AddRemoteRequest, opts ...grpc.CallOption) (*AddRemoteResponse, error) {
+	out := new(AddRemoteResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/AddRemote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) AddCommand(ctx context.Context, in *AddCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/aim.AimService/AddCommand", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aim.AimService/AddButton", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) GetAppliances(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetAppliancesResponse, error) {
-	out := new(GetAppliancesResponse)
-	err := c.cc.Invoke(ctx, "/aim.AimService/GetAppliances", in, out, opts...)
+func (c *aimServiceClient) GetRemotes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRemotesResponse, error) {
+	out := new(GetRemotesResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetRemotes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) GetAppliance(ctx context.Context, in *GetApplianceRequest, opts ...grpc.CallOption) (*GetApplianceResponse, error) {
-	out := new(GetApplianceResponse)
-	err := c.cc.Invoke(ctx, "/aim.AimService/GetAppliance", in, out, opts...)
+func (c *aimServiceClient) GetRemote(ctx context.Context, in *GetRemoteRequest, opts ...grpc.CallOption) (*GetRemoteResponse, error) {
+	out := new(GetRemoteResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetRemote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) GetCommands(ctx context.Context, in *GetCommandsRequest, opts ...grpc.CallOption) (*GetCommandsResponse, error) {
-	out := new(GetCommandsResponse)
-	err := c.cc.Invoke(ctx, "/aim.AimService/GetCommands", in, out, opts...)
+func (c *aimServiceClient) GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonssResponse, error) {
+	out := new(GetButtonssResponse)
+	err := c.cc.Invoke(ctx, "/aim.AimService/GetButtons", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,18 +100,18 @@ func (c *aimServiceClient) GetIrData(ctx context.Context, in *GetIrDataRequest, 
 	return out, nil
 }
 
-func (c *aimServiceClient) EditAppliance(ctx context.Context, in *EditApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *aimServiceClient) EditRemote(ctx context.Context, in *EditRemoteRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/aim.AimService/EditAppliance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aim.AimService/EditRemote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) EditCommand(ctx context.Context, in *EditCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *aimServiceClient) EditButton(ctx context.Context, in *EditButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/aim.AimService/EditCommand", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aim.AimService/EditButton", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,18 +127,18 @@ func (c *aimServiceClient) SetIrData(ctx context.Context, in *SetIRDataRequest, 
 	return out, nil
 }
 
-func (c *aimServiceClient) DeleteAppliance(ctx context.Context, in *DeleteApplianceRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *aimServiceClient) DeleteRemote(ctx context.Context, in *DeleteRemoteRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteAppliance", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteRemote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *aimServiceClient) DeleteCommand(ctx context.Context, in *DeleteCommandRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *aimServiceClient) DeleteButton(ctx context.Context, in *DeleteButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteCommand", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aim.AimService/DeleteButton", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -161,7 +161,7 @@ func (c *aimServiceClient) NotifyApplianceUpdate(ctx context.Context, in *empty.
 }
 
 type AimService_NotifyApplianceUpdateClient interface {
-	Recv() (*ApplianceUpdateNotification, error)
+	Recv() (*RemoteUpdateNotification, error)
 	grpc.ClientStream
 }
 
@@ -169,8 +169,8 @@ type aimServiceNotifyApplianceUpdateClient struct {
 	grpc.ClientStream
 }
 
-func (x *aimServiceNotifyApplianceUpdateClient) Recv() (*ApplianceUpdateNotification, error) {
-	m := new(ApplianceUpdateNotification)
+func (x *aimServiceNotifyApplianceUpdateClient) Recv() (*RemoteUpdateNotification, error) {
+	m := new(RemoteUpdateNotification)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -181,17 +181,17 @@ func (x *aimServiceNotifyApplianceUpdateClient) Recv() (*ApplianceUpdateNotifica
 // All implementations must embed UnimplementedAimServiceServer
 // for forward compatibility
 type AimServiceServer interface {
-	AddAppliance(context.Context, *AddApplianceRequest) (*AddApplianceResponse, error)
-	AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error)
-	GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error)
-	GetAppliance(context.Context, *GetApplianceRequest) (*GetApplianceResponse, error)
-	GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error)
+	AddRemote(context.Context, *AddRemoteRequest) (*AddRemoteResponse, error)
+	AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error)
+	GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error)
+	GetRemote(context.Context, *GetRemoteRequest) (*GetRemoteResponse, error)
+	GetButtons(context.Context, *GetButtonsRequest) (*GetButtonssResponse, error)
 	GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error)
-	EditAppliance(context.Context, *EditApplianceRequest) (*empty.Empty, error)
-	EditCommand(context.Context, *EditCommandRequest) (*empty.Empty, error)
+	EditRemote(context.Context, *EditRemoteRequest) (*empty.Empty, error)
+	EditButton(context.Context, *EditButtonRequest) (*empty.Empty, error)
 	SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error)
-	DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error)
-	DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error)
+	DeleteRemote(context.Context, *DeleteRemoteRequest) (*empty.Empty, error)
+	DeleteButton(context.Context, *DeleteButtonRequest) (*empty.Empty, error)
 	NotifyApplianceUpdate(*empty.Empty, AimService_NotifyApplianceUpdateServer) error
 	mustEmbedUnimplementedAimServiceServer()
 }
@@ -200,38 +200,38 @@ type AimServiceServer interface {
 type UnimplementedAimServiceServer struct {
 }
 
-func (UnimplementedAimServiceServer) AddAppliance(context.Context, *AddApplianceRequest) (*AddApplianceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddAppliance not implemented")
+func (UnimplementedAimServiceServer) AddRemote(context.Context, *AddRemoteRequest) (*AddRemoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddRemote not implemented")
 }
-func (UnimplementedAimServiceServer) AddCommand(context.Context, *AddCommandRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddCommand not implemented")
+func (UnimplementedAimServiceServer) AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddButton not implemented")
 }
-func (UnimplementedAimServiceServer) GetAppliances(context.Context, *empty.Empty) (*GetAppliancesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppliances not implemented")
+func (UnimplementedAimServiceServer) GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRemotes not implemented")
 }
-func (UnimplementedAimServiceServer) GetAppliance(context.Context, *GetApplianceRequest) (*GetApplianceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppliance not implemented")
+func (UnimplementedAimServiceServer) GetRemote(context.Context, *GetRemoteRequest) (*GetRemoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRemote not implemented")
 }
-func (UnimplementedAimServiceServer) GetCommands(context.Context, *GetCommandsRequest) (*GetCommandsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCommands not implemented")
+func (UnimplementedAimServiceServer) GetButtons(context.Context, *GetButtonsRequest) (*GetButtonssResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetButtons not implemented")
 }
 func (UnimplementedAimServiceServer) GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIrData not implemented")
 }
-func (UnimplementedAimServiceServer) EditAppliance(context.Context, *EditApplianceRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EditAppliance not implemented")
+func (UnimplementedAimServiceServer) EditRemote(context.Context, *EditRemoteRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditRemote not implemented")
 }
-func (UnimplementedAimServiceServer) EditCommand(context.Context, *EditCommandRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method EditCommand not implemented")
+func (UnimplementedAimServiceServer) EditButton(context.Context, *EditButtonRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditButton not implemented")
 }
 func (UnimplementedAimServiceServer) SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetIrData not implemented")
 }
-func (UnimplementedAimServiceServer) DeleteAppliance(context.Context, *DeleteApplianceRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteAppliance not implemented")
+func (UnimplementedAimServiceServer) DeleteRemote(context.Context, *DeleteRemoteRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRemote not implemented")
 }
-func (UnimplementedAimServiceServer) DeleteCommand(context.Context, *DeleteCommandRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCommand not implemented")
+func (UnimplementedAimServiceServer) DeleteButton(context.Context, *DeleteButtonRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteButton not implemented")
 }
 func (UnimplementedAimServiceServer) NotifyApplianceUpdate(*empty.Empty, AimService_NotifyApplianceUpdateServer) error {
 	return status.Errorf(codes.Unimplemented, "method NotifyApplianceUpdate not implemented")
@@ -249,92 +249,92 @@ func RegisterAimServiceServer(s grpc.ServiceRegistrar, srv AimServiceServer) {
 	s.RegisterService(&AimService_ServiceDesc, srv)
 }
 
-func _AimService_AddAppliance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddApplianceRequest)
+func _AimService_AddRemote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddRemoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).AddAppliance(ctx, in)
+		return srv.(AimServiceServer).AddRemote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/AddAppliance",
+		FullMethod: "/aim.AimService/AddRemote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).AddAppliance(ctx, req.(*AddApplianceRequest))
+		return srv.(AimServiceServer).AddRemote(ctx, req.(*AddRemoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_AddCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddCommandRequest)
+func _AimService_AddButton_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddButtonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).AddCommand(ctx, in)
+		return srv.(AimServiceServer).AddButton(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/AddCommand",
+		FullMethod: "/aim.AimService/AddButton",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).AddCommand(ctx, req.(*AddCommandRequest))
+		return srv.(AimServiceServer).AddButton(ctx, req.(*AddButtonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_GetAppliances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AimService_GetRemotes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).GetAppliances(ctx, in)
+		return srv.(AimServiceServer).GetRemotes(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/GetAppliances",
+		FullMethod: "/aim.AimService/GetRemotes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).GetAppliances(ctx, req.(*empty.Empty))
+		return srv.(AimServiceServer).GetRemotes(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_GetAppliance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetApplianceRequest)
+func _AimService_GetRemote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRemoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).GetAppliance(ctx, in)
+		return srv.(AimServiceServer).GetRemote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/GetAppliance",
+		FullMethod: "/aim.AimService/GetRemote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).GetAppliance(ctx, req.(*GetApplianceRequest))
+		return srv.(AimServiceServer).GetRemote(ctx, req.(*GetRemoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_GetCommands_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCommandsRequest)
+func _AimService_GetButtons_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetButtonsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).GetCommands(ctx, in)
+		return srv.(AimServiceServer).GetButtons(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/GetCommands",
+		FullMethod: "/aim.AimService/GetButtons",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).GetCommands(ctx, req.(*GetCommandsRequest))
+		return srv.(AimServiceServer).GetButtons(ctx, req.(*GetButtonsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -357,38 +357,38 @@ func _AimService_GetIrData_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_EditAppliance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EditApplianceRequest)
+func _AimService_EditRemote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditRemoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).EditAppliance(ctx, in)
+		return srv.(AimServiceServer).EditRemote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/EditAppliance",
+		FullMethod: "/aim.AimService/EditRemote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).EditAppliance(ctx, req.(*EditApplianceRequest))
+		return srv.(AimServiceServer).EditRemote(ctx, req.(*EditRemoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_EditCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EditCommandRequest)
+func _AimService_EditButton_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditButtonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).EditCommand(ctx, in)
+		return srv.(AimServiceServer).EditButton(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/EditCommand",
+		FullMethod: "/aim.AimService/EditButton",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).EditCommand(ctx, req.(*EditCommandRequest))
+		return srv.(AimServiceServer).EditButton(ctx, req.(*EditButtonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -411,38 +411,38 @@ func _AimService_SetIrData_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_DeleteAppliance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteApplianceRequest)
+func _AimService_DeleteRemote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRemoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).DeleteAppliance(ctx, in)
+		return srv.(AimServiceServer).DeleteRemote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/DeleteAppliance",
+		FullMethod: "/aim.AimService/DeleteRemote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).DeleteAppliance(ctx, req.(*DeleteApplianceRequest))
+		return srv.(AimServiceServer).DeleteRemote(ctx, req.(*DeleteRemoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_DeleteCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCommandRequest)
+func _AimService_DeleteButton_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteButtonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).DeleteCommand(ctx, in)
+		return srv.(AimServiceServer).DeleteButton(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/DeleteCommand",
+		FullMethod: "/aim.AimService/DeleteButton",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).DeleteCommand(ctx, req.(*DeleteCommandRequest))
+		return srv.(AimServiceServer).DeleteButton(ctx, req.(*DeleteButtonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -456,7 +456,7 @@ func _AimService_NotifyApplianceUpdate_Handler(srv interface{}, stream grpc.Serv
 }
 
 type AimService_NotifyApplianceUpdateServer interface {
-	Send(*ApplianceUpdateNotification) error
+	Send(*RemoteUpdateNotification) error
 	grpc.ServerStream
 }
 
@@ -464,7 +464,7 @@ type aimServiceNotifyApplianceUpdateServer struct {
 	grpc.ServerStream
 }
 
-func (x *aimServiceNotifyApplianceUpdateServer) Send(m *ApplianceUpdateNotification) error {
+func (x *aimServiceNotifyApplianceUpdateServer) Send(m *RemoteUpdateNotification) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -476,48 +476,48 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AimServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddAppliance",
-			Handler:    _AimService_AddAppliance_Handler,
+			MethodName: "AddRemote",
+			Handler:    _AimService_AddRemote_Handler,
 		},
 		{
-			MethodName: "AddCommand",
-			Handler:    _AimService_AddCommand_Handler,
+			MethodName: "AddButton",
+			Handler:    _AimService_AddButton_Handler,
 		},
 		{
-			MethodName: "GetAppliances",
-			Handler:    _AimService_GetAppliances_Handler,
+			MethodName: "GetRemotes",
+			Handler:    _AimService_GetRemotes_Handler,
 		},
 		{
-			MethodName: "GetAppliance",
-			Handler:    _AimService_GetAppliance_Handler,
+			MethodName: "GetRemote",
+			Handler:    _AimService_GetRemote_Handler,
 		},
 		{
-			MethodName: "GetCommands",
-			Handler:    _AimService_GetCommands_Handler,
+			MethodName: "GetButtons",
+			Handler:    _AimService_GetButtons_Handler,
 		},
 		{
 			MethodName: "GetIrData",
 			Handler:    _AimService_GetIrData_Handler,
 		},
 		{
-			MethodName: "EditAppliance",
-			Handler:    _AimService_EditAppliance_Handler,
+			MethodName: "EditRemote",
+			Handler:    _AimService_EditRemote_Handler,
 		},
 		{
-			MethodName: "EditCommand",
-			Handler:    _AimService_EditCommand_Handler,
+			MethodName: "EditButton",
+			Handler:    _AimService_EditButton_Handler,
 		},
 		{
 			MethodName: "SetIrData",
 			Handler:    _AimService_SetIrData_Handler,
 		},
 		{
-			MethodName: "DeleteAppliance",
-			Handler:    _AimService_DeleteAppliance_Handler,
+			MethodName: "DeleteRemote",
+			Handler:    _AimService_DeleteRemote_Handler,
 		},
 		{
-			MethodName: "DeleteCommand",
-			Handler:    _AimService_DeleteCommand_Handler,
+			MethodName: "DeleteButton",
+			Handler:    _AimService_DeleteButton_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

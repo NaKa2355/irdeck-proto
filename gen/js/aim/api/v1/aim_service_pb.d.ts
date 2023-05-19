@@ -1,108 +1,108 @@
 import * as jspb from 'google-protobuf'
 
-import * as aim_api_v1_command_pb from '../../../aim/api/v1/command_pb';
+import * as aim_api_v1_button_pb from '../../../aim/api/v1/button_pb';
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
-import * as aim_api_v1_appliance_pb from '../../../aim/api/v1/appliance_pb';
+import * as aim_api_v1_remote_pb from '../../../aim/api/v1/remote_pb';
 import * as google_protobuf_any_pb from 'google-protobuf/google/protobuf/any_pb';
 
 
-export class AddCustomRequest extends jspb.Message {
+export class AddCustomRemoteRequest extends jspb.Message {
   getName(): string;
-  setName(value: string): AddCustomRequest;
+  setName(value: string): AddCustomRemoteRequest;
 
   getDeviceId(): string;
-  setDeviceId(value: string): AddCustomRequest;
+  setDeviceId(value: string): AddCustomRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddCustomRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddCustomRequest): AddCustomRequest.AsObject;
-  static serializeBinaryToWriter(message: AddCustomRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddCustomRequest;
-  static deserializeBinaryFromReader(message: AddCustomRequest, reader: jspb.BinaryReader): AddCustomRequest;
+  toObject(includeInstance?: boolean): AddCustomRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddCustomRemoteRequest): AddCustomRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: AddCustomRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddCustomRemoteRequest;
+  static deserializeBinaryFromReader(message: AddCustomRemoteRequest, reader: jspb.BinaryReader): AddCustomRemoteRequest;
 }
 
-export namespace AddCustomRequest {
+export namespace AddCustomRemoteRequest {
   export type AsObject = {
     name: string,
     deviceId: string,
   }
 }
 
-export class AddToggleRequest extends jspb.Message {
+export class AddToggleRemoteRequest extends jspb.Message {
   getName(): string;
-  setName(value: string): AddToggleRequest;
+  setName(value: string): AddToggleRemoteRequest;
 
   getDeviceId(): string;
-  setDeviceId(value: string): AddToggleRequest;
+  setDeviceId(value: string): AddToggleRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddToggleRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddToggleRequest): AddToggleRequest.AsObject;
-  static serializeBinaryToWriter(message: AddToggleRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddToggleRequest;
-  static deserializeBinaryFromReader(message: AddToggleRequest, reader: jspb.BinaryReader): AddToggleRequest;
+  toObject(includeInstance?: boolean): AddToggleRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddToggleRemoteRequest): AddToggleRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: AddToggleRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddToggleRemoteRequest;
+  static deserializeBinaryFromReader(message: AddToggleRemoteRequest, reader: jspb.BinaryReader): AddToggleRemoteRequest;
 }
 
-export namespace AddToggleRequest {
+export namespace AddToggleRemoteRequest {
   export type AsObject = {
     name: string,
     deviceId: string,
   }
 }
 
-export class AddButtonRequest extends jspb.Message {
+export class AddButtonRemoteRequest extends jspb.Message {
   getName(): string;
-  setName(value: string): AddButtonRequest;
+  setName(value: string): AddButtonRemoteRequest;
 
   getDeviceId(): string;
-  setDeviceId(value: string): AddButtonRequest;
+  setDeviceId(value: string): AddButtonRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddButtonRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddButtonRequest): AddButtonRequest.AsObject;
-  static serializeBinaryToWriter(message: AddButtonRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddButtonRequest;
-  static deserializeBinaryFromReader(message: AddButtonRequest, reader: jspb.BinaryReader): AddButtonRequest;
+  toObject(includeInstance?: boolean): AddButtonRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddButtonRemoteRequest): AddButtonRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: AddButtonRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddButtonRemoteRequest;
+  static deserializeBinaryFromReader(message: AddButtonRemoteRequest, reader: jspb.BinaryReader): AddButtonRemoteRequest;
 }
 
-export namespace AddButtonRequest {
+export namespace AddButtonRemoteRequest {
   export type AsObject = {
     name: string,
     deviceId: string,
   }
 }
 
-export class AddThermostatRequest extends jspb.Message {
+export class AddThermostatRemoteRequest extends jspb.Message {
   getName(): string;
-  setName(value: string): AddThermostatRequest;
+  setName(value: string): AddThermostatRemoteRequest;
 
   getDeviceId(): string;
-  setDeviceId(value: string): AddThermostatRequest;
+  setDeviceId(value: string): AddThermostatRemoteRequest;
 
   getScale(): number;
-  setScale(value: number): AddThermostatRequest;
+  setScale(value: number): AddThermostatRemoteRequest;
 
   getMaximumHeatingTemp(): number;
-  setMaximumHeatingTemp(value: number): AddThermostatRequest;
+  setMaximumHeatingTemp(value: number): AddThermostatRemoteRequest;
 
   getMinimumHeatingTemp(): number;
-  setMinimumHeatingTemp(value: number): AddThermostatRequest;
+  setMinimumHeatingTemp(value: number): AddThermostatRemoteRequest;
 
   getMaximumCoolingTemp(): number;
-  setMaximumCoolingTemp(value: number): AddThermostatRequest;
+  setMaximumCoolingTemp(value: number): AddThermostatRemoteRequest;
 
   getMinimumCoolingTemp(): number;
-  setMinimumCoolingTemp(value: number): AddThermostatRequest;
+  setMinimumCoolingTemp(value: number): AddThermostatRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddThermostatRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddThermostatRequest): AddThermostatRequest.AsObject;
-  static serializeBinaryToWriter(message: AddThermostatRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddThermostatRequest;
-  static deserializeBinaryFromReader(message: AddThermostatRequest, reader: jspb.BinaryReader): AddThermostatRequest;
+  toObject(includeInstance?: boolean): AddThermostatRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddThermostatRemoteRequest): AddThermostatRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: AddThermostatRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddThermostatRemoteRequest;
+  static deserializeBinaryFromReader(message: AddThermostatRemoteRequest, reader: jspb.BinaryReader): AddThermostatRemoteRequest;
 }
 
-export namespace AddThermostatRequest {
+export namespace AddThermostatRemoteRequest {
   export type AsObject = {
     name: string,
     deviceId: string,
@@ -114,47 +114,47 @@ export namespace AddThermostatRequest {
   }
 }
 
-export class AddApplianceRequest extends jspb.Message {
-  getCustom(): AddCustomRequest | undefined;
-  setCustom(value?: AddCustomRequest): AddApplianceRequest;
+export class AddRemoteRequest extends jspb.Message {
+  getCustom(): AddCustomRemoteRequest | undefined;
+  setCustom(value?: AddCustomRemoteRequest): AddRemoteRequest;
   hasCustom(): boolean;
-  clearCustom(): AddApplianceRequest;
+  clearCustom(): AddRemoteRequest;
 
-  getToggle(): AddToggleRequest | undefined;
-  setToggle(value?: AddToggleRequest): AddApplianceRequest;
+  getToggle(): AddToggleRemoteRequest | undefined;
+  setToggle(value?: AddToggleRemoteRequest): AddRemoteRequest;
   hasToggle(): boolean;
-  clearToggle(): AddApplianceRequest;
+  clearToggle(): AddRemoteRequest;
 
-  getButton(): AddButtonRequest | undefined;
-  setButton(value?: AddButtonRequest): AddApplianceRequest;
+  getButton(): AddButtonRemoteRequest | undefined;
+  setButton(value?: AddButtonRemoteRequest): AddRemoteRequest;
   hasButton(): boolean;
-  clearButton(): AddApplianceRequest;
+  clearButton(): AddRemoteRequest;
 
-  getThermostat(): AddThermostatRequest | undefined;
-  setThermostat(value?: AddThermostatRequest): AddApplianceRequest;
+  getThermostat(): AddThermostatRemoteRequest | undefined;
+  setThermostat(value?: AddThermostatRemoteRequest): AddRemoteRequest;
   hasThermostat(): boolean;
-  clearThermostat(): AddApplianceRequest;
+  clearThermostat(): AddRemoteRequest;
 
-  getApplianceCase(): AddApplianceRequest.ApplianceCase;
+  getRemoteCase(): AddRemoteRequest.RemoteCase;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddApplianceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddApplianceRequest): AddApplianceRequest.AsObject;
-  static serializeBinaryToWriter(message: AddApplianceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddApplianceRequest;
-  static deserializeBinaryFromReader(message: AddApplianceRequest, reader: jspb.BinaryReader): AddApplianceRequest;
+  toObject(includeInstance?: boolean): AddRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRemoteRequest): AddRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: AddRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRemoteRequest;
+  static deserializeBinaryFromReader(message: AddRemoteRequest, reader: jspb.BinaryReader): AddRemoteRequest;
 }
 
-export namespace AddApplianceRequest {
+export namespace AddRemoteRequest {
   export type AsObject = {
-    custom?: AddCustomRequest.AsObject,
-    toggle?: AddToggleRequest.AsObject,
-    button?: AddButtonRequest.AsObject,
-    thermostat?: AddThermostatRequest.AsObject,
+    custom?: AddCustomRemoteRequest.AsObject,
+    toggle?: AddToggleRemoteRequest.AsObject,
+    button?: AddButtonRemoteRequest.AsObject,
+    thermostat?: AddThermostatRemoteRequest.AsObject,
   }
 
-  export enum ApplianceCase { 
-    APPLIANCE_NOT_SET = 0,
+  export enum RemoteCase { 
+    REMOTE_NOT_SET = 0,
     CUSTOM = 1,
     TOGGLE = 2,
     BUTTON = 3,
@@ -162,303 +162,233 @@ export namespace AddApplianceRequest {
   }
 }
 
-export class AddApplianceResponse extends jspb.Message {
-  getAppliance(): aim_api_v1_appliance_pb.Appliance | undefined;
-  setAppliance(value?: aim_api_v1_appliance_pb.Appliance): AddApplianceResponse;
-  hasAppliance(): boolean;
-  clearAppliance(): AddApplianceResponse;
+export class AddRemoteResponse extends jspb.Message {
+  getRemote(): aim_api_v1_remote_pb.Remote | undefined;
+  setRemote(value?: aim_api_v1_remote_pb.Remote): AddRemoteResponse;
+  hasRemote(): boolean;
+  clearRemote(): AddRemoteResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddApplianceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: AddApplianceResponse): AddApplianceResponse.AsObject;
-  static serializeBinaryToWriter(message: AddApplianceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddApplianceResponse;
-  static deserializeBinaryFromReader(message: AddApplianceResponse, reader: jspb.BinaryReader): AddApplianceResponse;
+  toObject(includeInstance?: boolean): AddRemoteResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRemoteResponse): AddRemoteResponse.AsObject;
+  static serializeBinaryToWriter(message: AddRemoteResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRemoteResponse;
+  static deserializeBinaryFromReader(message: AddRemoteResponse, reader: jspb.BinaryReader): AddRemoteResponse;
 }
 
-export namespace AddApplianceResponse {
+export namespace AddRemoteResponse {
   export type AsObject = {
-    appliance?: aim_api_v1_appliance_pb.Appliance.AsObject,
+    remote?: aim_api_v1_remote_pb.Remote.AsObject,
   }
 }
 
-export class AddCommandRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): AddCommandRequest;
+export class AddButtonRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): AddButtonRequest;
 
   getName(): string;
-  setName(value: string): AddCommandRequest;
+  setName(value: string): AddButtonRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddCommandRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddCommandRequest): AddCommandRequest.AsObject;
-  static serializeBinaryToWriter(message: AddCommandRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddCommandRequest;
-  static deserializeBinaryFromReader(message: AddCommandRequest, reader: jspb.BinaryReader): AddCommandRequest;
+  toObject(includeInstance?: boolean): AddButtonRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddButtonRequest): AddButtonRequest.AsObject;
+  static serializeBinaryToWriter(message: AddButtonRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddButtonRequest;
+  static deserializeBinaryFromReader(message: AddButtonRequest, reader: jspb.BinaryReader): AddButtonRequest;
 }
 
-export namespace AddCommandRequest {
+export namespace AddButtonRequest {
   export type AsObject = {
-    applianceId: string,
+    remoteId: string,
     name: string,
   }
 }
 
-export class GetAppliancesResponse extends jspb.Message {
-  getAppliancesList(): Array<aim_api_v1_appliance_pb.Appliance>;
-  setAppliancesList(value: Array<aim_api_v1_appliance_pb.Appliance>): GetAppliancesResponse;
-  clearAppliancesList(): GetAppliancesResponse;
-  addAppliances(value?: aim_api_v1_appliance_pb.Appliance, index?: number): aim_api_v1_appliance_pb.Appliance;
+export class GetRemotesResponse extends jspb.Message {
+  getRemotesList(): Array<aim_api_v1_remote_pb.Remote>;
+  setRemotesList(value: Array<aim_api_v1_remote_pb.Remote>): GetRemotesResponse;
+  clearRemotesList(): GetRemotesResponse;
+  addRemotes(value?: aim_api_v1_remote_pb.Remote, index?: number): aim_api_v1_remote_pb.Remote;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetAppliancesResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetAppliancesResponse): GetAppliancesResponse.AsObject;
-  static serializeBinaryToWriter(message: GetAppliancesResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetAppliancesResponse;
-  static deserializeBinaryFromReader(message: GetAppliancesResponse, reader: jspb.BinaryReader): GetAppliancesResponse;
+  toObject(includeInstance?: boolean): GetRemotesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRemotesResponse): GetRemotesResponse.AsObject;
+  static serializeBinaryToWriter(message: GetRemotesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRemotesResponse;
+  static deserializeBinaryFromReader(message: GetRemotesResponse, reader: jspb.BinaryReader): GetRemotesResponse;
 }
 
-export namespace GetAppliancesResponse {
+export namespace GetRemotesResponse {
   export type AsObject = {
-    appliancesList: Array<aim_api_v1_appliance_pb.Appliance.AsObject>,
+    remotesList: Array<aim_api_v1_remote_pb.Remote.AsObject>,
   }
 }
 
-export class GetApplianceRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): GetApplianceRequest;
+export class GetRemoteRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): GetRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetApplianceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetApplianceRequest): GetApplianceRequest.AsObject;
-  static serializeBinaryToWriter(message: GetApplianceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetApplianceRequest;
-  static deserializeBinaryFromReader(message: GetApplianceRequest, reader: jspb.BinaryReader): GetApplianceRequest;
+  toObject(includeInstance?: boolean): GetRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRemoteRequest): GetRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: GetRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRemoteRequest;
+  static deserializeBinaryFromReader(message: GetRemoteRequest, reader: jspb.BinaryReader): GetRemoteRequest;
 }
 
-export namespace GetApplianceRequest {
+export namespace GetRemoteRequest {
   export type AsObject = {
-    applianceId: string,
+    remoteId: string,
   }
 }
 
-export class GetApplianceResponse extends jspb.Message {
-  getAppliance(): aim_api_v1_appliance_pb.Appliance | undefined;
-  setAppliance(value?: aim_api_v1_appliance_pb.Appliance): GetApplianceResponse;
-  hasAppliance(): boolean;
-  clearAppliance(): GetApplianceResponse;
+export class GetRemoteResponse extends jspb.Message {
+  getRemote(): aim_api_v1_remote_pb.Remote | undefined;
+  setRemote(value?: aim_api_v1_remote_pb.Remote): GetRemoteResponse;
+  hasRemote(): boolean;
+  clearRemote(): GetRemoteResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetApplianceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetApplianceResponse): GetApplianceResponse.AsObject;
-  static serializeBinaryToWriter(message: GetApplianceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetApplianceResponse;
-  static deserializeBinaryFromReader(message: GetApplianceResponse, reader: jspb.BinaryReader): GetApplianceResponse;
+  toObject(includeInstance?: boolean): GetRemoteResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetRemoteResponse): GetRemoteResponse.AsObject;
+  static serializeBinaryToWriter(message: GetRemoteResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetRemoteResponse;
+  static deserializeBinaryFromReader(message: GetRemoteResponse, reader: jspb.BinaryReader): GetRemoteResponse;
 }
 
-export namespace GetApplianceResponse {
+export namespace GetRemoteResponse {
   export type AsObject = {
-    appliance?: aim_api_v1_appliance_pb.Appliance.AsObject,
+    remote?: aim_api_v1_remote_pb.Remote.AsObject,
   }
 }
 
-export class GetCommandsRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): GetCommandsRequest;
+export class GetButtonsRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): GetButtonsRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetCommandsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetCommandsRequest): GetCommandsRequest.AsObject;
-  static serializeBinaryToWriter(message: GetCommandsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetCommandsRequest;
-  static deserializeBinaryFromReader(message: GetCommandsRequest, reader: jspb.BinaryReader): GetCommandsRequest;
+  toObject(includeInstance?: boolean): GetButtonsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetButtonsRequest): GetButtonsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetButtonsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetButtonsRequest;
+  static deserializeBinaryFromReader(message: GetButtonsRequest, reader: jspb.BinaryReader): GetButtonsRequest;
 }
 
-export namespace GetCommandsRequest {
+export namespace GetButtonsRequest {
   export type AsObject = {
-    applianceId: string,
+    remoteId: string,
   }
 }
 
-export class GetCommandsResponse extends jspb.Message {
-  getCommandsList(): Array<aim_api_v1_command_pb.Command>;
-  setCommandsList(value: Array<aim_api_v1_command_pb.Command>): GetCommandsResponse;
-  clearCommandsList(): GetCommandsResponse;
-  addCommands(value?: aim_api_v1_command_pb.Command, index?: number): aim_api_v1_command_pb.Command;
+export class GetButtonssResponse extends jspb.Message {
+  getRemotesList(): Array<aim_api_v1_remote_pb.Remote>;
+  setRemotesList(value: Array<aim_api_v1_remote_pb.Remote>): GetButtonssResponse;
+  clearRemotesList(): GetButtonssResponse;
+  addRemotes(value?: aim_api_v1_remote_pb.Remote, index?: number): aim_api_v1_remote_pb.Remote;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetCommandsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetCommandsResponse): GetCommandsResponse.AsObject;
-  static serializeBinaryToWriter(message: GetCommandsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetCommandsResponse;
-  static deserializeBinaryFromReader(message: GetCommandsResponse, reader: jspb.BinaryReader): GetCommandsResponse;
+  toObject(includeInstance?: boolean): GetButtonssResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetButtonssResponse): GetButtonssResponse.AsObject;
+  static serializeBinaryToWriter(message: GetButtonssResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetButtonssResponse;
+  static deserializeBinaryFromReader(message: GetButtonssResponse, reader: jspb.BinaryReader): GetButtonssResponse;
 }
 
-export namespace GetCommandsResponse {
+export namespace GetButtonssResponse {
   export type AsObject = {
-    commandsList: Array<aim_api_v1_command_pb.Command.AsObject>,
+    remotesList: Array<aim_api_v1_remote_pb.Remote.AsObject>,
   }
 }
 
-export class EditApplianceRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): EditApplianceRequest;
+export class EditRemoteRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): EditRemoteRequest;
 
   getName(): string;
-  setName(value: string): EditApplianceRequest;
+  setName(value: string): EditRemoteRequest;
 
   getDeviceId(): string;
-  setDeviceId(value: string): EditApplianceRequest;
+  setDeviceId(value: string): EditRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EditApplianceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: EditApplianceRequest): EditApplianceRequest.AsObject;
-  static serializeBinaryToWriter(message: EditApplianceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EditApplianceRequest;
-  static deserializeBinaryFromReader(message: EditApplianceRequest, reader: jspb.BinaryReader): EditApplianceRequest;
+  toObject(includeInstance?: boolean): EditRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EditRemoteRequest): EditRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: EditRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EditRemoteRequest;
+  static deserializeBinaryFromReader(message: EditRemoteRequest, reader: jspb.BinaryReader): EditRemoteRequest;
 }
 
-export namespace EditApplianceRequest {
+export namespace EditRemoteRequest {
   export type AsObject = {
-    applianceId: string,
+    remoteId: string,
     name: string,
     deviceId: string,
   }
 }
 
-export class RenameApplianceRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): RenameApplianceRequest;
+export class EditButtonRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): EditButtonRequest;
+
+  getButtonId(): string;
+  setButtonId(value: string): EditButtonRequest;
 
   getName(): string;
-  setName(value: string): RenameApplianceRequest;
+  setName(value: string): EditButtonRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RenameApplianceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RenameApplianceRequest): RenameApplianceRequest.AsObject;
-  static serializeBinaryToWriter(message: RenameApplianceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RenameApplianceRequest;
-  static deserializeBinaryFromReader(message: RenameApplianceRequest, reader: jspb.BinaryReader): RenameApplianceRequest;
+  toObject(includeInstance?: boolean): EditButtonRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EditButtonRequest): EditButtonRequest.AsObject;
+  static serializeBinaryToWriter(message: EditButtonRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EditButtonRequest;
+  static deserializeBinaryFromReader(message: EditButtonRequest, reader: jspb.BinaryReader): EditButtonRequest;
 }
 
-export namespace RenameApplianceRequest {
+export namespace EditButtonRequest {
   export type AsObject = {
-    applianceId: string,
+    remoteId: string,
+    buttonId: string,
     name: string,
   }
 }
 
-export class ChangeDeviceRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): ChangeDeviceRequest;
-
-  getDeviceId(): string;
-  setDeviceId(value: string): ChangeDeviceRequest;
+export class DeleteRemoteRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): DeleteRemoteRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ChangeDeviceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ChangeDeviceRequest): ChangeDeviceRequest.AsObject;
-  static serializeBinaryToWriter(message: ChangeDeviceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ChangeDeviceRequest;
-  static deserializeBinaryFromReader(message: ChangeDeviceRequest, reader: jspb.BinaryReader): ChangeDeviceRequest;
+  toObject(includeInstance?: boolean): DeleteRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteRemoteRequest): DeleteRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: DeleteRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteRemoteRequest;
+  static deserializeBinaryFromReader(message: DeleteRemoteRequest, reader: jspb.BinaryReader): DeleteRemoteRequest;
 }
 
-export namespace ChangeDeviceRequest {
+export namespace DeleteRemoteRequest {
   export type AsObject = {
-    applianceId: string,
-    deviceId: string,
+    remoteId: string,
   }
 }
 
-export class RenameCommandRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): RenameCommandRequest;
+export class DeleteButtonRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): DeleteButtonRequest;
 
-  getCommandId(): string;
-  setCommandId(value: string): RenameCommandRequest;
-
-  getName(): string;
-  setName(value: string): RenameCommandRequest;
+  getButtonId(): string;
+  setButtonId(value: string): DeleteButtonRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RenameCommandRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RenameCommandRequest): RenameCommandRequest.AsObject;
-  static serializeBinaryToWriter(message: RenameCommandRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RenameCommandRequest;
-  static deserializeBinaryFromReader(message: RenameCommandRequest, reader: jspb.BinaryReader): RenameCommandRequest;
+  toObject(includeInstance?: boolean): DeleteButtonRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DeleteButtonRequest): DeleteButtonRequest.AsObject;
+  static serializeBinaryToWriter(message: DeleteButtonRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeleteButtonRequest;
+  static deserializeBinaryFromReader(message: DeleteButtonRequest, reader: jspb.BinaryReader): DeleteButtonRequest;
 }
 
-export namespace RenameCommandRequest {
+export namespace DeleteButtonRequest {
   export type AsObject = {
-    applianceId: string,
-    commandId: string,
-    name: string,
-  }
-}
-
-export class EditCommandRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): EditCommandRequest;
-
-  getCommandId(): string;
-  setCommandId(value: string): EditCommandRequest;
-
-  getName(): string;
-  setName(value: string): EditCommandRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): EditCommandRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: EditCommandRequest): EditCommandRequest.AsObject;
-  static serializeBinaryToWriter(message: EditCommandRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): EditCommandRequest;
-  static deserializeBinaryFromReader(message: EditCommandRequest, reader: jspb.BinaryReader): EditCommandRequest;
-}
-
-export namespace EditCommandRequest {
-  export type AsObject = {
-    applianceId: string,
-    commandId: string,
-    name: string,
-  }
-}
-
-export class DeleteApplianceRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): DeleteApplianceRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteApplianceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteApplianceRequest): DeleteApplianceRequest.AsObject;
-  static serializeBinaryToWriter(message: DeleteApplianceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteApplianceRequest;
-  static deserializeBinaryFromReader(message: DeleteApplianceRequest, reader: jspb.BinaryReader): DeleteApplianceRequest;
-}
-
-export namespace DeleteApplianceRequest {
-  export type AsObject = {
-    applianceId: string,
-  }
-}
-
-export class DeleteCommandRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): DeleteCommandRequest;
-
-  getCommandId(): string;
-  setCommandId(value: string): DeleteCommandRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DeleteCommandRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DeleteCommandRequest): DeleteCommandRequest.AsObject;
-  static serializeBinaryToWriter(message: DeleteCommandRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DeleteCommandRequest;
-  static deserializeBinaryFromReader(message: DeleteCommandRequest, reader: jspb.BinaryReader): DeleteCommandRequest;
-}
-
-export namespace DeleteCommandRequest {
-  export type AsObject = {
-    applianceId: string,
-    commandId: string,
+    remoteId: string,
+    buttonId: string,
   }
 }
 
@@ -512,25 +442,25 @@ export namespace SetIRDataRequest {
   }
 }
 
-export class ApplianceUpdateNotification extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): ApplianceUpdateNotification;
+export class RemoteUpdateNotification extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): RemoteUpdateNotification;
 
-  getUpdateType(): ApplianceUpdateNotification.UpdateType;
-  setUpdateType(value: ApplianceUpdateNotification.UpdateType): ApplianceUpdateNotification;
+  getUpdateType(): RemoteUpdateNotification.UpdateType;
+  setUpdateType(value: RemoteUpdateNotification.UpdateType): RemoteUpdateNotification;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ApplianceUpdateNotification.AsObject;
-  static toObject(includeInstance: boolean, msg: ApplianceUpdateNotification): ApplianceUpdateNotification.AsObject;
-  static serializeBinaryToWriter(message: ApplianceUpdateNotification, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ApplianceUpdateNotification;
-  static deserializeBinaryFromReader(message: ApplianceUpdateNotification, reader: jspb.BinaryReader): ApplianceUpdateNotification;
+  toObject(includeInstance?: boolean): RemoteUpdateNotification.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoteUpdateNotification): RemoteUpdateNotification.AsObject;
+  static serializeBinaryToWriter(message: RemoteUpdateNotification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoteUpdateNotification;
+  static deserializeBinaryFromReader(message: RemoteUpdateNotification, reader: jspb.BinaryReader): RemoteUpdateNotification;
 }
 
-export namespace ApplianceUpdateNotification {
+export namespace RemoteUpdateNotification {
   export type AsObject = {
-    applianceId: string,
-    updateType: ApplianceUpdateNotification.UpdateType,
+    remoteId: string,
+    updateType: RemoteUpdateNotification.UpdateType,
   }
 
   export enum UpdateType { 

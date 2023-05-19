@@ -4,7 +4,7 @@ package aim;
 
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
-message Command {
+message Button {
     string id = 1;
     string name = 2;
     bool can_rename = 3;

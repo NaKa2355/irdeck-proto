@@ -20,11 +20,11 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 
-var aim_api_v1_command_pb = require('../../../aim/api/v1/command_pb.js')
+var aim_api_v1_button_pb = require('../../../aim/api/v1/button_pb.js')
 
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 
-var aim_api_v1_appliance_pb = require('../../../aim/api/v1/appliance_pb.js')
+var aim_api_v1_remote_pb = require('../../../aim/api/v1/remote_pb.js')
 
 var google_protobuf_any_pb = require('google-protobuf/google/protobuf/any_pb.js')
 const proto = {};
@@ -85,77 +85,77 @@ proto.aim.AimServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.AddApplianceRequest,
- *   !proto.aim.AddApplianceResponse>}
+ *   !proto.aim.AddRemoteRequest,
+ *   !proto.aim.AddRemoteResponse>}
  */
-const methodDescriptor_AimService_AddAppliance = new grpc.web.MethodDescriptor(
-  '/aim.AimService/AddAppliance',
+const methodDescriptor_AimService_AddRemote = new grpc.web.MethodDescriptor(
+  '/aim.AimService/AddRemote',
   grpc.web.MethodType.UNARY,
-  proto.aim.AddApplianceRequest,
-  proto.aim.AddApplianceResponse,
+  proto.aim.AddRemoteRequest,
+  proto.aim.AddRemoteResponse,
   /**
-   * @param {!proto.aim.AddApplianceRequest} request
+   * @param {!proto.aim.AddRemoteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.AddApplianceResponse.deserializeBinary
+  proto.aim.AddRemoteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.aim.AddApplianceRequest} request The
+ * @param {!proto.aim.AddRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.aim.AddApplianceResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.AddRemoteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.aim.AddApplianceResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.AddRemoteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.addAppliance =
+proto.aim.AimServiceClient.prototype.addRemote =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/AddAppliance',
+      '/aim.AimService/AddRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddAppliance,
+      methodDescriptor_AimService_AddRemote,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.AddApplianceRequest} request The
+ * @param {!proto.aim.AddRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.aim.AddApplianceResponse>}
+ * @return {!Promise<!proto.aim.AddRemoteResponse>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.addAppliance =
+proto.aim.AimServicePromiseClient.prototype.addRemote =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/AddAppliance',
+      '/aim.AimService/AddRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddAppliance);
+      methodDescriptor_AimService_AddRemote);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.AddCommandRequest,
+ *   !proto.aim.AddButtonRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_AddCommand = new grpc.web.MethodDescriptor(
-  '/aim.AimService/AddCommand',
+const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
+  '/aim.AimService/AddButton',
   grpc.web.MethodType.UNARY,
-  proto.aim.AddCommandRequest,
+  proto.aim.AddButtonRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.AddCommandRequest} request
+   * @param {!proto.aim.AddButtonRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -166,7 +166,7 @@ const methodDescriptor_AimService_AddCommand = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.aim.AddCommandRequest} request The
+ * @param {!proto.aim.AddButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -175,32 +175,32 @@ const methodDescriptor_AimService_AddCommand = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.addCommand =
+proto.aim.AimServiceClient.prototype.addButton =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/AddCommand',
+      '/aim.AimService/AddButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddCommand,
+      methodDescriptor_AimService_AddButton,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.AddCommandRequest} request The
+ * @param {!proto.aim.AddButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.addCommand =
+proto.aim.AimServicePromiseClient.prototype.addButton =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/AddCommand',
+      '/aim.AimService/AddButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddCommand);
+      methodDescriptor_AimService_AddButton);
 };
 
 
@@ -208,13 +208,13 @@ proto.aim.AimServicePromiseClient.prototype.addCommand =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.aim.GetAppliancesResponse>}
+ *   !proto.aim.GetRemotesResponse>}
  */
-const methodDescriptor_AimService_GetAppliances = new grpc.web.MethodDescriptor(
-  '/aim.AimService/GetAppliances',
+const methodDescriptor_AimService_GetRemotes = new grpc.web.MethodDescriptor(
+  '/aim.AimService/GetRemotes',
   grpc.web.MethodType.UNARY,
   google_protobuf_empty_pb.Empty,
-  proto.aim.GetAppliancesResponse,
+  proto.aim.GetRemotesResponse,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -222,7 +222,7 @@ const methodDescriptor_AimService_GetAppliances = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.GetAppliancesResponse.deserializeBinary
+  proto.aim.GetRemotesResponse.deserializeBinary
 );
 
 
@@ -231,18 +231,18 @@ const methodDescriptor_AimService_GetAppliances = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.aim.GetAppliancesResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.GetRemotesResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.aim.GetAppliancesResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.GetRemotesResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.getAppliances =
+proto.aim.AimServiceClient.prototype.getRemotes =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/GetAppliances',
+      '/aim.AimService/GetRemotes',
       request,
       metadata || {},
-      methodDescriptor_AimService_GetAppliances,
+      methodDescriptor_AimService_GetRemotes,
       callback);
 };
 
@@ -252,138 +252,138 @@ proto.aim.AimServiceClient.prototype.getAppliances =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.aim.GetAppliancesResponse>}
+ * @return {!Promise<!proto.aim.GetRemotesResponse>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.getAppliances =
+proto.aim.AimServicePromiseClient.prototype.getRemotes =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/GetAppliances',
+      '/aim.AimService/GetRemotes',
       request,
       metadata || {},
-      methodDescriptor_AimService_GetAppliances);
+      methodDescriptor_AimService_GetRemotes);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.GetApplianceRequest,
- *   !proto.aim.GetApplianceResponse>}
+ *   !proto.aim.GetRemoteRequest,
+ *   !proto.aim.GetRemoteResponse>}
  */
-const methodDescriptor_AimService_GetAppliance = new grpc.web.MethodDescriptor(
-  '/aim.AimService/GetAppliance',
+const methodDescriptor_AimService_GetRemote = new grpc.web.MethodDescriptor(
+  '/aim.AimService/GetRemote',
   grpc.web.MethodType.UNARY,
-  proto.aim.GetApplianceRequest,
-  proto.aim.GetApplianceResponse,
+  proto.aim.GetRemoteRequest,
+  proto.aim.GetRemoteResponse,
   /**
-   * @param {!proto.aim.GetApplianceRequest} request
+   * @param {!proto.aim.GetRemoteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.GetApplianceResponse.deserializeBinary
+  proto.aim.GetRemoteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.aim.GetApplianceRequest} request The
+ * @param {!proto.aim.GetRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.aim.GetApplianceResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.GetRemoteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.aim.GetApplianceResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.GetRemoteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.getAppliance =
+proto.aim.AimServiceClient.prototype.getRemote =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/GetAppliance',
+      '/aim.AimService/GetRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_GetAppliance,
+      methodDescriptor_AimService_GetRemote,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.GetApplianceRequest} request The
+ * @param {!proto.aim.GetRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.aim.GetApplianceResponse>}
+ * @return {!Promise<!proto.aim.GetRemoteResponse>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.getAppliance =
+proto.aim.AimServicePromiseClient.prototype.getRemote =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/GetAppliance',
+      '/aim.AimService/GetRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_GetAppliance);
+      methodDescriptor_AimService_GetRemote);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.GetCommandsRequest,
- *   !proto.aim.GetCommandsResponse>}
+ *   !proto.aim.GetButtonsRequest,
+ *   !proto.aim.GetButtonssResponse>}
  */
-const methodDescriptor_AimService_GetCommands = new grpc.web.MethodDescriptor(
-  '/aim.AimService/GetCommands',
+const methodDescriptor_AimService_GetButtons = new grpc.web.MethodDescriptor(
+  '/aim.AimService/GetButtons',
   grpc.web.MethodType.UNARY,
-  proto.aim.GetCommandsRequest,
-  proto.aim.GetCommandsResponse,
+  proto.aim.GetButtonsRequest,
+  proto.aim.GetButtonssResponse,
   /**
-   * @param {!proto.aim.GetCommandsRequest} request
+   * @param {!proto.aim.GetButtonsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.GetCommandsResponse.deserializeBinary
+  proto.aim.GetButtonssResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.aim.GetCommandsRequest} request The
+ * @param {!proto.aim.GetButtonsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.aim.GetCommandsResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.GetButtonssResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.aim.GetCommandsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.GetButtonssResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.getCommands =
+proto.aim.AimServiceClient.prototype.getButtons =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/GetCommands',
+      '/aim.AimService/GetButtons',
       request,
       metadata || {},
-      methodDescriptor_AimService_GetCommands,
+      methodDescriptor_AimService_GetButtons,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.GetCommandsRequest} request The
+ * @param {!proto.aim.GetButtonsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.aim.GetCommandsResponse>}
+ * @return {!Promise<!proto.aim.GetButtonssResponse>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.getCommands =
+proto.aim.AimServicePromiseClient.prototype.getButtons =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/GetCommands',
+      '/aim.AimService/GetButtons',
       request,
       metadata || {},
-      methodDescriptor_AimService_GetCommands);
+      methodDescriptor_AimService_GetButtons);
 };
 
 
@@ -451,16 +451,16 @@ proto.aim.AimServicePromiseClient.prototype.getIrData =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.EditApplianceRequest,
+ *   !proto.aim.EditRemoteRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_EditAppliance = new grpc.web.MethodDescriptor(
-  '/aim.AimService/EditAppliance',
+const methodDescriptor_AimService_EditRemote = new grpc.web.MethodDescriptor(
+  '/aim.AimService/EditRemote',
   grpc.web.MethodType.UNARY,
-  proto.aim.EditApplianceRequest,
+  proto.aim.EditRemoteRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.EditApplianceRequest} request
+   * @param {!proto.aim.EditRemoteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -471,7 +471,7 @@ const methodDescriptor_AimService_EditAppliance = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.aim.EditApplianceRequest} request The
+ * @param {!proto.aim.EditRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -480,48 +480,48 @@ const methodDescriptor_AimService_EditAppliance = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.editAppliance =
+proto.aim.AimServiceClient.prototype.editRemote =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/EditAppliance',
+      '/aim.AimService/EditRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_EditAppliance,
+      methodDescriptor_AimService_EditRemote,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.EditApplianceRequest} request The
+ * @param {!proto.aim.EditRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.editAppliance =
+proto.aim.AimServicePromiseClient.prototype.editRemote =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/EditAppliance',
+      '/aim.AimService/EditRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_EditAppliance);
+      methodDescriptor_AimService_EditRemote);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.EditCommandRequest,
+ *   !proto.aim.EditButtonRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_EditCommand = new grpc.web.MethodDescriptor(
-  '/aim.AimService/EditCommand',
+const methodDescriptor_AimService_EditButton = new grpc.web.MethodDescriptor(
+  '/aim.AimService/EditButton',
   grpc.web.MethodType.UNARY,
-  proto.aim.EditCommandRequest,
+  proto.aim.EditButtonRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.EditCommandRequest} request
+   * @param {!proto.aim.EditButtonRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -532,7 +532,7 @@ const methodDescriptor_AimService_EditCommand = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.aim.EditCommandRequest} request The
+ * @param {!proto.aim.EditButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -541,32 +541,32 @@ const methodDescriptor_AimService_EditCommand = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.editCommand =
+proto.aim.AimServiceClient.prototype.editButton =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/EditCommand',
+      '/aim.AimService/EditButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_EditCommand,
+      methodDescriptor_AimService_EditButton,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.EditCommandRequest} request The
+ * @param {!proto.aim.EditButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.editCommand =
+proto.aim.AimServicePromiseClient.prototype.editButton =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/EditCommand',
+      '/aim.AimService/EditButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_EditCommand);
+      methodDescriptor_AimService_EditButton);
 };
 
 
@@ -634,16 +634,16 @@ proto.aim.AimServicePromiseClient.prototype.setIrData =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.DeleteApplianceRequest,
+ *   !proto.aim.DeleteRemoteRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_DeleteAppliance = new grpc.web.MethodDescriptor(
-  '/aim.AimService/DeleteAppliance',
+const methodDescriptor_AimService_DeleteRemote = new grpc.web.MethodDescriptor(
+  '/aim.AimService/DeleteRemote',
   grpc.web.MethodType.UNARY,
-  proto.aim.DeleteApplianceRequest,
+  proto.aim.DeleteRemoteRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.DeleteApplianceRequest} request
+   * @param {!proto.aim.DeleteRemoteRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -654,7 +654,7 @@ const methodDescriptor_AimService_DeleteAppliance = new grpc.web.MethodDescripto
 
 
 /**
- * @param {!proto.aim.DeleteApplianceRequest} request The
+ * @param {!proto.aim.DeleteRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -663,48 +663,48 @@ const methodDescriptor_AimService_DeleteAppliance = new grpc.web.MethodDescripto
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.deleteAppliance =
+proto.aim.AimServiceClient.prototype.deleteRemote =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/DeleteAppliance',
+      '/aim.AimService/DeleteRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_DeleteAppliance,
+      methodDescriptor_AimService_DeleteRemote,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.DeleteApplianceRequest} request The
+ * @param {!proto.aim.DeleteRemoteRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.deleteAppliance =
+proto.aim.AimServicePromiseClient.prototype.deleteRemote =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/DeleteAppliance',
+      '/aim.AimService/DeleteRemote',
       request,
       metadata || {},
-      methodDescriptor_AimService_DeleteAppliance);
+      methodDescriptor_AimService_DeleteRemote);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.DeleteCommandRequest,
+ *   !proto.aim.DeleteButtonRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_DeleteCommand = new grpc.web.MethodDescriptor(
-  '/aim.AimService/DeleteCommand',
+const methodDescriptor_AimService_DeleteButton = new grpc.web.MethodDescriptor(
+  '/aim.AimService/DeleteButton',
   grpc.web.MethodType.UNARY,
-  proto.aim.DeleteCommandRequest,
+  proto.aim.DeleteButtonRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.DeleteCommandRequest} request
+   * @param {!proto.aim.DeleteButtonRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -715,7 +715,7 @@ const methodDescriptor_AimService_DeleteCommand = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.aim.DeleteCommandRequest} request The
+ * @param {!proto.aim.DeleteButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -724,32 +724,32 @@ const methodDescriptor_AimService_DeleteCommand = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.deleteCommand =
+proto.aim.AimServiceClient.prototype.deleteButton =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/DeleteCommand',
+      '/aim.AimService/DeleteButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_DeleteCommand,
+      methodDescriptor_AimService_DeleteButton,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.DeleteCommandRequest} request The
+ * @param {!proto.aim.DeleteButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.deleteCommand =
+proto.aim.AimServicePromiseClient.prototype.deleteButton =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/DeleteCommand',
+      '/aim.AimService/DeleteButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_DeleteCommand);
+      methodDescriptor_AimService_DeleteButton);
 };
 
 
@@ -757,13 +757,13 @@ proto.aim.AimServicePromiseClient.prototype.deleteCommand =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.aim.ApplianceUpdateNotification>}
+ *   !proto.aim.RemoteUpdateNotification>}
  */
 const methodDescriptor_AimService_NotifyApplianceUpdate = new grpc.web.MethodDescriptor(
   '/aim.AimService/NotifyApplianceUpdate',
   grpc.web.MethodType.SERVER_STREAMING,
   google_protobuf_empty_pb.Empty,
-  proto.aim.ApplianceUpdateNotification,
+  proto.aim.RemoteUpdateNotification,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -771,7 +771,7 @@ const methodDescriptor_AimService_NotifyApplianceUpdate = new grpc.web.MethodDes
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.ApplianceUpdateNotification.deserializeBinary
+  proto.aim.RemoteUpdateNotification.deserializeBinary
 );
 
 
@@ -779,7 +779,7 @@ const methodDescriptor_AimService_NotifyApplianceUpdate = new grpc.web.MethodDes
  * @param {!proto.google.protobuf.Empty} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.aim.ApplianceUpdateNotification>}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.RemoteUpdateNotification>}
  *     The XHR Node Readable Stream
  */
 proto.aim.AimServiceClient.prototype.notifyApplianceUpdate =
@@ -796,7 +796,7 @@ proto.aim.AimServiceClient.prototype.notifyApplianceUpdate =
  * @param {!proto.google.protobuf.Empty} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.aim.ApplianceUpdateNotification>}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.RemoteUpdateNotification>}
  *     The XHR Node Readable Stream
  */
 proto.aim.AimServicePromiseClient.prototype.notifyApplianceUpdate =

@@ -4,27 +4,27 @@ package aim;
 
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
-import "aim/api/v1/command.proto";
+import "aim/api/v1/button.proto";
 import "google/protobuf/empty.proto";
-import "aim/api/v1/appliance.proto";
+import "aim/api/v1/remote.proto";
 import "google/protobuf/any.proto";
 
-message AddCustomRequest {
+message AddCustomRemoteRequest {
     string name = 1;
     string device_id = 2;
 }
 
-message AddToggleRequest{
+message AddToggleRemoteRequest{
     string name = 1;
     string device_id = 2;
 }
 
-message AddButtonRequest{
+message AddButtonRemoteRequest{
     string name = 1;
     string device_id = 2;
 }
 
-message AddThermostatRequest{
+message AddThermostatRemoteRequest{
     string name = 1;
     string device_id = 2;
     float scale = 3;
@@ -34,81 +34,64 @@ message AddThermostatRequest{
     uint32 minimum_cooling_temp = 7;
 }
 
-message AddApplianceRequest {
-    oneof appliance {
-        AddCustomRequest custom = 1;
-        AddToggleRequest toggle = 2;
-        AddButtonRequest button = 3;
-        AddThermostatRequest thermostat = 4;
+message AddRemoteRequest {
+    oneof remote {
+        AddCustomRemoteRequest custom = 1;
+        AddToggleRemoteRequest toggle = 2;
+        AddButtonRemoteRequest button = 3;
+        AddThermostatRemoteRequest thermostat = 4;
     }
 }
 
-message AddApplianceResponse {
-    Appliance appliance = 1;
+message AddRemoteResponse {
+    Remote remote = 1;
 }
 
-message AddCommandRequest {
-    string appliance_id = 1;
+message AddButtonRequest {
+    string remote_id = 1;
     string name = 2;
 }
 
-message GetAppliancesResponse { 
-    repeated Appliance appliances = 1;
+message GetRemotesResponse { 
+    repeated Remote remotes = 1;
 }
 
-message GetApplianceRequest {
-    string appliance_id = 1;
+message GetRemoteRequest {
+    string remote_id = 1;
 }
 
-message GetApplianceResponse {
-    Appliance appliance = 1;
+message GetRemoteResponse {
+    Remote remote = 1;
 }
 
-message GetCommandsRequest {
-    string appliance_id = 1;
+message GetButtonsRequest {
+    string remote_id = 1;
 }
 
-message GetCommandsResponse {
-    repeated Command commands = 1;
+message GetButtonssResponse {
+    repeated Remote remotes = 1;
 }
 
-message EditApplianceRequest {
-    string appliance_id = 1;
+message EditRemoteRequest {
+    string remote_id = 1;
     string name = 2;
     string device_id = 3;
 }
 
-message RenameApplianceRequest {
-    string appliance_id = 1;
-    string name = 2;
-}
-
-message ChangeDeviceRequest {
-    string appliance_id = 1;
-    string device_id = 2;
-}
-
-message RenameCommandRequest {
-    string appliance_id = 1;
-    string command_id = 2;
+message EditButtonRequest {
+    string remote_id = 1;
+    string button_id = 2;
     string name = 3;
 }
 
-message EditCommandRequest {
-    string appliance_id = 1;
-    string command_id = 2;
-    string name = 3;
+message DeleteRemoteRequest {
+    string remote_id = 1;
 }
 
-message DeleteApplianceRequest {
-    string appliance_id = 1;
+message DeleteButtonRequest {
+    string remote_id = 1;
+    string button_id = 2;
 }
-
-message DeleteCommandRequest {
-    string appliance_id = 1;
-    string command_id = 2;
-}
-
 
 message GetIrDataRequest {
     string appliance_id = 1;
@@ -121,8 +104,8 @@ message SetIRDataRequest {
     google.protobuf.Any irdata = 3;
 }
 
-message ApplianceUpdateNotification {
-    string appliance_id = 1;
+message RemoteUpdateNotification {
+    string remote_id = 1;
     enum UpdateType {
         UPDATE_TYPE_UNSPECIFIED = 0;
         UPDATE_TYPE_ADD = 1;
@@ -132,21 +115,21 @@ message ApplianceUpdateNotification {
 }
 
 service AimService {
-    rpc AddAppliance(AddApplianceRequest) returns (AddApplianceResponse) {}
-    rpc AddCommand(AddCommandRequest) returns (google.protobuf.Empty) {}
+    rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
+    rpc AddButton(AddButtonRequest) returns (google.protobuf.Empty) {}
 
-    rpc GetAppliances(google.protobuf.Empty) returns(GetAppliancesResponse) {}
-    rpc GetAppliance(GetApplianceRequest) returns(GetApplianceResponse) {}
-    rpc GetCommands(GetCommandsRequest) returns (GetCommandsResponse) {}
+    rpc GetRemotes(google.protobuf.Empty) returns(GetRemotesResponse) {}
+    rpc GetRemote(GetRemoteRequest) returns(GetRemoteResponse) {}
+    rpc GetButtons(GetButtonsRequest) returns (GetButtonssResponse) {}
     rpc GetIrData(GetIrDataRequest) returns (google.protobuf.Any) {}
 
-    rpc EditAppliance(EditApplianceRequest) returns (google.protobuf.Empty) {}
-    rpc EditCommand(EditCommandRequest) returns (google.protobuf.Empty) {}
+    rpc EditRemote(EditRemoteRequest) returns (google.protobuf.Empty) {}
+    rpc EditButton(EditButtonRequest) returns (google.protobuf.Empty) {}
     rpc SetIrData(SetIRDataRequest) returns(google.protobuf.Empty) {}
 
-    rpc DeleteAppliance(DeleteApplianceRequest) returns (google.protobuf.Empty) {}
-    rpc DeleteCommand(DeleteCommandRequest) returns (google.protobuf.Empty) {}
+    rpc DeleteRemote(DeleteRemoteRequest) returns (google.protobuf.Empty) {}
+    rpc DeleteButton(DeleteButtonRequest) returns (google.protobuf.Empty) {}
 
     rpc NotifyApplianceUpdate(google.protobuf.Empty) 
-        returns (stream ApplianceUpdateNotification) {}
+        returns (stream RemoteUpdateNotification) {}
 }

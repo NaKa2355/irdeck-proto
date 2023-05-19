@@ -5,17 +5,17 @@ package aim;
 
 option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 
-message Appliance {
+message Remote {
     string id = 1;
     string name = 2;
     string device_id = 3;
-    enum AppType {
-        APP_TYPE_UNKNOWN = 0;
+    enum RemoteType {
+        REMOTE_TYPE_UNKNOWN = 0;
         CUSTOM = 1;
         BUTTON = 2;
         TOGGLE = 3;
         THERMOSTAT = 4;
     }
-    AppType appliance_type = 4;
-    bool can_add_command = 5;
+    RemoteType remote_type = 4;
+    bool can_add_button = 5;
 }

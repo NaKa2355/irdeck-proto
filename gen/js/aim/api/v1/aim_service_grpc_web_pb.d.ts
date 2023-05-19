@@ -10,40 +10,40 @@ export class AimServiceClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
-  addAppliance(
-    request: aim_api_v1_aim_service_pb.AddApplianceRequest,
+  addRemote(
+    request: aim_api_v1_aim_service_pb.AddRemoteRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: aim_api_v1_aim_service_pb.AddApplianceResponse) => void
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.AddApplianceResponse>;
+               response: aim_api_v1_aim_service_pb.AddRemoteResponse) => void
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.AddRemoteResponse>;
 
-  addCommand(
-    request: aim_api_v1_aim_service_pb.AddCommandRequest,
+  addButton(
+    request: aim_api_v1_aim_service_pb.AddButtonRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  getAppliances(
+  getRemotes(
     request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: aim_api_v1_aim_service_pb.GetAppliancesResponse) => void
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.GetAppliancesResponse>;
+               response: aim_api_v1_aim_service_pb.GetRemotesResponse) => void
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.GetRemotesResponse>;
 
-  getAppliance(
-    request: aim_api_v1_aim_service_pb.GetApplianceRequest,
+  getRemote(
+    request: aim_api_v1_aim_service_pb.GetRemoteRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: aim_api_v1_aim_service_pb.GetApplianceResponse) => void
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.GetApplianceResponse>;
+               response: aim_api_v1_aim_service_pb.GetRemoteResponse) => void
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.GetRemoteResponse>;
 
-  getCommands(
-    request: aim_api_v1_aim_service_pb.GetCommandsRequest,
+  getButtons(
+    request: aim_api_v1_aim_service_pb.GetButtonsRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: aim_api_v1_aim_service_pb.GetCommandsResponse) => void
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.GetCommandsResponse>;
+               response: aim_api_v1_aim_service_pb.GetButtonssResponse) => void
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.GetButtonssResponse>;
 
   getIrData(
     request: aim_api_v1_aim_service_pb.GetIrDataRequest,
@@ -52,15 +52,15 @@ export class AimServiceClient {
                response: google_protobuf_any_pb.Any) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_any_pb.Any>;
 
-  editAppliance(
-    request: aim_api_v1_aim_service_pb.EditApplianceRequest,
+  editRemote(
+    request: aim_api_v1_aim_service_pb.EditRemoteRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  editCommand(
-    request: aim_api_v1_aim_service_pb.EditCommandRequest,
+  editButton(
+    request: aim_api_v1_aim_service_pb.EditButtonRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
@@ -73,15 +73,15 @@ export class AimServiceClient {
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  deleteAppliance(
-    request: aim_api_v1_aim_service_pb.DeleteApplianceRequest,
+  deleteRemote(
+    request: aim_api_v1_aim_service_pb.DeleteRemoteRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
   ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
-  deleteCommand(
-    request: aim_api_v1_aim_service_pb.DeleteCommandRequest,
+  deleteButton(
+    request: aim_api_v1_aim_service_pb.DeleteButtonRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
@@ -90,7 +90,7 @@ export class AimServiceClient {
   notifyApplianceUpdate(
     request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.ApplianceUpdateNotification>;
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.RemoteUpdateNotification>;
 
 }
 
@@ -99,43 +99,43 @@ export class AimServicePromiseClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
-  addAppliance(
-    request: aim_api_v1_aim_service_pb.AddApplianceRequest,
+  addRemote(
+    request: aim_api_v1_aim_service_pb.AddRemoteRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<aim_api_v1_aim_service_pb.AddApplianceResponse>;
+  ): Promise<aim_api_v1_aim_service_pb.AddRemoteResponse>;
 
-  addCommand(
-    request: aim_api_v1_aim_service_pb.AddCommandRequest,
+  addButton(
+    request: aim_api_v1_aim_service_pb.AddButtonRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  getAppliances(
+  getRemotes(
     request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata
-  ): Promise<aim_api_v1_aim_service_pb.GetAppliancesResponse>;
+  ): Promise<aim_api_v1_aim_service_pb.GetRemotesResponse>;
 
-  getAppliance(
-    request: aim_api_v1_aim_service_pb.GetApplianceRequest,
+  getRemote(
+    request: aim_api_v1_aim_service_pb.GetRemoteRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<aim_api_v1_aim_service_pb.GetApplianceResponse>;
+  ): Promise<aim_api_v1_aim_service_pb.GetRemoteResponse>;
 
-  getCommands(
-    request: aim_api_v1_aim_service_pb.GetCommandsRequest,
+  getButtons(
+    request: aim_api_v1_aim_service_pb.GetButtonsRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<aim_api_v1_aim_service_pb.GetCommandsResponse>;
+  ): Promise<aim_api_v1_aim_service_pb.GetButtonssResponse>;
 
   getIrData(
     request: aim_api_v1_aim_service_pb.GetIrDataRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_any_pb.Any>;
 
-  editAppliance(
-    request: aim_api_v1_aim_service_pb.EditApplianceRequest,
+  editRemote(
+    request: aim_api_v1_aim_service_pb.EditRemoteRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  editCommand(
-    request: aim_api_v1_aim_service_pb.EditCommandRequest,
+  editButton(
+    request: aim_api_v1_aim_service_pb.EditButtonRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
@@ -144,20 +144,20 @@ export class AimServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  deleteAppliance(
-    request: aim_api_v1_aim_service_pb.DeleteApplianceRequest,
+  deleteRemote(
+    request: aim_api_v1_aim_service_pb.DeleteRemoteRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
-  deleteCommand(
-    request: aim_api_v1_aim_service_pb.DeleteCommandRequest,
+  deleteButton(
+    request: aim_api_v1_aim_service_pb.DeleteButtonRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 
   notifyApplianceUpdate(
     request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.ApplianceUpdateNotification>;
+  ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.RemoteUpdateNotification>;
 
 }
 
