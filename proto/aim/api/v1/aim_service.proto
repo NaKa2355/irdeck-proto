@@ -68,8 +68,8 @@ message GetButtonsRequest {
     string remote_id = 1;
 }
 
-message GetButtonssResponse {
-    repeated Remote remotes = 1;
+message GetButtonsResponse {
+    repeated Button buttons = 1;
 }
 
 message EditRemoteRequest {
@@ -94,13 +94,13 @@ message DeleteButtonRequest {
 }
 
 message GetIrDataRequest {
-    string appliance_id = 1;
-    string command_id = 2;
+    string remote_id = 1;
+    string button_id = 2;
 }
 
 message SetIRDataRequest {
-    string appliance_id = 1;
-    string command_id = 2;
+    string remote_id = 1;
+    string button_id = 2;
     google.protobuf.Any irdata = 3;
 }
 
@@ -120,7 +120,7 @@ service AimService {
 
     rpc GetRemotes(google.protobuf.Empty) returns(GetRemotesResponse) {}
     rpc GetRemote(GetRemoteRequest) returns(GetRemoteResponse) {}
-    rpc GetButtons(GetButtonsRequest) returns (GetButtonssResponse) {}
+    rpc GetButtons(GetButtonsRequest) returns (GetButtonsResponse) {}
     rpc GetIrData(GetIrDataRequest) returns (google.protobuf.Any) {}
 
     rpc EditRemote(EditRemoteRequest) returns (google.protobuf.Empty) {}
@@ -130,6 +130,6 @@ service AimService {
     rpc DeleteRemote(DeleteRemoteRequest) returns (google.protobuf.Empty) {}
     rpc DeleteButton(DeleteButtonRequest) returns (google.protobuf.Empty) {}
 
-    rpc NotifyApplianceUpdate(google.protobuf.Empty) 
+    rpc NotifyRemoteUpdate(google.protobuf.Empty) 
         returns (stream RemoteUpdateNotification) {}
 }

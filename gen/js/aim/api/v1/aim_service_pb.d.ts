@@ -280,23 +280,23 @@ export namespace GetButtonsRequest {
   }
 }
 
-export class GetButtonssResponse extends jspb.Message {
-  getRemotesList(): Array<aim_api_v1_remote_pb.Remote>;
-  setRemotesList(value: Array<aim_api_v1_remote_pb.Remote>): GetButtonssResponse;
-  clearRemotesList(): GetButtonssResponse;
-  addRemotes(value?: aim_api_v1_remote_pb.Remote, index?: number): aim_api_v1_remote_pb.Remote;
+export class GetButtonsResponse extends jspb.Message {
+  getButtonsList(): Array<aim_api_v1_button_pb.Button>;
+  setButtonsList(value: Array<aim_api_v1_button_pb.Button>): GetButtonsResponse;
+  clearButtonsList(): GetButtonsResponse;
+  addButtons(value?: aim_api_v1_button_pb.Button, index?: number): aim_api_v1_button_pb.Button;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetButtonssResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetButtonssResponse): GetButtonssResponse.AsObject;
-  static serializeBinaryToWriter(message: GetButtonssResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetButtonssResponse;
-  static deserializeBinaryFromReader(message: GetButtonssResponse, reader: jspb.BinaryReader): GetButtonssResponse;
+  toObject(includeInstance?: boolean): GetButtonsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetButtonsResponse): GetButtonsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetButtonsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetButtonsResponse;
+  static deserializeBinaryFromReader(message: GetButtonsResponse, reader: jspb.BinaryReader): GetButtonsResponse;
 }
 
-export namespace GetButtonssResponse {
+export namespace GetButtonsResponse {
   export type AsObject = {
-    remotesList: Array<aim_api_v1_remote_pb.Remote.AsObject>,
+    buttonsList: Array<aim_api_v1_button_pb.Button.AsObject>,
   }
 }
 
@@ -393,11 +393,11 @@ export namespace DeleteButtonRequest {
 }
 
 export class GetIrDataRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): GetIrDataRequest;
+  getRemoteId(): string;
+  setRemoteId(value: string): GetIrDataRequest;
 
-  getCommandId(): string;
-  setCommandId(value: string): GetIrDataRequest;
+  getButtonId(): string;
+  setButtonId(value: string): GetIrDataRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetIrDataRequest.AsObject;
@@ -409,17 +409,17 @@ export class GetIrDataRequest extends jspb.Message {
 
 export namespace GetIrDataRequest {
   export type AsObject = {
-    applianceId: string,
-    commandId: string,
+    remoteId: string,
+    buttonId: string,
   }
 }
 
 export class SetIRDataRequest extends jspb.Message {
-  getApplianceId(): string;
-  setApplianceId(value: string): SetIRDataRequest;
+  getRemoteId(): string;
+  setRemoteId(value: string): SetIRDataRequest;
 
-  getCommandId(): string;
-  setCommandId(value: string): SetIRDataRequest;
+  getButtonId(): string;
+  setButtonId(value: string): SetIRDataRequest;
 
   getIrdata(): google_protobuf_any_pb.Any | undefined;
   setIrdata(value?: google_protobuf_any_pb.Any): SetIRDataRequest;
@@ -436,8 +436,8 @@ export class SetIRDataRequest extends jspb.Message {
 
 export namespace SetIRDataRequest {
   export type AsObject = {
-    applianceId: string,
-    commandId: string,
+    remoteId: string,
+    buttonId: string,
     irdata?: google_protobuf_any_pb.Any.AsObject,
   }
 }

@@ -28,14 +28,14 @@ type AimServiceClient interface {
 	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetRemotes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRemotesResponse, error)
 	GetRemote(ctx context.Context, in *GetRemoteRequest, opts ...grpc.CallOption) (*GetRemoteResponse, error)
-	GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonssResponse, error)
+	GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonsResponse, error)
 	GetIrData(ctx context.Context, in *GetIrDataRequest, opts ...grpc.CallOption) (*any1.Any, error)
 	EditRemote(ctx context.Context, in *EditRemoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	EditButton(ctx context.Context, in *EditButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	SetIrData(ctx context.Context, in *SetIRDataRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteRemote(ctx context.Context, in *DeleteRemoteRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteButton(ctx context.Context, in *DeleteButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
-	NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyApplianceUpdateClient, error)
+	NotifyRemoteUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyRemoteUpdateClient, error)
 }
 
 type aimServiceClient struct {
@@ -82,8 +82,8 @@ func (c *aimServiceClient) GetRemote(ctx context.Context, in *GetRemoteRequest, 
 	return out, nil
 }
 
-func (c *aimServiceClient) GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonssResponse, error) {
-	out := new(GetButtonssResponse)
+func (c *aimServiceClient) GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonsResponse, error) {
+	out := new(GetButtonsResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/GetButtons", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -145,12 +145,12 @@ func (c *aimServiceClient) DeleteButton(ctx context.Context, in *DeleteButtonReq
 	return out, nil
 }
 
-func (c *aimServiceClient) NotifyApplianceUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyApplianceUpdateClient, error) {
-	stream, err := c.cc.NewStream(ctx, &AimService_ServiceDesc.Streams[0], "/aim.AimService/NotifyApplianceUpdate", opts...)
+func (c *aimServiceClient) NotifyRemoteUpdate(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (AimService_NotifyRemoteUpdateClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AimService_ServiceDesc.Streams[0], "/aim.AimService/NotifyRemoteUpdate", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &aimServiceNotifyApplianceUpdateClient{stream}
+	x := &aimServiceNotifyRemoteUpdateClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -160,16 +160,16 @@ func (c *aimServiceClient) NotifyApplianceUpdate(ctx context.Context, in *empty.
 	return x, nil
 }
 
-type AimService_NotifyApplianceUpdateClient interface {
+type AimService_NotifyRemoteUpdateClient interface {
 	Recv() (*RemoteUpdateNotification, error)
 	grpc.ClientStream
 }
 
-type aimServiceNotifyApplianceUpdateClient struct {
+type aimServiceNotifyRemoteUpdateClient struct {
 	grpc.ClientStream
 }
 
-func (x *aimServiceNotifyApplianceUpdateClient) Recv() (*RemoteUpdateNotification, error) {
+func (x *aimServiceNotifyRemoteUpdateClient) Recv() (*RemoteUpdateNotification, error) {
 	m := new(RemoteUpdateNotification)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -185,14 +185,14 @@ type AimServiceServer interface {
 	AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error)
 	GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error)
 	GetRemote(context.Context, *GetRemoteRequest) (*GetRemoteResponse, error)
-	GetButtons(context.Context, *GetButtonsRequest) (*GetButtonssResponse, error)
+	GetButtons(context.Context, *GetButtonsRequest) (*GetButtonsResponse, error)
 	GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error)
 	EditRemote(context.Context, *EditRemoteRequest) (*empty.Empty, error)
 	EditButton(context.Context, *EditButtonRequest) (*empty.Empty, error)
 	SetIrData(context.Context, *SetIRDataRequest) (*empty.Empty, error)
 	DeleteRemote(context.Context, *DeleteRemoteRequest) (*empty.Empty, error)
 	DeleteButton(context.Context, *DeleteButtonRequest) (*empty.Empty, error)
-	NotifyApplianceUpdate(*empty.Empty, AimService_NotifyApplianceUpdateServer) error
+	NotifyRemoteUpdate(*empty.Empty, AimService_NotifyRemoteUpdateServer) error
 	mustEmbedUnimplementedAimServiceServer()
 }
 
@@ -212,7 +212,7 @@ func (UnimplementedAimServiceServer) GetRemotes(context.Context, *empty.Empty) (
 func (UnimplementedAimServiceServer) GetRemote(context.Context, *GetRemoteRequest) (*GetRemoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRemote not implemented")
 }
-func (UnimplementedAimServiceServer) GetButtons(context.Context, *GetButtonsRequest) (*GetButtonssResponse, error) {
+func (UnimplementedAimServiceServer) GetButtons(context.Context, *GetButtonsRequest) (*GetButtonsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetButtons not implemented")
 }
 func (UnimplementedAimServiceServer) GetIrData(context.Context, *GetIrDataRequest) (*any1.Any, error) {
@@ -233,8 +233,8 @@ func (UnimplementedAimServiceServer) DeleteRemote(context.Context, *DeleteRemote
 func (UnimplementedAimServiceServer) DeleteButton(context.Context, *DeleteButtonRequest) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteButton not implemented")
 }
-func (UnimplementedAimServiceServer) NotifyApplianceUpdate(*empty.Empty, AimService_NotifyApplianceUpdateServer) error {
-	return status.Errorf(codes.Unimplemented, "method NotifyApplianceUpdate not implemented")
+func (UnimplementedAimServiceServer) NotifyRemoteUpdate(*empty.Empty, AimService_NotifyRemoteUpdateServer) error {
+	return status.Errorf(codes.Unimplemented, "method NotifyRemoteUpdate not implemented")
 }
 func (UnimplementedAimServiceServer) mustEmbedUnimplementedAimServiceServer() {}
 
@@ -447,24 +447,24 @@ func _AimService_DeleteButton_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_NotifyApplianceUpdate_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _AimService_NotifyRemoteUpdate_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(empty.Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(AimServiceServer).NotifyApplianceUpdate(m, &aimServiceNotifyApplianceUpdateServer{stream})
+	return srv.(AimServiceServer).NotifyRemoteUpdate(m, &aimServiceNotifyRemoteUpdateServer{stream})
 }
 
-type AimService_NotifyApplianceUpdateServer interface {
+type AimService_NotifyRemoteUpdateServer interface {
 	Send(*RemoteUpdateNotification) error
 	grpc.ServerStream
 }
 
-type aimServiceNotifyApplianceUpdateServer struct {
+type aimServiceNotifyRemoteUpdateServer struct {
 	grpc.ServerStream
 }
 
-func (x *aimServiceNotifyApplianceUpdateServer) Send(m *RemoteUpdateNotification) error {
+func (x *aimServiceNotifyRemoteUpdateServer) Send(m *RemoteUpdateNotification) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -522,8 +522,8 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "NotifyApplianceUpdate",
-			Handler:       _AimService_NotifyApplianceUpdate_Handler,
+			StreamName:    "NotifyRemoteUpdate",
+			Handler:       _AimService_NotifyRemoteUpdate_Handler,
 			ServerStreams: true,
 		},
 	},

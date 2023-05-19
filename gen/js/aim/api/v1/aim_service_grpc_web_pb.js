@@ -330,13 +330,13 @@ proto.aim.AimServicePromiseClient.prototype.getRemote =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.aim.GetButtonsRequest,
- *   !proto.aim.GetButtonssResponse>}
+ *   !proto.aim.GetButtonsResponse>}
  */
 const methodDescriptor_AimService_GetButtons = new grpc.web.MethodDescriptor(
   '/aim.AimService/GetButtons',
   grpc.web.MethodType.UNARY,
   proto.aim.GetButtonsRequest,
-  proto.aim.GetButtonssResponse,
+  proto.aim.GetButtonsResponse,
   /**
    * @param {!proto.aim.GetButtonsRequest} request
    * @return {!Uint8Array}
@@ -344,7 +344,7 @@ const methodDescriptor_AimService_GetButtons = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.GetButtonssResponse.deserializeBinary
+  proto.aim.GetButtonsResponse.deserializeBinary
 );
 
 
@@ -353,9 +353,9 @@ const methodDescriptor_AimService_GetButtons = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.aim.GetButtonssResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.GetButtonsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.aim.GetButtonssResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.GetButtonsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.aim.AimServiceClient.prototype.getButtons =
@@ -374,7 +374,7 @@ proto.aim.AimServiceClient.prototype.getButtons =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.aim.GetButtonssResponse>}
+ * @return {!Promise<!proto.aim.GetButtonsResponse>}
  *     Promise that resolves to the response
  */
 proto.aim.AimServicePromiseClient.prototype.getButtons =
@@ -759,8 +759,8 @@ proto.aim.AimServicePromiseClient.prototype.deleteButton =
  *   !proto.google.protobuf.Empty,
  *   !proto.aim.RemoteUpdateNotification>}
  */
-const methodDescriptor_AimService_NotifyApplianceUpdate = new grpc.web.MethodDescriptor(
-  '/aim.AimService/NotifyApplianceUpdate',
+const methodDescriptor_AimService_NotifyRemoteUpdate = new grpc.web.MethodDescriptor(
+  '/aim.AimService/NotifyRemoteUpdate',
   grpc.web.MethodType.SERVER_STREAMING,
   google_protobuf_empty_pb.Empty,
   proto.aim.RemoteUpdateNotification,
@@ -782,13 +782,13 @@ const methodDescriptor_AimService_NotifyApplianceUpdate = new grpc.web.MethodDes
  * @return {!grpc.web.ClientReadableStream<!proto.aim.RemoteUpdateNotification>}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.notifyApplianceUpdate =
+proto.aim.AimServiceClient.prototype.notifyRemoteUpdate =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/aim.AimService/NotifyApplianceUpdate',
+      '/aim.AimService/NotifyRemoteUpdate',
       request,
       metadata || {},
-      methodDescriptor_AimService_NotifyApplianceUpdate);
+      methodDescriptor_AimService_NotifyRemoteUpdate);
 };
 
 
@@ -799,13 +799,13 @@ proto.aim.AimServiceClient.prototype.notifyApplianceUpdate =
  * @return {!grpc.web.ClientReadableStream<!proto.aim.RemoteUpdateNotification>}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServicePromiseClient.prototype.notifyApplianceUpdate =
+proto.aim.AimServicePromiseClient.prototype.notifyRemoteUpdate =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/aim.AimService/NotifyApplianceUpdate',
+      '/aim.AimService/NotifyRemoteUpdate',
       request,
       metadata || {},
-      methodDescriptor_AimService_NotifyApplianceUpdate);
+      methodDescriptor_AimService_NotifyRemoteUpdate);
 };
 
 
