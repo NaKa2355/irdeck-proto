@@ -25,9 +25,15 @@ message AddButtonRemoteRequest{
 }
 
 message AddThermostatRemoteRequest{
+    enum Scale {
+        SCALE_UNKNOWN = 0;
+        HALF = 1;
+        ONE = 2;
+    }
+
     string name = 1;
     string device_id = 2;
-    float scale = 3;
+    Scale scale = 3;
     uint32 maximum_heating_temp = 4;
     uint32 minimum_heating_temp = 5;
     uint32 maximum_cooling_temp = 6;
@@ -104,14 +110,19 @@ message SetIRDataRequest {
     google.protobuf.Any irdata = 3;
 }
 
-message RemoteUpdateNotification {
+message RemoteAdditionNotification {
+    Remote remote = 1;
+}
+
+message RemoteDeletionNotification {
     string remote_id = 1;
-    enum UpdateType {
-        UPDATE_TYPE_UNSPECIFIED = 0;
-        UPDATE_TYPE_ADD = 1;
-        UPDATE_TYPE_DELETE = 2;
-    }
-    UpdateType update_type = 2;
+}
+
+message RemoteUpdateNotification {
+   oneof notification {
+        RemoteAdditionNotification add = 1;
+        RemoteDeletionNotification delete = 2;
+   }
 }
 
 service AimService {

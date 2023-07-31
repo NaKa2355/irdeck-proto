@@ -79,8 +79,8 @@ export class AddThermostatRemoteRequest extends jspb.Message {
   getDeviceId(): string;
   setDeviceId(value: string): AddThermostatRemoteRequest;
 
-  getScale(): number;
-  setScale(value: number): AddThermostatRemoteRequest;
+  getScale(): AddThermostatRemoteRequest.Scale;
+  setScale(value: AddThermostatRemoteRequest.Scale): AddThermostatRemoteRequest;
 
   getMaximumHeatingTemp(): number;
   setMaximumHeatingTemp(value: number): AddThermostatRemoteRequest;
@@ -106,11 +106,17 @@ export namespace AddThermostatRemoteRequest {
   export type AsObject = {
     name: string,
     deviceId: string,
-    scale: number,
+    scale: AddThermostatRemoteRequest.Scale,
     maximumHeatingTemp: number,
     minimumHeatingTemp: number,
     maximumCoolingTemp: number,
     minimumCoolingTemp: number,
+  }
+
+  export enum Scale { 
+    SCALE_UNKNOWN = 0,
+    HALF = 1,
+    ONE = 2,
   }
 }
 
@@ -442,12 +448,56 @@ export namespace SetIRDataRequest {
   }
 }
 
-export class RemoteUpdateNotification extends jspb.Message {
-  getRemoteId(): string;
-  setRemoteId(value: string): RemoteUpdateNotification;
+export class RemoteAdditionNotification extends jspb.Message {
+  getRemote(): aim_api_v1_remote_pb.Remote | undefined;
+  setRemote(value?: aim_api_v1_remote_pb.Remote): RemoteAdditionNotification;
+  hasRemote(): boolean;
+  clearRemote(): RemoteAdditionNotification;
 
-  getUpdateType(): RemoteUpdateNotification.UpdateType;
-  setUpdateType(value: RemoteUpdateNotification.UpdateType): RemoteUpdateNotification;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoteAdditionNotification.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoteAdditionNotification): RemoteAdditionNotification.AsObject;
+  static serializeBinaryToWriter(message: RemoteAdditionNotification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoteAdditionNotification;
+  static deserializeBinaryFromReader(message: RemoteAdditionNotification, reader: jspb.BinaryReader): RemoteAdditionNotification;
+}
+
+export namespace RemoteAdditionNotification {
+  export type AsObject = {
+    remote?: aim_api_v1_remote_pb.Remote.AsObject,
+  }
+}
+
+export class RemoteDeletionNotification extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): RemoteDeletionNotification;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoteDeletionNotification.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoteDeletionNotification): RemoteDeletionNotification.AsObject;
+  static serializeBinaryToWriter(message: RemoteDeletionNotification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoteDeletionNotification;
+  static deserializeBinaryFromReader(message: RemoteDeletionNotification, reader: jspb.BinaryReader): RemoteDeletionNotification;
+}
+
+export namespace RemoteDeletionNotification {
+  export type AsObject = {
+    remoteId: string,
+  }
+}
+
+export class RemoteUpdateNotification extends jspb.Message {
+  getAdd(): RemoteAdditionNotification | undefined;
+  setAdd(value?: RemoteAdditionNotification): RemoteUpdateNotification;
+  hasAdd(): boolean;
+  clearAdd(): RemoteUpdateNotification;
+
+  getDelete(): RemoteDeletionNotification | undefined;
+  setDelete(value?: RemoteDeletionNotification): RemoteUpdateNotification;
+  hasDelete(): boolean;
+  clearDelete(): RemoteUpdateNotification;
+
+  getNotificationCase(): RemoteUpdateNotification.NotificationCase;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoteUpdateNotification.AsObject;
@@ -459,14 +509,14 @@ export class RemoteUpdateNotification extends jspb.Message {
 
 export namespace RemoteUpdateNotification {
   export type AsObject = {
-    remoteId: string,
-    updateType: RemoteUpdateNotification.UpdateType,
+    add?: RemoteAdditionNotification.AsObject,
+    pb_delete?: RemoteDeletionNotification.AsObject,
   }
 
-  export enum UpdateType { 
-    UPDATE_TYPE_UNSPECIFIED = 0,
-    UPDATE_TYPE_ADD = 1,
-    UPDATE_TYPE_DELETE = 2,
+  export enum NotificationCase { 
+    NOTIFICATION_NOT_SET = 0,
+    ADD = 1,
+    DELETE = 2,
   }
 }
 
