@@ -3731,7 +3731,7 @@ proto.aim.RemoteAdditionNotification.prototype.toObject = function(opt_includeIn
  */
 proto.aim.RemoteAdditionNotification.toObject = function(includeInstance, msg) {
   var f, obj = {
-    remote: (f = msg.getRemote()) && aim_api_v1_remote_pb.Remote.toObject(includeInstance, f)
+    remoteId: (f = msg.getRemoteId()) && aim_api_v1_remote_pb.Remote.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3771,7 +3771,7 @@ proto.aim.RemoteAdditionNotification.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = new aim_api_v1_remote_pb.Remote;
       reader.readMessage(value,aim_api_v1_remote_pb.Remote.deserializeBinaryFromReader);
-      msg.setRemote(value);
+      msg.setRemoteId(value);
       break;
     default:
       reader.skipField();
@@ -3802,7 +3802,7 @@ proto.aim.RemoteAdditionNotification.prototype.serializeBinary = function() {
  */
 proto.aim.RemoteAdditionNotification.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRemote();
+  f = message.getRemoteId();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -3814,10 +3814,10 @@ proto.aim.RemoteAdditionNotification.serializeBinaryToWriter = function(message,
 
 
 /**
- * optional Remote remote = 1;
+ * optional Remote remote_id = 1;
  * @return {?proto.aim.Remote}
  */
-proto.aim.RemoteAdditionNotification.prototype.getRemote = function() {
+proto.aim.RemoteAdditionNotification.prototype.getRemoteId = function() {
   return /** @type{?proto.aim.Remote} */ (
     jspb.Message.getWrapperField(this, aim_api_v1_remote_pb.Remote, 1));
 };
@@ -3827,7 +3827,7 @@ proto.aim.RemoteAdditionNotification.prototype.getRemote = function() {
  * @param {?proto.aim.Remote|undefined} value
  * @return {!proto.aim.RemoteAdditionNotification} returns this
 */
-proto.aim.RemoteAdditionNotification.prototype.setRemote = function(value) {
+proto.aim.RemoteAdditionNotification.prototype.setRemoteId = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -3836,8 +3836,8 @@ proto.aim.RemoteAdditionNotification.prototype.setRemote = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.aim.RemoteAdditionNotification} returns this
  */
-proto.aim.RemoteAdditionNotification.prototype.clearRemote = function() {
-  return this.setRemote(undefined);
+proto.aim.RemoteAdditionNotification.prototype.clearRemoteId = function() {
+  return this.setRemoteId(undefined);
 };
 
 
@@ -3845,7 +3845,7 @@ proto.aim.RemoteAdditionNotification.prototype.clearRemote = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.aim.RemoteAdditionNotification.prototype.hasRemote = function() {
+proto.aim.RemoteAdditionNotification.prototype.hasRemoteId = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
