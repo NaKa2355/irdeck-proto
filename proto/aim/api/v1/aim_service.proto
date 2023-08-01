@@ -111,7 +111,7 @@ message SetIRDataRequest {
 }
 
 message RemoteAdditionNotification {
-    Remote remote_id = 1;
+    Remote remote = 1;
 }
 
 message RemoteDeletionNotification {

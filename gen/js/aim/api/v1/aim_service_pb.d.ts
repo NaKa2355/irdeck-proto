@@ -449,10 +449,10 @@ export namespace SetIRDataRequest {
 }
 
 export class RemoteAdditionNotification extends jspb.Message {
-  getRemoteId(): aim_api_v1_remote_pb.Remote | undefined;
-  setRemoteId(value?: aim_api_v1_remote_pb.Remote): RemoteAdditionNotification;
-  hasRemoteId(): boolean;
-  clearRemoteId(): RemoteAdditionNotification;
+  getRemote(): aim_api_v1_remote_pb.Remote | undefined;
+  setRemote(value?: aim_api_v1_remote_pb.Remote): RemoteAdditionNotification;
+  hasRemote(): boolean;
+  clearRemote(): RemoteAdditionNotification;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoteAdditionNotification.AsObject;
@@ -464,7 +464,7 @@ export class RemoteAdditionNotification extends jspb.Message {
 
 export namespace RemoteAdditionNotification {
   export type AsObject = {
-    remoteId?: aim_api_v1_remote_pb.Remote.AsObject,
+    remote?: aim_api_v1_remote_pb.Remote.AsObject,
   }
 }
 
