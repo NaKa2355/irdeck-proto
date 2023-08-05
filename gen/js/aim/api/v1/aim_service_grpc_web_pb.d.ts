@@ -17,8 +17,8 @@ export class AimServiceClient {
                response: aim_api_v1_aim_service_pb.AddRemoteResponse) => void
   ): grpcWeb.ClientReadableStream<aim_api_v1_aim_service_pb.AddRemoteResponse>;
 
-  addButtons(
-    request: aim_api_v1_aim_service_pb.AddButtonsRequest,
+  addButton(
+    request: aim_api_v1_aim_service_pb.AddButtonRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
                response: google_protobuf_empty_pb.Empty) => void
@@ -104,8 +104,8 @@ export class AimServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<aim_api_v1_aim_service_pb.AddRemoteResponse>;
 
-  addButtons(
-    request: aim_api_v1_aim_service_pb.AddButtonsRequest,
+  addButton(
+    request: aim_api_v1_aim_service_pb.AddButtonRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<google_protobuf_empty_pb.Empty>;
 

@@ -27,8 +27,8 @@ message AddButtonsRequest {
 
 message AddButtonRequest {
     string remote_id = 1;
-    string name = 1;
-    string tag = 2;
+    string name = 2;
+    string tag = 3;
 }
 
 message GetRemotesResponse { 

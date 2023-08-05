@@ -34,10 +34,10 @@ export class AddRemoteRequest extends jspb.Message {
   getDeviceId(): string;
   setDeviceId(value: string): AddRemoteRequest;
 
-  getButtonsList(): Array<AddButtonRequest>;
-  setButtonsList(value: Array<AddButtonRequest>): AddRemoteRequest;
+  getButtonsList(): Array<AddButtonsRequest>;
+  setButtonsList(value: Array<AddButtonsRequest>): AddRemoteRequest;
   clearButtonsList(): AddRemoteRequest;
-  addButtons(value?: AddButtonRequest, index?: number): AddButtonRequest;
+  addButtons(value?: AddButtonsRequest, index?: number): AddButtonsRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddRemoteRequest.AsObject;
@@ -52,11 +52,36 @@ export namespace AddRemoteRequest {
     name: string,
     tag: string,
     deviceId: string,
-    buttonsList: Array<AddButtonRequest.AsObject>,
+    buttonsList: Array<AddButtonsRequest.AsObject>,
+  }
+}
+
+export class AddButtonsRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): AddButtonsRequest;
+
+  getTag(): string;
+  setTag(value: string): AddButtonsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddButtonsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddButtonsRequest): AddButtonsRequest.AsObject;
+  static serializeBinaryToWriter(message: AddButtonsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddButtonsRequest;
+  static deserializeBinaryFromReader(message: AddButtonsRequest, reader: jspb.BinaryReader): AddButtonsRequest;
+}
+
+export namespace AddButtonsRequest {
+  export type AsObject = {
+    name: string,
+    tag: string,
   }
 }
 
 export class AddButtonRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): AddButtonRequest;
+
   getName(): string;
   setName(value: string): AddButtonRequest;
 
@@ -73,32 +98,9 @@ export class AddButtonRequest extends jspb.Message {
 
 export namespace AddButtonRequest {
   export type AsObject = {
+    remoteId: string,
     name: string,
     tag: string,
-  }
-}
-
-export class AddButtonsRequest extends jspb.Message {
-  getRemoteId(): string;
-  setRemoteId(value: string): AddButtonsRequest;
-
-  getButtonsList(): Array<AddButtonRequest>;
-  setButtonsList(value: Array<AddButtonRequest>): AddButtonsRequest;
-  clearButtonsList(): AddButtonsRequest;
-  addButtons(value?: AddButtonRequest, index?: number): AddButtonRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddButtonsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddButtonsRequest): AddButtonsRequest.AsObject;
-  static serializeBinaryToWriter(message: AddButtonsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddButtonsRequest;
-  static deserializeBinaryFromReader(message: AddButtonsRequest, reader: jspb.BinaryReader): AddButtonsRequest;
-}
-
-export namespace AddButtonsRequest {
-  export type AsObject = {
-    remoteId: string,
-    buttonsList: Array<AddButtonRequest.AsObject>,
   }
 }
 

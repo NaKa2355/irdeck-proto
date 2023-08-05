@@ -146,16 +146,16 @@ proto.aim.AimServicePromiseClient.prototype.addRemote =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.AddButtonsRequest,
+ *   !proto.aim.AddButtonRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_AddButtons = new grpc.web.MethodDescriptor(
-  '/aim.AimService/AddButtons',
+const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
+  '/aim.AimService/AddButton',
   grpc.web.MethodType.UNARY,
-  proto.aim.AddButtonsRequest,
+  proto.aim.AddButtonRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.AddButtonsRequest} request
+   * @param {!proto.aim.AddButtonRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -166,7 +166,7 @@ const methodDescriptor_AimService_AddButtons = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.aim.AddButtonsRequest} request The
+ * @param {!proto.aim.AddButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -175,32 +175,32 @@ const methodDescriptor_AimService_AddButtons = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.addButtons =
+proto.aim.AimServiceClient.prototype.addButton =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/AddButtons',
+      '/aim.AimService/AddButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddButtons,
+      methodDescriptor_AimService_AddButton,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.AddButtonsRequest} request The
+ * @param {!proto.aim.AddButtonRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.addButtons =
+proto.aim.AimServicePromiseClient.prototype.addButton =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/AddButtons',
+      '/aim.AimService/AddButton',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddButtons);
+      methodDescriptor_AimService_AddButton);
 };
 
 

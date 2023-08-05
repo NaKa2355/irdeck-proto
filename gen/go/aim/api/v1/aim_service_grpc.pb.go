@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AimServiceClient interface {
 	AddRemote(ctx context.Context, in *AddRemoteRequest, opts ...grpc.CallOption) (*AddRemoteResponse, error)
-	AddButtons(ctx context.Context, in *AddButtonsRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetRemotes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRemotesResponse, error)
 	GetRemote(ctx context.Context, in *GetRemoteRequest, opts ...grpc.CallOption) (*GetRemoteResponse, error)
 	GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonsResponse, error)
@@ -55,9 +55,9 @@ func (c *aimServiceClient) AddRemote(ctx context.Context, in *AddRemoteRequest, 
 	return out, nil
 }
 
-func (c *aimServiceClient) AddButtons(ctx context.Context, in *AddButtonsRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/aim.AimService/AddButtons", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/aim.AimService/AddButton", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -182,7 +182,7 @@ func (x *aimServiceNotifyUpdateClient) Recv() (*UpdateNotification, error) {
 // for forward compatibility
 type AimServiceServer interface {
 	AddRemote(context.Context, *AddRemoteRequest) (*AddRemoteResponse, error)
-	AddButtons(context.Context, *AddButtonsRequest) (*empty.Empty, error)
+	AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error)
 	GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error)
 	GetRemote(context.Context, *GetRemoteRequest) (*GetRemoteResponse, error)
 	GetButtons(context.Context, *GetButtonsRequest) (*GetButtonsResponse, error)
@@ -203,8 +203,8 @@ type UnimplementedAimServiceServer struct {
 func (UnimplementedAimServiceServer) AddRemote(context.Context, *AddRemoteRequest) (*AddRemoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRemote not implemented")
 }
-func (UnimplementedAimServiceServer) AddButtons(context.Context, *AddButtonsRequest) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddButtons not implemented")
+func (UnimplementedAimServiceServer) AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddButton not implemented")
 }
 func (UnimplementedAimServiceServer) GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRemotes not implemented")
@@ -267,20 +267,20 @@ func _AimService_AddRemote_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AimService_AddButtons_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddButtonsRequest)
+func _AimService_AddButton_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddButtonRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AimServiceServer).AddButtons(ctx, in)
+		return srv.(AimServiceServer).AddButton(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/aim.AimService/AddButtons",
+		FullMethod: "/aim.AimService/AddButton",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AimServiceServer).AddButtons(ctx, req.(*AddButtonsRequest))
+		return srv.(AimServiceServer).AddButton(ctx, req.(*AddButtonRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -480,8 +480,8 @@ var AimService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AimService_AddRemote_Handler,
 		},
 		{
-			MethodName: "AddButtons",
-			Handler:    _AimService_AddButtons_Handler,
+			MethodName: "AddButton",
+			Handler:    _AimService_AddButton_Handler,
 		},
 		{
 			MethodName: "GetRemotes",
