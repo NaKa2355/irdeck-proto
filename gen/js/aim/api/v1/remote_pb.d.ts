@@ -12,11 +12,8 @@ export class Remote extends jspb.Message {
   getDeviceId(): string;
   setDeviceId(value: string): Remote;
 
-  getRemoteType(): Remote.RemoteType;
-  setRemoteType(value: Remote.RemoteType): Remote;
-
-  getCanAddButton(): boolean;
-  setCanAddButton(value: boolean): Remote;
+  getTag(): string;
+  setTag(value: string): Remote;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Remote.AsObject;
@@ -31,16 +28,7 @@ export namespace Remote {
     id: string,
     name: string,
     deviceId: string,
-    remoteType: Remote.RemoteType,
-    canAddButton: boolean,
-  }
-
-  export enum RemoteType { 
-    REMOTE_TYPE_UNKNOWN = 0,
-    CUSTOM = 1,
-    BUTTON = 2,
-    TOGGLE = 3,
-    THERMOSTAT = 4,
+    tag: string,
   }
 }
 

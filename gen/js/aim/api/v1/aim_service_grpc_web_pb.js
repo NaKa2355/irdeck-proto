@@ -146,16 +146,16 @@ proto.aim.AimServicePromiseClient.prototype.addRemote =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.aim.AddButtonRequest,
+ *   !proto.aim.AddButtonsRequest,
  *   !proto.google.protobuf.Empty>}
  */
-const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
-  '/aim.AimService/AddButton',
+const methodDescriptor_AimService_AddButtons = new grpc.web.MethodDescriptor(
+  '/aim.AimService/AddButtons',
   grpc.web.MethodType.UNARY,
-  proto.aim.AddButtonRequest,
+  proto.aim.AddButtonsRequest,
   google_protobuf_empty_pb.Empty,
   /**
-   * @param {!proto.aim.AddButtonRequest} request
+   * @param {!proto.aim.AddButtonsRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -166,7 +166,7 @@ const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.aim.AddButtonRequest} request The
+ * @param {!proto.aim.AddButtonsRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -175,32 +175,32 @@ const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.addButton =
+proto.aim.AimServiceClient.prototype.addButtons =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/aim.AimService/AddButton',
+      '/aim.AimService/AddButtons',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddButton,
+      methodDescriptor_AimService_AddButtons,
       callback);
 };
 
 
 /**
- * @param {!proto.aim.AddButtonRequest} request The
+ * @param {!proto.aim.AddButtonsRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
  *     Promise that resolves to the response
  */
-proto.aim.AimServicePromiseClient.prototype.addButton =
+proto.aim.AimServicePromiseClient.prototype.addButtons =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/aim.AimService/AddButton',
+      '/aim.AimService/AddButtons',
       request,
       metadata || {},
-      methodDescriptor_AimService_AddButton);
+      methodDescriptor_AimService_AddButtons);
 };
 
 
@@ -757,13 +757,13 @@ proto.aim.AimServicePromiseClient.prototype.deleteButton =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.google.protobuf.Empty,
- *   !proto.aim.RemoteUpdateNotification>}
+ *   !proto.aim.UpdateNotification>}
  */
-const methodDescriptor_AimService_NotifyRemoteUpdate = new grpc.web.MethodDescriptor(
-  '/aim.AimService/NotifyRemoteUpdate',
+const methodDescriptor_AimService_NotifyUpdate = new grpc.web.MethodDescriptor(
+  '/aim.AimService/NotifyUpdate',
   grpc.web.MethodType.SERVER_STREAMING,
   google_protobuf_empty_pb.Empty,
-  proto.aim.RemoteUpdateNotification,
+  proto.aim.UpdateNotification,
   /**
    * @param {!proto.google.protobuf.Empty} request
    * @return {!Uint8Array}
@@ -771,7 +771,7 @@ const methodDescriptor_AimService_NotifyRemoteUpdate = new grpc.web.MethodDescri
   function(request) {
     return request.serializeBinary();
   },
-  proto.aim.RemoteUpdateNotification.deserializeBinary
+  proto.aim.UpdateNotification.deserializeBinary
 );
 
 
@@ -779,16 +779,16 @@ const methodDescriptor_AimService_NotifyRemoteUpdate = new grpc.web.MethodDescri
  * @param {!proto.google.protobuf.Empty} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.aim.RemoteUpdateNotification>}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.UpdateNotification>}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServiceClient.prototype.notifyRemoteUpdate =
+proto.aim.AimServiceClient.prototype.notifyUpdate =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/aim.AimService/NotifyRemoteUpdate',
+      '/aim.AimService/NotifyUpdate',
       request,
       metadata || {},
-      methodDescriptor_AimService_NotifyRemoteUpdate);
+      methodDescriptor_AimService_NotifyUpdate);
 };
 
 
@@ -796,16 +796,16 @@ proto.aim.AimServiceClient.prototype.notifyRemoteUpdate =
  * @param {!proto.google.protobuf.Empty} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.aim.RemoteUpdateNotification>}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.UpdateNotification>}
  *     The XHR Node Readable Stream
  */
-proto.aim.AimServicePromiseClient.prototype.notifyRemoteUpdate =
+proto.aim.AimServicePromiseClient.prototype.notifyUpdate =
     function(request, metadata) {
   return this.client_.serverStreaming(this.hostname_ +
-      '/aim.AimService/NotifyRemoteUpdate',
+      '/aim.AimService/NotifyUpdate',
       request,
       metadata || {},
-      methodDescriptor_AimService_NotifyRemoteUpdate);
+      methodDescriptor_AimService_NotifyUpdate);
 };
 
 

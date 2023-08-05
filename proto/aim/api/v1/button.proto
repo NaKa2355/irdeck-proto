@@ -7,7 +7,6 @@ option go_package = "github.com/NaKa2355/irdeck-proto/gen/go/aim/api/v1";
 message Button {
     string id = 1;
     string name = 2;
-    bool can_rename = 3;
-    bool can_delete = 4;
-    bool has_irdata = 5;
+    string tag = 3;
+    bool has_irdata = 4;
 }

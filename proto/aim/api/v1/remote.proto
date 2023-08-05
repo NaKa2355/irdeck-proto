@@ -9,13 +9,5 @@ message Remote {
     string id = 1;
     string name = 2;
     string device_id = 3;
-    enum RemoteType {
-        REMOTE_TYPE_UNKNOWN = 0;
-        CUSTOM = 1;
-        BUTTON = 2;
-        TOGGLE = 3;
-        THERMOSTAT = 4;
-    }
-    RemoteType remote_type = 4;
-    bool can_add_button = 5;
+    string tag = 4;
 }

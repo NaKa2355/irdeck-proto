@@ -9,11 +9,8 @@ export class Button extends jspb.Message {
   getName(): string;
   setName(value: string): Button;
 
-  getCanRename(): boolean;
-  setCanRename(value: boolean): Button;
-
-  getCanDelete(): boolean;
-  setCanDelete(value: boolean): Button;
+  getTag(): string;
+  setTag(value: string): Button;
 
   getHasIrdata(): boolean;
   setHasIrdata(value: boolean): Button;
@@ -30,8 +27,7 @@ export namespace Button {
   export type AsObject = {
     id: string,
     name: string,
-    canRename: boolean,
-    canDelete: boolean,
+    tag: string,
     hasIrdata: boolean,
   }
 }

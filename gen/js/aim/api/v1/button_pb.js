@@ -68,9 +68,8 @@ proto.aim.Button.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    canRename: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    canDelete: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    hasIrdata: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    tag: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    hasIrdata: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -116,14 +115,10 @@ proto.aim.Button.deserializeBinaryFromReader = function(msg, reader) {
       msg.setName(value);
       break;
     case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setCanRename(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTag(value);
       break;
     case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setCanDelete(value);
-      break;
-    case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setHasIrdata(value);
       break;
@@ -170,24 +165,17 @@ proto.aim.Button.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCanRename();
-  if (f) {
-    writer.writeBool(
+  f = message.getTag();
+  if (f.length > 0) {
+    writer.writeString(
       3,
-      f
-    );
-  }
-  f = message.getCanDelete();
-  if (f) {
-    writer.writeBool(
-      4,
       f
     );
   }
   f = message.getHasIrdata();
   if (f) {
     writer.writeBool(
-      5,
+      4,
       f
     );
   }
@@ -231,28 +219,28 @@ proto.aim.Button.prototype.setName = function(value) {
 
 
 /**
- * optional bool can_rename = 3;
- * @return {boolean}
+ * optional string tag = 3;
+ * @return {string}
  */
-proto.aim.Button.prototype.getCanRename = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+proto.aim.Button.prototype.getTag = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
- * @param {boolean} value
+ * @param {string} value
  * @return {!proto.aim.Button} returns this
  */
-proto.aim.Button.prototype.setCanRename = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
+proto.aim.Button.prototype.setTag = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional bool can_delete = 4;
+ * optional bool has_irdata = 4;
  * @return {boolean}
  */
-proto.aim.Button.prototype.getCanDelete = function() {
+proto.aim.Button.prototype.getHasIrdata = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
@@ -261,26 +249,8 @@ proto.aim.Button.prototype.getCanDelete = function() {
  * @param {boolean} value
  * @return {!proto.aim.Button} returns this
  */
-proto.aim.Button.prototype.setCanDelete = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
-};
-
-
-/**
- * optional bool has_irdata = 5;
- * @return {boolean}
- */
-proto.aim.Button.prototype.getHasIrdata = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.aim.Button} returns this
- */
 proto.aim.Button.prototype.setHasIrdata = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 5, value);
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 

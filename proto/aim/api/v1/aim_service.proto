@@ -9,53 +9,24 @@ import "google/protobuf/empty.proto";
 import "aim/api/v1/remote.proto";
 import "google/protobuf/any.proto";
 
-message AddCustomRemoteRequest {
-    string name = 1;
-    string device_id = 2;
-}
-
-message AddToggleRemoteRequest{
-    string name = 1;
-    string device_id = 2;
-}
-
-message AddButtonRemoteRequest{
-    string name = 1;
-    string device_id = 2;
-}
-
-message AddThermostatRemoteRequest{
-    enum Scale {
-        SCALE_UNKNOWN = 0;
-        HALF = 1;
-        ONE = 2;
-    }
-
-    string name = 1;
-    string device_id = 2;
-    Scale scale = 3;
-    uint32 maximum_heating_temp = 4;
-    uint32 minimum_heating_temp = 5;
-    uint32 maximum_cooling_temp = 6;
-    uint32 minimum_cooling_temp = 7;
-}
-
 message AddRemoteRequest {
-    oneof remote {
-        AddCustomRemoteRequest custom = 1;
-        AddToggleRemoteRequest toggle = 2;
-        AddButtonRemoteRequest button = 3;
-        AddThermostatRemoteRequest thermostat = 4;
-    }
+    string name = 1;
+    string tag = 2;
+    string device_id = 3;
 }
 
 message AddRemoteResponse {
-    Remote remote = 1;
+    string remote_id = 1;
 }
 
 message AddButtonRequest {
+    string name = 1;
+    string tag = 2;
+}
+
+message AddButtonsRequest {
     string remote_id = 1;
-    string name = 2;
+    repeated AddButtonRequest buttons = 2;
 }
 
 message GetRemotesResponse { 
@@ -118,7 +89,7 @@ message RemoteDeletionNotification {
     string remote_id = 1;
 }
 
-message RemoteUpdateNotification {
+message UpdateNotification {
    oneof notification {
         RemoteAdditionNotification add = 1;
         RemoteDeletionNotification delete = 2;
@@ -127,7 +98,7 @@ message RemoteUpdateNotification {
 
 service AimService {
     rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
-    rpc AddButton(AddButtonRequest) returns (google.protobuf.Empty) {}
+    rpc AddButtons(AddButtonsRequest) returns (google.protobuf.Empty) {}
 
     rpc GetRemotes(google.protobuf.Empty) returns(GetRemotesResponse) {}
     rpc GetRemote(GetRemoteRequest) returns(GetRemoteResponse) {}
@@ -141,6 +112,6 @@ service AimService {
     rpc DeleteRemote(DeleteRemoteRequest) returns (google.protobuf.Empty) {}
     rpc DeleteButton(DeleteButtonRequest) returns (google.protobuf.Empty) {}
 
-    rpc NotifyRemoteUpdate(google.protobuf.Empty) 
-        returns (stream RemoteUpdateNotification) {}
+    rpc NotifyUpdate(google.protobuf.Empty) 
+        returns (stream UpdateNotification) {}
 }

@@ -6,142 +6,15 @@ import * as aim_api_v1_remote_pb from '../../../aim/api/v1/remote_pb';
 import * as google_protobuf_any_pb from 'google-protobuf/google/protobuf/any_pb';
 
 
-export class AddCustomRemoteRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): AddCustomRemoteRequest;
-
-  getDeviceId(): string;
-  setDeviceId(value: string): AddCustomRemoteRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddCustomRemoteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddCustomRemoteRequest): AddCustomRemoteRequest.AsObject;
-  static serializeBinaryToWriter(message: AddCustomRemoteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddCustomRemoteRequest;
-  static deserializeBinaryFromReader(message: AddCustomRemoteRequest, reader: jspb.BinaryReader): AddCustomRemoteRequest;
-}
-
-export namespace AddCustomRemoteRequest {
-  export type AsObject = {
-    name: string,
-    deviceId: string,
-  }
-}
-
-export class AddToggleRemoteRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): AddToggleRemoteRequest;
-
-  getDeviceId(): string;
-  setDeviceId(value: string): AddToggleRemoteRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddToggleRemoteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddToggleRemoteRequest): AddToggleRemoteRequest.AsObject;
-  static serializeBinaryToWriter(message: AddToggleRemoteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddToggleRemoteRequest;
-  static deserializeBinaryFromReader(message: AddToggleRemoteRequest, reader: jspb.BinaryReader): AddToggleRemoteRequest;
-}
-
-export namespace AddToggleRemoteRequest {
-  export type AsObject = {
-    name: string,
-    deviceId: string,
-  }
-}
-
-export class AddButtonRemoteRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): AddButtonRemoteRequest;
-
-  getDeviceId(): string;
-  setDeviceId(value: string): AddButtonRemoteRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddButtonRemoteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddButtonRemoteRequest): AddButtonRemoteRequest.AsObject;
-  static serializeBinaryToWriter(message: AddButtonRemoteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddButtonRemoteRequest;
-  static deserializeBinaryFromReader(message: AddButtonRemoteRequest, reader: jspb.BinaryReader): AddButtonRemoteRequest;
-}
-
-export namespace AddButtonRemoteRequest {
-  export type AsObject = {
-    name: string,
-    deviceId: string,
-  }
-}
-
-export class AddThermostatRemoteRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): AddThermostatRemoteRequest;
-
-  getDeviceId(): string;
-  setDeviceId(value: string): AddThermostatRemoteRequest;
-
-  getScale(): AddThermostatRemoteRequest.Scale;
-  setScale(value: AddThermostatRemoteRequest.Scale): AddThermostatRemoteRequest;
-
-  getMaximumHeatingTemp(): number;
-  setMaximumHeatingTemp(value: number): AddThermostatRemoteRequest;
-
-  getMinimumHeatingTemp(): number;
-  setMinimumHeatingTemp(value: number): AddThermostatRemoteRequest;
-
-  getMaximumCoolingTemp(): number;
-  setMaximumCoolingTemp(value: number): AddThermostatRemoteRequest;
-
-  getMinimumCoolingTemp(): number;
-  setMinimumCoolingTemp(value: number): AddThermostatRemoteRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddThermostatRemoteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddThermostatRemoteRequest): AddThermostatRemoteRequest.AsObject;
-  static serializeBinaryToWriter(message: AddThermostatRemoteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddThermostatRemoteRequest;
-  static deserializeBinaryFromReader(message: AddThermostatRemoteRequest, reader: jspb.BinaryReader): AddThermostatRemoteRequest;
-}
-
-export namespace AddThermostatRemoteRequest {
-  export type AsObject = {
-    name: string,
-    deviceId: string,
-    scale: AddThermostatRemoteRequest.Scale,
-    maximumHeatingTemp: number,
-    minimumHeatingTemp: number,
-    maximumCoolingTemp: number,
-    minimumCoolingTemp: number,
-  }
-
-  export enum Scale { 
-    SCALE_UNKNOWN = 0,
-    HALF = 1,
-    ONE = 2,
-  }
-}
-
 export class AddRemoteRequest extends jspb.Message {
-  getCustom(): AddCustomRemoteRequest | undefined;
-  setCustom(value?: AddCustomRemoteRequest): AddRemoteRequest;
-  hasCustom(): boolean;
-  clearCustom(): AddRemoteRequest;
+  getName(): string;
+  setName(value: string): AddRemoteRequest;
 
-  getToggle(): AddToggleRemoteRequest | undefined;
-  setToggle(value?: AddToggleRemoteRequest): AddRemoteRequest;
-  hasToggle(): boolean;
-  clearToggle(): AddRemoteRequest;
+  getTag(): string;
+  setTag(value: string): AddRemoteRequest;
 
-  getButton(): AddButtonRemoteRequest | undefined;
-  setButton(value?: AddButtonRemoteRequest): AddRemoteRequest;
-  hasButton(): boolean;
-  clearButton(): AddRemoteRequest;
-
-  getThermostat(): AddThermostatRemoteRequest | undefined;
-  setThermostat(value?: AddThermostatRemoteRequest): AddRemoteRequest;
-  hasThermostat(): boolean;
-  clearThermostat(): AddRemoteRequest;
-
-  getRemoteCase(): AddRemoteRequest.RemoteCase;
+  getDeviceId(): string;
+  setDeviceId(value: string): AddRemoteRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddRemoteRequest.AsObject;
@@ -153,26 +26,15 @@ export class AddRemoteRequest extends jspb.Message {
 
 export namespace AddRemoteRequest {
   export type AsObject = {
-    custom?: AddCustomRemoteRequest.AsObject,
-    toggle?: AddToggleRemoteRequest.AsObject,
-    button?: AddButtonRemoteRequest.AsObject,
-    thermostat?: AddThermostatRemoteRequest.AsObject,
-  }
-
-  export enum RemoteCase { 
-    REMOTE_NOT_SET = 0,
-    CUSTOM = 1,
-    TOGGLE = 2,
-    BUTTON = 3,
-    THERMOSTAT = 4,
+    name: string,
+    tag: string,
+    deviceId: string,
   }
 }
 
 export class AddRemoteResponse extends jspb.Message {
-  getRemote(): aim_api_v1_remote_pb.Remote | undefined;
-  setRemote(value?: aim_api_v1_remote_pb.Remote): AddRemoteResponse;
-  hasRemote(): boolean;
-  clearRemote(): AddRemoteResponse;
+  getRemoteId(): string;
+  setRemoteId(value: string): AddRemoteResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddRemoteResponse.AsObject;
@@ -184,16 +46,16 @@ export class AddRemoteResponse extends jspb.Message {
 
 export namespace AddRemoteResponse {
   export type AsObject = {
-    remote?: aim_api_v1_remote_pb.Remote.AsObject,
+    remoteId: string,
   }
 }
 
 export class AddButtonRequest extends jspb.Message {
-  getRemoteId(): string;
-  setRemoteId(value: string): AddButtonRequest;
-
   getName(): string;
   setName(value: string): AddButtonRequest;
+
+  getTag(): string;
+  setTag(value: string): AddButtonRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddButtonRequest.AsObject;
@@ -205,8 +67,32 @@ export class AddButtonRequest extends jspb.Message {
 
 export namespace AddButtonRequest {
   export type AsObject = {
-    remoteId: string,
     name: string,
+    tag: string,
+  }
+}
+
+export class AddButtonsRequest extends jspb.Message {
+  getRemoteId(): string;
+  setRemoteId(value: string): AddButtonsRequest;
+
+  getButtonsList(): Array<AddButtonRequest>;
+  setButtonsList(value: Array<AddButtonRequest>): AddButtonsRequest;
+  clearButtonsList(): AddButtonsRequest;
+  addButtons(value?: AddButtonRequest, index?: number): AddButtonRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddButtonsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddButtonsRequest): AddButtonsRequest.AsObject;
+  static serializeBinaryToWriter(message: AddButtonsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddButtonsRequest;
+  static deserializeBinaryFromReader(message: AddButtonsRequest, reader: jspb.BinaryReader): AddButtonsRequest;
+}
+
+export namespace AddButtonsRequest {
+  export type AsObject = {
+    remoteId: string,
+    buttonsList: Array<AddButtonRequest.AsObject>,
   }
 }
 
@@ -486,28 +372,28 @@ export namespace RemoteDeletionNotification {
   }
 }
 
-export class RemoteUpdateNotification extends jspb.Message {
+export class UpdateNotification extends jspb.Message {
   getAdd(): RemoteAdditionNotification | undefined;
-  setAdd(value?: RemoteAdditionNotification): RemoteUpdateNotification;
+  setAdd(value?: RemoteAdditionNotification): UpdateNotification;
   hasAdd(): boolean;
-  clearAdd(): RemoteUpdateNotification;
+  clearAdd(): UpdateNotification;
 
   getDelete(): RemoteDeletionNotification | undefined;
-  setDelete(value?: RemoteDeletionNotification): RemoteUpdateNotification;
+  setDelete(value?: RemoteDeletionNotification): UpdateNotification;
   hasDelete(): boolean;
-  clearDelete(): RemoteUpdateNotification;
+  clearDelete(): UpdateNotification;
 
-  getNotificationCase(): RemoteUpdateNotification.NotificationCase;
+  getNotificationCase(): UpdateNotification.NotificationCase;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RemoteUpdateNotification.AsObject;
-  static toObject(includeInstance: boolean, msg: RemoteUpdateNotification): RemoteUpdateNotification.AsObject;
-  static serializeBinaryToWriter(message: RemoteUpdateNotification, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RemoteUpdateNotification;
-  static deserializeBinaryFromReader(message: RemoteUpdateNotification, reader: jspb.BinaryReader): RemoteUpdateNotification;
+  toObject(includeInstance?: boolean): UpdateNotification.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateNotification): UpdateNotification.AsObject;
+  static serializeBinaryToWriter(message: UpdateNotification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateNotification;
+  static deserializeBinaryFromReader(message: UpdateNotification, reader: jspb.BinaryReader): UpdateNotification;
 }
 
-export namespace RemoteUpdateNotification {
+export namespace UpdateNotification {
   export type AsObject = {
     add?: RemoteAdditionNotification.AsObject,
     pb_delete?: RemoteDeletionNotification.AsObject,
