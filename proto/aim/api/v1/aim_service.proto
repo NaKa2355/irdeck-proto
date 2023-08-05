@@ -17,17 +17,18 @@ message AddRemoteRequest {
     string name = 1;
     string tag = 2;
     string device_id = 3;
-    repeated AddButtonRequest buttons = 4;
+    repeated AddButtonsRequest buttons = 4;
 }
 
-message AddButtonRequest {
+message AddButtonsRequest {
     string name = 1;
     string tag = 2;
 }
 
-message AddButtonsRequest {
+message AddButtonRequest {
     string remote_id = 1;
-    repeated AddButtonRequest buttons = 2;
+    string name = 1;
+    string tag = 2;
 }
 
 message GetRemotesResponse { 
@@ -99,7 +100,7 @@ message UpdateNotification {
 
 service AimService {
     rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
-    rpc AddButtons(AddButtonsRequest) returns (google.protobuf.Empty) {}
+    rpc AddButton(AddButtonRequest) returns (google.protobuf.Empty) {}
 
     rpc GetRemotes(google.protobuf.Empty) returns(GetRemotesResponse) {}
     rpc GetRemote(GetRemoteRequest) returns(GetRemoteResponse) {}
