@@ -6,32 +6,6 @@ import * as aim_api_v1_remote_pb from '../../../aim/api/v1/remote_pb';
 import * as google_protobuf_any_pb from 'google-protobuf/google/protobuf/any_pb';
 
 
-export class AddRemoteRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): AddRemoteRequest;
-
-  getTag(): string;
-  setTag(value: string): AddRemoteRequest;
-
-  getDeviceId(): string;
-  setDeviceId(value: string): AddRemoteRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddRemoteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddRemoteRequest): AddRemoteRequest.AsObject;
-  static serializeBinaryToWriter(message: AddRemoteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddRemoteRequest;
-  static deserializeBinaryFromReader(message: AddRemoteRequest, reader: jspb.BinaryReader): AddRemoteRequest;
-}
-
-export namespace AddRemoteRequest {
-  export type AsObject = {
-    name: string,
-    tag: string,
-    deviceId: string,
-  }
-}
-
 export class AddRemoteResponse extends jspb.Message {
   getRemoteId(): string;
   setRemoteId(value: string): AddRemoteResponse;
@@ -47,6 +21,38 @@ export class AddRemoteResponse extends jspb.Message {
 export namespace AddRemoteResponse {
   export type AsObject = {
     remoteId: string,
+  }
+}
+
+export class AddRemoteRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): AddRemoteRequest;
+
+  getTag(): string;
+  setTag(value: string): AddRemoteRequest;
+
+  getDeviceId(): string;
+  setDeviceId(value: string): AddRemoteRequest;
+
+  getButtonsList(): Array<AddButtonRequest>;
+  setButtonsList(value: Array<AddButtonRequest>): AddRemoteRequest;
+  clearButtonsList(): AddRemoteRequest;
+  addButtons(value?: AddButtonRequest, index?: number): AddButtonRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddRemoteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddRemoteRequest): AddRemoteRequest.AsObject;
+  static serializeBinaryToWriter(message: AddRemoteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddRemoteRequest;
+  static deserializeBinaryFromReader(message: AddRemoteRequest, reader: jspb.BinaryReader): AddRemoteRequest;
+}
+
+export namespace AddRemoteRequest {
+  export type AsObject = {
+    name: string,
+    tag: string,
+    deviceId: string,
+    buttonsList: Array<AddButtonRequest.AsObject>,
   }
 }
 

@@ -9,14 +9,15 @@ import "google/protobuf/empty.proto";
 import "aim/api/v1/remote.proto";
 import "google/protobuf/any.proto";
 
+message AddRemoteResponse {
+    string remote_id = 1;
+}
+
 message AddRemoteRequest {
     string name = 1;
     string tag = 2;
     string device_id = 3;
-}
-
-message AddRemoteResponse {
-    string remote_id = 1;
+    repeated AddButtonRequest buttons = 4;
 }
 
 message AddButtonRequest {
