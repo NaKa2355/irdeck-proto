@@ -25,6 +25,10 @@ message AddButtonsRequest {
     string tag = 2;
 }
 
+message AddButtonsResponse {
+    string button_id = 1;
+}
+
 message AddButtonRequest {
     string remote_id = 1;
     string name = 2;

@@ -78,6 +78,24 @@ export namespace AddButtonsRequest {
   }
 }
 
+export class AddButtonsResponse extends jspb.Message {
+  getButtonId(): string;
+  setButtonId(value: string): AddButtonsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddButtonsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddButtonsResponse): AddButtonsResponse.AsObject;
+  static serializeBinaryToWriter(message: AddButtonsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddButtonsResponse;
+  static deserializeBinaryFromReader(message: AddButtonsResponse, reader: jspb.BinaryReader): AddButtonsResponse;
+}
+
+export namespace AddButtonsResponse {
+  export type AsObject = {
+    buttonId: string,
+  }
+}
+
 export class AddButtonRequest extends jspb.Message {
   getRemoteId(): string;
   setRemoteId(value: string): AddButtonRequest;
