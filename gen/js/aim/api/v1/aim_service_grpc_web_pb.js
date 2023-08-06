@@ -147,13 +147,13 @@ proto.aim.AimServicePromiseClient.prototype.addRemote =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.aim.AddButtonRequest,
- *   !proto.google.protobuf.Empty>}
+ *   !proto.aim.AddButtonsResponse>}
  */
 const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
   '/aim.AimService/AddButton',
   grpc.web.MethodType.UNARY,
   proto.aim.AddButtonRequest,
-  google_protobuf_empty_pb.Empty,
+  proto.aim.AddButtonsResponse,
   /**
    * @param {!proto.aim.AddButtonRequest} request
    * @return {!Uint8Array}
@@ -161,7 +161,7 @@ const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  google_protobuf_empty_pb.Empty.deserializeBinary
+  proto.aim.AddButtonsResponse.deserializeBinary
 );
 
 
@@ -170,9 +170,9 @@ const methodDescriptor_AimService_AddButton = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.google.protobuf.Empty)}
+ * @param {function(?grpc.web.RpcError, ?proto.aim.AddButtonsResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.google.protobuf.Empty>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.aim.AddButtonsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.aim.AimServiceClient.prototype.addButton =
@@ -191,7 +191,7 @@ proto.aim.AimServiceClient.prototype.addButton =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.google.protobuf.Empty>}
+ * @return {!Promise<!proto.aim.AddButtonsResponse>}
  *     Promise that resolves to the response
  */
 proto.aim.AimServicePromiseClient.prototype.addButton =

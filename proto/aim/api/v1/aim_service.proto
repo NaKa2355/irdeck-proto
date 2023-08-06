@@ -104,7 +104,7 @@ message UpdateNotification {
 
 service AimService {
     rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
-    rpc AddButton(AddButtonRequest) returns (google.protobuf.Empty) {}
+    rpc AddButton(AddButtonRequest) returns (AddButtonsResponse) {}
 
     rpc GetRemotes(google.protobuf.Empty) returns(GetRemotesResponse) {}
     rpc GetRemote(GetRemoteRequest) returns(GetRemoteResponse) {}

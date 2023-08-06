@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AimServiceClient interface {
 	AddRemote(ctx context.Context, in *AddRemoteRequest, opts ...grpc.CallOption) (*AddRemoteResponse, error)
-	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error)
+	AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*AddButtonsResponse, error)
 	GetRemotes(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetRemotesResponse, error)
 	GetRemote(ctx context.Context, in *GetRemoteRequest, opts ...grpc.CallOption) (*GetRemoteResponse, error)
 	GetButtons(ctx context.Context, in *GetButtonsRequest, opts ...grpc.CallOption) (*GetButtonsResponse, error)
@@ -55,8 +55,8 @@ func (c *aimServiceClient) AddRemote(ctx context.Context, in *AddRemoteRequest, 
 	return out, nil
 }
 
-func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
+func (c *aimServiceClient) AddButton(ctx context.Context, in *AddButtonRequest, opts ...grpc.CallOption) (*AddButtonsResponse, error) {
+	out := new(AddButtonsResponse)
 	err := c.cc.Invoke(ctx, "/aim.AimService/AddButton", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -182,7 +182,7 @@ func (x *aimServiceNotifyUpdateClient) Recv() (*UpdateNotification, error) {
 // for forward compatibility
 type AimServiceServer interface {
 	AddRemote(context.Context, *AddRemoteRequest) (*AddRemoteResponse, error)
-	AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error)
+	AddButton(context.Context, *AddButtonRequest) (*AddButtonsResponse, error)
 	GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error)
 	GetRemote(context.Context, *GetRemoteRequest) (*GetRemoteResponse, error)
 	GetButtons(context.Context, *GetButtonsRequest) (*GetButtonsResponse, error)
@@ -203,7 +203,7 @@ type UnimplementedAimServiceServer struct {
 func (UnimplementedAimServiceServer) AddRemote(context.Context, *AddRemoteRequest) (*AddRemoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddRemote not implemented")
 }
-func (UnimplementedAimServiceServer) AddButton(context.Context, *AddButtonRequest) (*empty.Empty, error) {
+func (UnimplementedAimServiceServer) AddButton(context.Context, *AddButtonRequest) (*AddButtonsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddButton not implemented")
 }
 func (UnimplementedAimServiceServer) GetRemotes(context.Context, *empty.Empty) (*GetRemotesResponse, error) {
