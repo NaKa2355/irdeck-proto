@@ -1142,8 +1142,7 @@ proto.aim.AddButtonRequest.prototype.toObject = function(opt_includeInstance) {
 proto.aim.AddButtonRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     remoteId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    tag: jspb.Message.getFieldWithDefault(msg, 3, "")
+    name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1188,10 +1187,6 @@ proto.aim.AddButtonRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setTag(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1235,13 +1230,6 @@ proto.aim.AddButtonRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTag();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
 };
 
 
@@ -1278,24 +1266,6 @@ proto.aim.AddButtonRequest.prototype.getName = function() {
  */
 proto.aim.AddButtonRequest.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string tag = 3;
- * @return {string}
- */
-proto.aim.AddButtonRequest.prototype.getTag = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.aim.AddButtonRequest} returns this
- */
-proto.aim.AddButtonRequest.prototype.setTag = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

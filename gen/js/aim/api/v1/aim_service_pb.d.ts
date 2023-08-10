@@ -103,9 +103,6 @@ export class AddButtonRequest extends jspb.Message {
   getName(): string;
   setName(value: string): AddButtonRequest;
 
-  getTag(): string;
-  setTag(value: string): AddButtonRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddButtonRequest.AsObject;
   static toObject(includeInstance: boolean, msg: AddButtonRequest): AddButtonRequest.AsObject;
@@ -118,7 +115,6 @@ export namespace AddButtonRequest {
   export type AsObject = {
     remoteId: string,
     name: string,
-    tag: string,
   }
 }
 
