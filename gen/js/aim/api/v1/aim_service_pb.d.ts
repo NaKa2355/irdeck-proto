@@ -34,10 +34,10 @@ export class AddRemoteRequest extends jspb.Message {
   getDeviceId(): string;
   setDeviceId(value: string): AddRemoteRequest;
 
-  getButtonsList(): Array<AddButtonsRequest>;
-  setButtonsList(value: Array<AddButtonsRequest>): AddRemoteRequest;
+  getButtonsList(): Array<AddRemoteRequest.Button>;
+  setButtonsList(value: Array<AddRemoteRequest.Button>): AddRemoteRequest;
   clearButtonsList(): AddRemoteRequest;
-  addButtons(value?: AddButtonsRequest, index?: number): AddButtonsRequest;
+  addButtons(value?: AddRemoteRequest.Button, index?: number): AddRemoteRequest.Button;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddRemoteRequest.AsObject;
@@ -52,30 +52,31 @@ export namespace AddRemoteRequest {
     name: string,
     tag: string,
     deviceId: string,
-    buttonsList: Array<AddButtonsRequest.AsObject>,
+    buttonsList: Array<AddRemoteRequest.Button.AsObject>,
   }
-}
 
-export class AddButtonsRequest extends jspb.Message {
-  getName(): string;
-  setName(value: string): AddButtonsRequest;
+  export class Button extends jspb.Message {
+    getName(): string;
+    setName(value: string): Button;
 
-  getTag(): string;
-  setTag(value: string): AddButtonsRequest;
+    getTag(): string;
+    setTag(value: string): Button;
 
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddButtonsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AddButtonsRequest): AddButtonsRequest.AsObject;
-  static serializeBinaryToWriter(message: AddButtonsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddButtonsRequest;
-  static deserializeBinaryFromReader(message: AddButtonsRequest, reader: jspb.BinaryReader): AddButtonsRequest;
-}
-
-export namespace AddButtonsRequest {
-  export type AsObject = {
-    name: string,
-    tag: string,
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Button.AsObject;
+    static toObject(includeInstance: boolean, msg: Button): Button.AsObject;
+    static serializeBinaryToWriter(message: Button, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Button;
+    static deserializeBinaryFromReader(message: Button, reader: jspb.BinaryReader): Button;
   }
+
+  export namespace Button {
+    export type AsObject = {
+      name: string,
+      tag: string,
+    }
+  }
+
 }
 
 export class AddButtonsResponse extends jspb.Message {
@@ -394,6 +395,26 @@ export namespace RemoteDeletionNotification {
   }
 }
 
+export class RemoteUpdateNotification extends jspb.Message {
+  getRemote(): aim_api_v1_remote_pb.Remote | undefined;
+  setRemote(value?: aim_api_v1_remote_pb.Remote): RemoteUpdateNotification;
+  hasRemote(): boolean;
+  clearRemote(): RemoteUpdateNotification;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoteUpdateNotification.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoteUpdateNotification): RemoteUpdateNotification.AsObject;
+  static serializeBinaryToWriter(message: RemoteUpdateNotification, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoteUpdateNotification;
+  static deserializeBinaryFromReader(message: RemoteUpdateNotification, reader: jspb.BinaryReader): RemoteUpdateNotification;
+}
+
+export namespace RemoteUpdateNotification {
+  export type AsObject = {
+    remote?: aim_api_v1_remote_pb.Remote.AsObject,
+  }
+}
+
 export class UpdateNotification extends jspb.Message {
   getAdd(): RemoteAdditionNotification | undefined;
   setAdd(value?: RemoteAdditionNotification): UpdateNotification;
@@ -404,6 +425,11 @@ export class UpdateNotification extends jspb.Message {
   setDelete(value?: RemoteDeletionNotification): UpdateNotification;
   hasDelete(): boolean;
   clearDelete(): UpdateNotification;
+
+  getUpdate(): RemoteUpdateNotification | undefined;
+  setUpdate(value?: RemoteUpdateNotification): UpdateNotification;
+  hasUpdate(): boolean;
+  clearUpdate(): UpdateNotification;
 
   getNotificationCase(): UpdateNotification.NotificationCase;
 
@@ -419,12 +445,14 @@ export namespace UpdateNotification {
   export type AsObject = {
     add?: RemoteAdditionNotification.AsObject,
     pb_delete?: RemoteDeletionNotification.AsObject,
+    update?: RemoteUpdateNotification.AsObject,
   }
 
   export enum NotificationCase { 
     NOTIFICATION_NOT_SET = 0,
     ADD = 1,
     DELETE = 2,
+    UPDATE = 3,
   }
 }
 

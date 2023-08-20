@@ -94,10 +94,15 @@ message RemoteDeletionNotification {
     string remote_id = 1;
 }
 
+message RemoteUpdateNotification {
+    Remote remote = 1;
+}
+
 message UpdateNotification {
    oneof notification {
         RemoteAdditionNotification add = 1;
         RemoteDeletionNotification delete = 2;
+        RemoteUpdateNotification update = 3;
    }
 }
 
