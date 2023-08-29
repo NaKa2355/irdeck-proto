@@ -1,0 +1,24 @@
+{
+  "name": "irdeck-proto",
+  "version": "0.1.0",
+  "description": "grpc protocol buffer for irdeck",
+  "exports": {
+    "./pirem/*": "./gen/js/pirem/*",
+    "./aim/*": "./gen/js/aim/*"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaKa2355/irdeck-proto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaKa2355/irdeck-proto/issues"
+  },
+  "homepage": "https://github.com/NaKa2355/irdeck-proto#readme"
+}
