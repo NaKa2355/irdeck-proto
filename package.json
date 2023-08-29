@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "description": "grpc protocol buffer for irdeck",
   "exports": {
-    "./*": "./*"
+    "./*": {
+      "import": {
+        "types": "./*",
+        "default": "./*"
+      }
+    }
   },
   "directories": {
     "test": "test"
