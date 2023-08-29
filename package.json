@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "grpc protocol buffer for irdeck",
   "exports": {
-    "./pirem/*": "./gen/js/pirem/*",
-    "./aim/*": "./gen/js/aim/*"
+    "./*": "./*"
   },
   "directories": {
     "test": "test"
